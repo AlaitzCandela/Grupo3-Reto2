@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  # Box a utilizar
+  config.vm.box = "ubuntu/bionic64"
+  
+  # Nombre en consola
+  config.vm.define "TNserver"
+  
+  # Carpetas compartidas
+  #config.vm.synced_folder "./web", "/vagrant/web"
+  
+  # Bridge (su config será sobrescrita en un script)
+  config.vm.hostname = "tomnook.es"
+  config.vm.network "public_network", ip: "172.20.224.250", hostname: true
+  
+  # Provisiones (scripts)
+  config.vm.provision :shell, path: "./scripts/bootstrap.sh"
+  config.vm.provision :shell, path: "./scripts/mysql_data.sh"
+  config.vm.provision :shell, path: "./scripts/server_configs.sh"
+  
+  # Configuración reenvío de puertos
+  config.vm.network "forwarded_port", guest: 80, host: 8800
+  
+  # Configuración Virtual Box
+  config.vm.provider "virtualbox" do |vb|
+    # Nombre en Virtual Box
+    vb.name = "Tom Nook Server"
+    
+    # Grupo en Virtual Box
+    vb.customize ["modifyvm", :id, "--groups", "/Reto2"]
+    
+    # RAM + Conexión por cable a la máquina + Internet ON
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.customize ['modifyvm', :id, '--cableconnected1', 'on']
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end  
+end
