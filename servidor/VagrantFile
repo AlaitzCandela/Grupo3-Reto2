@@ -16,7 +16,9 @@ Vagrant.configure("2") do |config|
   
   # Provisiones (scripts)
   config.vm.provision :shell, path: "./scripts/bootstrap.sh"
-  config.vm.provision :shell, path: "./scripts/mysql_data.sh"
+  config.vm.provision :shell, path: "./scripts/mysql_create_database.sh"
+  config.vm.provision :shell, path: "./scripts/mysql_create_users.sh"
+  config.vm.provision :shell, path: "./scripts/mysql_import_data.sh"
   config.vm.provision :shell, path: "./scripts/server_configs.sh"
   
   # Configuración reenvío de puertos
@@ -28,7 +30,7 @@ Vagrant.configure("2") do |config|
     vb.name = "Tom Nook Server"
     
     # Grupo en Virtual Box
-    vb.customize ["modifyvm", :id, "--groups", "/Reto2"]
+    #vb.customize ["modifyvm", :id, "--groups", "/Reto2"]
     
     # RAM + Conexión por cable a la máquina + Internet ON
     vb.memory = "2048"
