@@ -2,7 +2,7 @@
     <ul>
         <li>
             <a href="">
-                <span class="icon logo"><img src="../img/tomNookLogo.svg" alt="Logo"></span>
+                <span class="icon logo"><img src="<?= $ruta_dir ?>img/tomNookLogo.svg" alt="Logo"></span>
                 <span class="title logo">Tom&nbsp;Nook</span>
             </a>
         </li>

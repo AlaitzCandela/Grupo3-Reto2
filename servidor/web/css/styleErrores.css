@@ -1,0 +1,45 @@
+*{
+    border:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+
+.error-img{
+    margin-top: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    width:30%;
+}
+.img img {
+    max-width: 100%;
+}
+
+.error{
+    width:50%;
+    color:white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error p {
+    text-align: center;
+}
+
+.error a{
+    color:#ce99ff ;
+}
+
+.error a:hover{
+    color:  #287bff;
+}
+
+
+
