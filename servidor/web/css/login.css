@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --blue: #004494;
+    --blue2: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: rgb(48, 48, 48);
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--black1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    overflow: hidden;
+    border-radius: 30px;
+    width: 80%;
+    height: 500px;
+    background: url(../img/fondoLogin.jpg);
+    background-size: contain;
+}
+
+.registro {
+    transition: .2s;
+    height: 75px;
+    overflow: hidden;
+}
+
+.registro p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.registro form {
+    display: none;
+}
+
+.inicio-sesion {
+    transition: .2s;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 10%;
+    background-color: white;
+}
+
+.inicio-sesion.selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 75px);
+}
+
