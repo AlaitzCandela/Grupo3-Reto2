@@ -53,7 +53,7 @@ CREATE TABLE anuncios (
     descripcion VARCHAR(2000) NOT NULL,
     foto VARCHAR(100) DEFAULT NULL,
     precio DOUBLE NOT NULL,
-	vendido TINYINT(1) DEFAULT 0,
+    vendido TINYINT(1) DEFAULT 0,
     id_vendedor INT,
     CONSTRAINT anu_ven_fk FOREIGN KEY(id_vendedor) REFERENCES vendedores(id)
 );
@@ -74,19 +74,19 @@ CREATE TABLE categoriasAnuncios (
 CREATE TABLE historialCompras (
     id_anuncio INT,
     id_comprador INT,
-	fecha_compra TIMESTAMP NOT NULL DEFAULT NOW(),
-	CONSTRAINT hist_comp_pk PRIMARY KEY (id_anuncio, id_comprador),
-	CONSTRAINT rel_histcomp_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
-	CONSTRAINT rel_histcomp_comp FOREIGN KEY(id_comprador) REFERENCES usuarios(id) ON DELETE CASCADE
+    fecha_compra TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT hist_comp_pk PRIMARY KEY (id_anuncio, id_comprador),
+    CONSTRAINT rel_histcomp_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
+    CONSTRAINT rel_histcomp_comp FOREIGN KEY(id_comprador) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE historialVentas (
     id_anuncio INT,
     id_vendedor INT,
-	fecha_venta TIMESTAMP NOT NULL DEFAULT NOW(),
-	CONSTRAINT hist_vent_pk PRIMARY KEY (id_anuncio, id_vendedor),
-	CONSTRAINT rel_histvent_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
-	CONSTRAINT rel_histvent_comp FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE
+    fecha_venta TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT hist_vent_pk PRIMARY KEY (id_anuncio, id_vendedor),
+    CONSTRAINT rel_histvent_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
+    CONSTRAINT rel_histvent_comp FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE
 );
 
 /*
