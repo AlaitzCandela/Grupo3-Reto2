@@ -27,7 +27,7 @@ CREATE TABLE usuarios (
     password VARCHAR(500) NOT NULL,
     email VARCHAR(50) NOT NULL,
     tipo CHAR(1) NOT NULL,
-    foto LONGBLOB,
+    foto VARCHAR(100) DEFAULT NULL,
     descripcion VARCHAR(200),
     fecha_creacion TIMESTAMP NOT NULL DEFAULT NOW(),
     habilitado TINYINT(1) DEFAULT 0,
