@@ -28,18 +28,30 @@
     overflow: hidden;
     border-radius: 30px;
     width: 80%;
+    max-width: 300px;
     height: 500px;
     background: url(../img/fondoLogin.jpg);
-    background-size: contain;
+    background-size: cover;
 }
 
 .registro {
-    transition: .2s;
+    font-size: 1.5em;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
     height: 75px;
     overflow: hidden;
 }
 
+.registro.selected {
+    font-size: 1em;
+    height: calc(100% - 75px);
+}
+
 .registro p {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,14 +65,64 @@
     display: none;
 }
 
+.registro.selected p {
+    cursor: default;
+    flex-grow: 1;
+    height: auto;
+}
+
+.registro.selected form {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+form *:nth-child(n){
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.registro form input[type="submit"] {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border-radius: 15px;
+    border: none;
+    margin-top: 20px;
+}
+
+.inicio-sesion form input[type="submit"] {
+    background-color: lightblue;
+    border-radius: 15px;
+    border: none;
+    margin-top: 20px;
+}
+
+form *:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+form .penultimo {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
 .inicio-sesion {
-    transition: .2s;
-    border-top-left-radius: 50% 10%;
-    border-top-right-radius: 50% 10%;
+    font-size: 1.5em;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 75px;
+    transition: .3s;
+    border-top-left-radius: 192px 42.5px;
+    border-top-right-radius: 192px 42.5px;
     background-color: white;
 }
 
 .inicio-sesion.selected {
+    font-size: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,3 +130,91 @@
     min-height: calc(100% - 75px);
 }
 
+.inicio-sesion.selected form {
+    font-size: 1em;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.inicio-sesion.selected p {
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.inicio-sesion p {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.inicio-sesion form {
+    display: none;
+}
+
+.registro.selected label{
+    color: black;
+    font-size: .8em;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+@media screen and (min-width: 991px) {
+    .card {
+        min-width: 792px;
+    }
+
+    .registro {
+        color: white;
+        background: #004494;
+        display: flex;
+        float: left;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: center;
+        width: 50%;
+        height: 200%;
+        position: relative;
+        left: 0;
+    }
+
+    .registro.selected {
+        height: 100%;
+    }
+
+    .registro p {
+        height: 50%;
+    }
+
+    .inicio-sesion {
+        display: flex;
+        float: right;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: center;
+        width: 50%;
+        height: 200%;
+        position: relative;
+        left: 0;
+        border-radius: 0;
+    }
+
+    .inicio-sesion.selected {
+        height: 100%;
+    }
+
+    .inicio-sesion p {
+        height: 50%;
+    }
+}
