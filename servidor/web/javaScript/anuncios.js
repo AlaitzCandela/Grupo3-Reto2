@@ -26,7 +26,7 @@ function cogerAnuncios(){
         fin : fin
     }
     $.ajax({
-        url: "./webservices/ws-anuncios.php",
+        url: "./webservices/ws-mostrar-anuncios.php",
         type: "post",
         data : data,
         error : function (error){

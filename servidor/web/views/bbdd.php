@@ -40,6 +40,14 @@
         return $result;
     }
 
+    function insertarAnuncios($dbh,$data){
+        $caducidad = $data["tiempo_caducidad"];
+        $stmt = $dbh->prepare("INSERT INTO anuncios (fecha_caducidad,nombre,descripcion,precio) VALUES (DATE_ADD(NOW(), INTERVAL $caducidad DAY),:nombre,:descripcion,:precio)");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute($data);
+
+    }
+
     function close($dbh){
         $dbh = null;
         return $dbh;
