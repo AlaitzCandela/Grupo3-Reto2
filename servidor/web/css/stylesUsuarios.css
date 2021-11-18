@@ -1,0 +1,62 @@
+.card-usuarios-wrapper {
+    padding: 1em;
+}
+.card-usuarios {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: gainsboro;
+}
+.table-usuarios {
+    width: 100%;
+}
+.table-usuarios thead {
+    color: white;
+    background-color: #004494;
+}
+#table-usuarios-encabezado {
+    min-height: 50px;
+    padding: 1em;
+}
+
+.usuario-acciones {
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    color: white;
+    cursor: pointer;
+}
+.usuario-acciones form + form {
+    margin-left: 10px;
+}
+.btn > .icon {
+    color: var(--white);
+}
+.btn > .icon > ion-icon {
+    font-size: 1.75em;
+}
+.btn > .title {
+    margin-left: 10px;
+}
+.btn-ver {
+    background-color: #0d5375;
+}
+.btn-editar {
+    background-color: #c58939;
+}
+.btn-eliminar {
+    background-color: rgb(180, 53, 79);
+}
+.btn-ver:hover {
+    background-color: #2176a0;
+}
+.btn-editar:hover {
+    background-color: #d4a05b;
+}
+.btn-eliminar:hover {
+    background-color: rgb(209, 87, 111);
+}
