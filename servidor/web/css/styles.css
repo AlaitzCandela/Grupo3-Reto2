@@ -166,14 +166,19 @@ main section {
 }
 
 .topbar {
+    transition: .5s;
     position: fixed;
     background-color: var(--black1);
-    width: 100%;
+    width: calc(100% - 300px);
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+}
+
+.topbar.active {
+    width: calc(100% - 80px);
 }
 
 main .toggle {
@@ -286,6 +291,43 @@ main .profile-pic img {
 }
 
 
+.contenedor-formulario {
+    color: white;
+    margin: 80px auto 50px auto;
+    width: 90%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.contenedor-formulario form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-formulario form img {
+    padding: 20px;
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: scale-down;
+}
+
+.contenedor-formulario form *:nth-child(n) {
+    width: 60%;
+    padding: 10px;
+}
+
+.contenedor-formulario form textarea {
+    width: 60%;
+    resize: none;
+
+}
+
 
 @media screen and (max-width: 991px) {
     nav {
@@ -297,12 +339,12 @@ main .profile-pic img {
         left: 0px;
     }
 
-    main {
+    main, .topbar{
         left: 0px;
         width: 100%;
     }
 
-    main.active {
+    main.active, .topbar.active {
         width: calc(100% - 300px);
         left: 300px;
     }

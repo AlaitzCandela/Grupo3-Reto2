@@ -175,6 +175,7 @@ input[type="file"] {
 
     .card {
         height: 90%;
+        max-height: 500px;
         min-width: 600px;
     }
 
