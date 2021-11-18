@@ -161,7 +161,13 @@ main.active {
     width: calc(100% - 80px);
 }
 
+main section {
+    margin-top: 60px;
+}
+
 .topbar {
+    position: fixed;
+    background-color: var(--black1);
     width: 100%;
     height: 60px;
     display: flex;
@@ -251,6 +257,36 @@ main .profile-pic img {
     font-size: 1.2em;
 }
 
+
+
+/*
+--------------------- ANUNCIOS ---------------------
+*/
+
+
+.cuadricula {
+    margin: 50px auto 50px auto;
+    width: 90%;
+    display: grid;
+    grid-gap: 10px;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.anuncio {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.anuncio img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+
+
 @media screen and (max-width: 991px) {
     nav {
         left: -300px;
@@ -275,6 +311,10 @@ main .profile-pic img {
         min-width: 40px;
         min-height: 40px;
     }
+
+    .cuadricula {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -291,6 +331,10 @@ main .profile-pic img {
         left: 0;
     }
 
+    .topbar {
+        position: static;
+    }
+
     .toggle {
         transition: .2s;
         z-index: 11;
@@ -305,5 +349,9 @@ main .profile-pic img {
     .profile-pic {
         max-width: 40px;
         max-height: 40px;
+    }
+
+    .cuadricula {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
