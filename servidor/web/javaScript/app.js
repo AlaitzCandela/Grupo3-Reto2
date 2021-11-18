@@ -11,11 +11,18 @@ toggle.onclick = function() {
 }
 
 imgInp.onchange = evt => {
-    const [file] = imgInp.files
-    if (file) {
-      document.querySelector('#preview').src = URL.createObjectURL(file);
-    }
+  $("#btnBorrarImagen").css('display','block');
+  const [file] = imgInp.files
+  if (file) {
+    document.querySelector('#preview').src = URL.createObjectURL(file);
+  }
 }
+
+$("#btnBorrarImagen").on('click',() => {
+  $('#img-input').prop('value',null);
+  document.querySelector('#preview').src = '#';
+  $("#btnBorrarImagen").css('display','none');
+})
 
 $("textarea").each(function () {
     this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
