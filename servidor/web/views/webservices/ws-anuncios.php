@@ -1,13 +1,12 @@
 <?php
     require "../bbdd.php";
-
-    $id1 = 1;
-    $id2 = 10;
-    $data = array('id1'=>$id1,'id2'=>$id2);
+    $inicio = $_POST["inicio"];
+    $fin = $_POST["fin"];
+    
+    $data = array('inicio'=>$inicio,'fin'=>$fin);
 
     $dbh=connect();
     $anuncios = cogerAnuncios($dbh,$data);
-
     $dbh=close($dbh);
 
     header('Content-type:application/json');

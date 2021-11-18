@@ -31,8 +31,11 @@
     }
 
     function cogerAnuncios($dbh,$data){
-        $stmt = $dbh->prepare("SELECT id,nombre,descripcion,foto,precio FROM anuncios WHERE id  BETWEEN :id1 AND :id2");
-        $stmt->execute($data);
+        $inicio = $data["inicio"];
+        $fin = $data["fin"];
+        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 LIMIT $inicio, $fin");
+        //$dbh->bindValue(0, 10, PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
