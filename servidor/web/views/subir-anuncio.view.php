@@ -20,6 +20,11 @@
             <form action="" method="post">
                     <input type="text" name="nombre" id="nombre-anuncio" placeholder="Introduce&nbsp;el&nbsp;nombre&nbsp;de&nbsp;tu&nbsp;anuncio">
                     <textarea name="descripcion" rows="1" id="descripcion"  placeholder="Introduce&nbsp;una&nbsp;descripci&oacute;n&nbsp;para&nbsp;tu&nbsp;anuncio"></textarea>
+                    <div class="contenedor-slider">
+                        <input id="caducidad" name="caducidad" class="caducidad" type="range" name="caducidad" value="7" min="7" max="31"/>
+                        <span id="valorCaducidad">7 D&iacute;as</span>
+                    </div>
+                    <input type="number" name="precio" id="">
                     <label for="img-input"><img src="#" alt="Sube&nbsp;la&nbsp;imagen&nbsp;de&nbsp;tu&nbsp;anuncio" id="preview"></label>
                     <input type="file" name="imagen" id="img-input" accept="image/*">
                 </form>

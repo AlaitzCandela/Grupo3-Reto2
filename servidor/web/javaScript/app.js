@@ -23,3 +23,8 @@ $("textarea").each(function () {
     this.style.height = "auto";
     this.style.height = (this.scrollHeight) + "px";
 });
+
+$('#caducidad').on('input', function() {
+    let value = $('#caducidad').prop('value');
+    document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
+})
