@@ -5,7 +5,7 @@
         $user = 'admin';
         $pass = 'admin';
         try {
-            $dbh = new PDO("mysql:host=$host;dbname=$dbName",$user,$pass);
+            $dbh = new PDO("mysql:host=$host;dbname=$dbName;charset=utf8",$user,$pass);
             return $dbh;
         }
         catch (PDOException $e){
@@ -28,6 +28,13 @@
         $stmt->execute($data);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result["id"];
+    }
+
+    function cogerAnuncios($dbh,$data){
+        $stmt = $dbh->prepare("SELECT id,nombre,descripcion,foto,precio FROM anuncios WHERE id  BETWEEN :id1 AND :id2");
+        $stmt->execute($data);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     function close($dbh){
