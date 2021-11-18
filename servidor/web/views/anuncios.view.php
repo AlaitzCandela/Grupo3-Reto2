@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<?php
-    require "./partials/metas.php";
-?>
+    <?php
+        require "./partials/metas.php";
+    ?>
     <title>Descubrir anuncios</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -17,73 +17,15 @@
             ?>
             
             <section>
-                <div class="cuadricula">
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
-
-                    <div class="anuncio">
-                        <img src="https://via.placeholder.com/1500" alt="">
-                    </div>
+                <div class="cuadricula" id="cuadricula-anuncios">
                 </div>
             </section>
+            <button id="mas">M&aacute;s</button>
 
         </main>
     </div>
     <?php require "./partials/scripts.php";?>
-    
+    <script src="../javaScript/anuncios.js"></script>
 </body>
 </html>
 
