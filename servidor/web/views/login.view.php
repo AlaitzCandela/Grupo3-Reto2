@@ -19,6 +19,7 @@
                     <input type="text" name="username" placeholder="Nombre de usuario" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Contrase&ntilde;a" required>
+                    <input type="password" name="repetir-password" placeholder="Repite la contrase&ntilde;a" required>
                     <label for="profile-pic" class="penultimo">Foto de perfil</label>
                     <input type="file" name="imagen" accept="image/*" id="profile-pic">
                     <input type="submit" name="registro" value="Registrarse">
