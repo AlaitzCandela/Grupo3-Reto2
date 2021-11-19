@@ -1,23 +1,61 @@
 .card-usuarios-wrapper {
+    margin-top: 4em;
     padding: 1em;
 }
 .card-usuarios {
     padding: 1em;
     border-radius: 10px;
     background-color: gainsboro;
+    overflow: auto;
+}
+#table-usuarios-encabezado th {
+    min-height: 30px;
+    padding: 0.75em;
 }
 .table-usuarios {
     width: 100%;
+}
+.table-usuarios tbody tr {
+    padding: 1em;
+    border-bottom: 1px solid blue;
+}
+.table-usuarios tbody td {
+    padding: 1.5em;
+}
+tr.usuario-cliente {
+    background-color: rgb(223, 255, 240);
+}
+tr.usuario-administrador {
+    background-color: rgb(255, 252, 223);
+}
+tr.usuario-vendedor {
+    background-color: rgb(223, 243, 255);
+}
+tr.usuarios-no-data p {
+    padding-left: 1em;
+}
+td.clave {
+    font-weight: bold;
 }
 .table-usuarios thead {
     color: white;
     background-color: #004494;
 }
-#table-usuarios-encabezado {
-    min-height: 50px;
-    padding: 1em;
+.table-usuarios th {
+    margin: 1em 0;
 }
-
+.th-usuario {
+    width: 15%;
+}
+.th-email {
+    width: 40%;
+}
+.th-tipo {
+    width: 8%;
+}
+.th-acciones {
+    width: 37%;
+}
 .usuario-acciones {
     display: flex;
     justify-content: center;
@@ -29,6 +67,9 @@
     padding: 0.5em;
     color: white;
     cursor: pointer;
+}
+.display-none {
+    display: none;
 }
 .usuario-acciones form + form {
     margin-left: 10px;
@@ -59,4 +100,52 @@
 }
 .btn-eliminar:hover {
     background-color: rgb(209, 87, 111);
+}
+.btn-ver:disabled {
+    background-color: #475a64;
+}
+.botones-control {
+    margin-top: 1em;
+    display: flex;
+}
+.botones-control button + button {
+    margin-left: 10px;
+}
+
+/* No es mobile first porque está pensado como panel administración desde ordenador para poder ver los datos clave necesarios */
+@media (max-width: 991px) {
+    .card-usuarios {
+        padding-left: 1em 0;
+    }
+    .dn990 {
+        display: none;
+    }
+    .th-usuario {
+        width: 15%;
+    }
+    .th-tipo {
+        width: 8%;
+    }
+    .th-acciones {
+        width: 77%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dn480 {
+        display: none;
+    }
+    .usuario-acciones {
+        flex-direction: column;
+    }
+    .usuario-acciones form + form {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .th-usuario {
+        width: 50%;
+    }
+    .th-acciones {
+        width: 50%;
+    }
 }

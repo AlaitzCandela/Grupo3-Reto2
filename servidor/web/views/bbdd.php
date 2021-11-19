@@ -40,6 +40,25 @@
         return $result;
     }
 
+    // Obtiene una serie de usuarios, con posibilidad de filtrar e indicar desde donde y cuántos usuarios coger
+    function cogerUsuarios($dbh,$data) {
+        //$filtro = $data["filtro"];
+        $inicio = $data["inicio"];
+        $fin = $data["fin"];
+        $stmt = $dbh->prepare("SELECT id,username,email,tipo FROM usuarios LIMIT 0, 10");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    // Obtiene el número de usuarios registrados en total y lo devuelve
+    function numeroUsuariosRegistrados($dbh) {
+        $stmt = $dbh->prepare("SELECT count(*) as num_usuarios FROM usuarios");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     function close($dbh){
         $dbh = null;
         return $dbh;
