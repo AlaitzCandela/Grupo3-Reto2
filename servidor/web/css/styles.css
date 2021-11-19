@@ -311,9 +311,27 @@ input[type="file"] {
     align-items: center;
 }
 
+#preview {
+    display: none;
+}
+
+.contenedor-formulario form label {
+    cursor: pointer;
+}  
+
+#placeholder {
+    display: block;
+}
+
+#placeholder-img {
+    max-width: 40px;
+    font-size: 2em;
+}
+
 .contenedor-formulario form img {
     padding: 20px;
     max-width: 400px;
+    transition: .2s;
     max-height: 400px;
     object-fit: scale-down;
 }
@@ -445,6 +463,27 @@ label {
 
 .categorias div input[type="checkbox"]:checked + label {
     background-color: var(--blue2);
+}
+
+.contenedor-formulario form input[type="submit"] {
+    cursor: pointer;
+    background-color: var(--black2);
+}
+
+.contenedor-formulario form input[type="submit"]:hover {
+    animation-name: btnSubmit;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes btnSubmit {
+    from{
+        background-color: var(--blue);
+    }
+    to{
+        background-color: var(--blue2);
+    }
 }
 
 @media screen and (max-width: 991px) {
