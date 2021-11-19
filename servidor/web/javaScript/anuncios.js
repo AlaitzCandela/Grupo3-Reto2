@@ -16,10 +16,6 @@ function cogerAnuncios(){
     let inicio = (paginaActual - 1) * numeroElementos;
     let fin = numeroElementos;
 
-    console.log("Pagina actual, inicio, fin")
-    console.log(paginaActual);
-    console.log(inicio);
-    console.log(fin);
 
     let data = {
         inicio : inicio,

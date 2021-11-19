@@ -53,7 +53,14 @@
 
     function insertarCategoriaAnuncios($dbh,$data){
         $stmt = $dbh -> prepare("INSERT INTO categoriasAnuncios VALUES (:id_anuncio,:id_categoria)");
-        $stmt->execute($data);
+        return $stmt->execute($data);
+    }
+
+    function cogerCategorias($dbh){
+        $stmt = $dbh->prepare("SELECT * FROM categorias order by id");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     function close($dbh){
