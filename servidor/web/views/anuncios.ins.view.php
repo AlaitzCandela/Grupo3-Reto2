@@ -20,9 +20,11 @@
                 <label for="">foto</label>
                 <input type="file" name="foto" id=""/>
                 <label for="">precio</label>
-                <input type="text" name="precio" id=""/>
+                <input type="number" name="precio" id=""/>
+                <label for="">categoria</label>
+                <input type="number" name="categoria" id=""/>
                 <label for="">caducidad</label>
-                <input type="text" name="caducidad" id=""/>
+                <input type="number" name="caducidad" id=""/>
                 <input type="submit" value="Enviar"/>
             </form>
         </main>
