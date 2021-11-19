@@ -26,45 +26,54 @@ function cogerCategorias(){
     )
 }
 
-function insertarAnuncio(e){
-    console.log("entra");
-    let nombre = $("#nombre-anuncio").val();
-    let descripcion = $("#descripcion").val();
-    let caducidad = $("#caducidad").val();
-    let precio = $("#precio").val();
+function insertarAnuncio(evt){
+    evt.preventDefault();
+    $('#form-subir-anuncio').submit((e) => {
+        e.preventDefault();
 
-    let categoriasTotal = $(".categoria-check:checked");
-    let categorias_ids = [];
+        let nombre = $("#nombre-anuncio").val();
+        let descripcion = $("#descripcion").val();
+        let caducidad = $("#caducidad").val();
+        let precio = $("#precio").val();
     
-    for (const categoria of categoriasTotal) {
-        categorias_ids.push(categoria.value);
-    }
-
-    let datos = {
-        nombre : nombre,
-        descripcion : descripcion,
-        caducidad : caducidad,
-        precio : precio,
-        categorias : categorias_ids.join(',')
-    }
-    console.log(datos)
-
-    $.ajax({
-        url:"./insertar-anuncios.php",
-        type:"post",
-        data: datos,
-        error: function(error){
-            alert(error)
+        let categoriasTotal = $(".categoria-check:checked");
+        let categorias_ids = [];
+        
+        for (const categoria of categoriasTotal) {
+            categorias_ids.push(categoria.value);
         }
-    })
-    .then((response) => {
-        console.log(response)
-        if (response.exito) {
-            // Si ha insertado bien, redirigimos
-        } else {
-            alert('Imposible registrar el anuncio')
+    
+        let formData = new FormData();
+        //formData.append($("#form-subir-anuncio"),$("#form-subir-anuncio")[0][0].files);
+        //console.log(formData.files)
+        console.log($('#img-input')[0].files[0])
+        console.log($('#img-input').result)
+    
+        let datos = {
+            nombre : nombre,
+            descripcion : descripcion,
+            caducidad : caducidad,
+            precio : precio,
+            foto : formData,
+            categorias : categorias_ids.join(',')
         }
+        console.log(datos)
+    /*
+        $.ajax({
+            url:"./insertar-anuncios.php",
+            type:"post",
+            data: datos,
+            error: function(error){
+                alert(error)
+            }
+        })
+        .then((response) => {
+            console.log(response)
+            if (response.exito) {
+                // Si ha insertado bien, redirigimos
+            } else {
+                alert('Imposible registrar el anuncio')
+            }
+        }); */
     });
-
-    e.preventDefault();
 }
