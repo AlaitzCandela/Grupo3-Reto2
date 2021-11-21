@@ -40,12 +40,13 @@
     }
 
     function insertarAnuncios($dbh,$data){
-        $stmt = $dbh->prepare("INSERT INTO anuncios (fecha_caducidad,nombre,descripcion,precio) VALUES (DATE_ADD(NOW(), INTERVAL :caducidad DAY), :nombre, :descripcion, :precio)");
+        $stmt = $dbh->prepare("INSERT INTO anuncios (fecha_caducidad,nombre,descripcion,precio,foto) VALUES (DATE_ADD(NOW(), INTERVAL :caducidad DAY), :nombre, :descripcion, :precio, :foto)");
 
         $stmt->bindParam(':caducidad', $data["tiempo_caducidad"], PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $data["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data["descripcion"], PDO::PARAM_STR);
         $stmt->bindParam(':precio', $data["precio"], PDO::PARAM_STR);
+        $stmt->bindParam(':foto', $data["foto"], PDO::PARAM_STR);
         $stmt->execute();
 
         return $dbh->lastInsertId();
