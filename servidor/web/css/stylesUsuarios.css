@@ -2,8 +2,24 @@
     margin-top: 4em;
     padding: 1em;
 }
-.card-usuarios {
+.leyenda {
     padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.leyenda p + p {
+    margin-left: 10px;
+}
+.leyenda-titulo {
+    color: white;
+}
+.leyenda-admin, .leyenda-cliente, .leyenda-vendedor {
+    border: 1px solid black;
+    padding: 0.5em;
+}
+.card-usuarios {
+    padding: 0.5em 1em;
     border-radius: 10px;
     background-color: gainsboro;
     overflow: auto;
@@ -13,7 +29,11 @@
     padding: 0.75em;
 }
 .table-usuarios {
+    border-spacing: 0 10px;
     width: 100%;
+}
+.table-usuarios tr {
+    box-shadow: 0 0 4px 1px rgb(134, 134, 134);
 }
 .table-usuarios tbody tr {
     padding: 1em;
@@ -22,13 +42,13 @@
 .table-usuarios tbody td {
     padding: 1.5em;
 }
-tr.usuario-cliente {
+tr.usuario-cliente, .leyenda-cliente {
     background-color: rgb(223, 255, 240);
 }
-tr.usuario-administrador {
+tr.usuario-administrador, .leyenda-admin {
     background-color: rgb(255, 252, 223);
 }
-tr.usuario-vendedor {
+tr.usuario-vendedor, .leyenda-vendedor {
     background-color: rgb(223, 243, 255);
 }
 tr.usuarios-no-data p {
@@ -61,6 +81,8 @@ td.clave {
     justify-content: center;
 }
 .btn {
+    border: 0;
+    border-radius: 0.25em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,14 +93,20 @@ td.clave {
 .display-none {
     display: none;
 }
-.usuario-acciones form + form {
+.usuario-acciones button + button {
     margin-left: 10px;
+}
+.btn:active {
+    filter: brightness(85%);
 }
 .btn > .icon {
     color: var(--white);
 }
 .btn > .icon > ion-icon {
     font-size: 1.75em;
+}
+.btn-editar > .title {
+    min-width: 76.25px;
 }
 .btn > .title {
     margin-left: 10px;
@@ -115,7 +143,7 @@ td.clave {
 /* No es mobile first porque está pensado como panel administración desde ordenador para poder ver los datos clave necesarios */
 @media (max-width: 991px) {
     .card-usuarios {
-        padding-left: 1em 0;
+        padding: 0.5em 0;
     }
     .dn990 {
         display: none;
@@ -131,21 +159,24 @@ td.clave {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 680px) {
     .dn480 {
         display: none;
     }
+}
+
+@media (max-width: 480px) {
     .usuario-acciones {
         flex-direction: column;
     }
-    .usuario-acciones form + form {
+    .usuario-acciones button + button {
         margin-left: 0;
         margin-top: 10px;
     }
     .th-usuario {
-        width: 50%;
+        width: 30%;
     }
     .th-acciones {
-        width: 50%;
+        width: 70%;
     }
 }

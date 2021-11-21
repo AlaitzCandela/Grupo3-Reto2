@@ -7,7 +7,7 @@
     $inicio = $_POST["inicio"];
     $fin = $_POST["fin"];
     
-    $data = array('inicio'=>$inicio,'fin'=>$fin);
+    $data = array('inicio'=>$inicio,'fin'=>$fin,'filtro'=>$filtro);
 
     $dbh=connect();
     $usuarios = cogerUsuarios($dbh,$data);

@@ -42,13 +42,25 @@
 
     // Obtiene una serie de usuarios, con posibilidad de filtrar e indicar desde donde y cuántos usuarios coger
     function cogerUsuarios($dbh,$data) {
-        //$filtro = $data["filtro"];
+        $filtro = $data["filtro"];
         $inicio = $data["inicio"];
         $fin = $data["fin"];
-        $stmt = $dbh->prepare("SELECT id,username,email,tipo FROM usuarios LIMIT 0, 10");
+        $stmt = $dbh->prepare("SELECT id,username,email,tipo,habilitado FROM usuarios LIMIT $inicio, $fin $filtro");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    // Deshabilita un usuario
+    function deshabilitarUsuario($dbh,$data) {
+        $stmt = $dbh->prepare("UPDATE usuarios SET habilitado = 0 WHERE id = :id");
+        return $stmt->execute($data);
+    }
+
+    // Habilita un usuario
+    function habilitarUsuario($dbh,$data) {
+        $stmt = $dbh->prepare("UPDATE usuarios SET habilitado = 1 WHERE id = :id");
+        return $stmt->execute($data);
     }
 
     // Obtiene el número de usuarios registrados en total y lo devuelve
