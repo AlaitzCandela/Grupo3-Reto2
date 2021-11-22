@@ -10,6 +10,17 @@ toggle.onclick = function() {
     topbar.classList.toggle('active');
 }
 
+$('#favoritos').on('click',() => {
+  console.log($('#favoritos').prop('name'));
+  if($('#favoritos').prop('name') == 'star-outline') {
+    $('#favoritos').prop('name','star');
+  }
+  else {
+    $('#favoritos').prop('name','star-outline');
+  }
+  document.querySelector('#favoritos').classList.toggle('seleccionado');
+});
+
 imgInp.onchange = evt => {
   $("#btnBorrarImagen").css('display','block');
   $("#preview").css('display','inline');
@@ -41,3 +52,5 @@ $('#caducidad').on('input', function() {
     let value = $('#caducidad').prop('value');
     document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
 })
+
+

@@ -291,7 +291,7 @@ main .profile-pic img {
 }
 
 
-.contenedor-formulario {
+.contenido {
     color: white;
     margin: 80px auto 50px auto;
     width: 90%;
@@ -301,7 +301,7 @@ input[type="file"] {
     display: none;
 }
 
-.contenedor-formulario form {
+.contenido form {
     width: 60%;
     max-width: 800px;
     margin: 0 auto;
@@ -315,7 +315,7 @@ input[type="file"] {
     display: none;
 }
 
-.contenedor-formulario form label {
+.contenido form label {
     cursor: pointer;
 }  
 
@@ -328,7 +328,7 @@ input[type="file"] {
     font-size: 2em;
 }
 
-.contenedor-formulario form img {
+.contenido form img {
     padding: 20px;
     max-width: 400px;
     transition: .2s;
@@ -336,7 +336,7 @@ input[type="file"] {
     object-fit: scale-down;
 }
 
-.contenedor-formulario form > *:nth-child(n) {
+.contenido form > *:nth-child(n) {
     color: white;
     font-size: 1em;
     background-color: var(--black2);
@@ -348,11 +348,11 @@ input[type="file"] {
     padding: 10px;
 }
 
-.contenedor-formulario form label:first-child {
+.contenido form label:first-child {
     text-align: center;
 }
 
-.contenedor-formulario form label img {
+.contenido form label img {
     max-width: 100%;
 }
 
@@ -361,7 +361,7 @@ input[type="range"] {
     border: none;
 }
 
-.contenedor-formulario form textarea {
+.contenido form textarea {
     width: 60%;
     resize: none;
 }
@@ -414,18 +414,18 @@ input[type="range"] {
     box-shadow: -407px 0 0 400px var(--blue);
 }
 
-.contenedor-formulario p {
+.contenido p {
     transition: .2s;
     cursor: pointer;
     display: none;
     text-align: center;
 }
 
-.contenedor-formulario p:hover {
+.contenido p:hover {
     background-color: var(--blue);
 }
 
-.contenedor-formulario .categorias {
+.contenido .categorias {
     display: grid;
     grid-gap: 15px;
     grid-template-columns: repeat(3, 1fr);
@@ -465,12 +465,12 @@ label {
     background-color: var(--blue2);
 }
 
-.contenedor-formulario form input[type="submit"] {
+.contenido form input[type="submit"] {
     cursor: pointer;
     background-color: var(--black2);
 }
 
-.contenedor-formulario form input[type="submit"]:hover {
+.contenido form input[type="submit"]:hover {
     animation-name: btnSubmit;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -484,6 +484,107 @@ label {
     to{
         background-color: var(--blue2);
     }
+}
+
+.modal {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal form {
+    background-color: var(--black1);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px var(--black1);
+    max-width: 500px;
+}
+
+.modal form > *:last-child {
+    margin: 0;
+}
+
+.modal form > *:nth-child(n) {
+    transition: .2s;
+    border: none;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+}
+
+.modal form > *:nth-child(n):hover {
+    box-shadow: 0 0 6px var(--blue);
+}
+
+.modal form > *:nth-child(n):focus {
+    box-shadow: 0 0 10px var(--blue2);
+}
+
+.modal form > *:last-child:hover {
+    box-shadow: 0 0 10px var(--blue2);
+}
+
+
+.detalleAnuncio {
+    font-size: 1.5em;
+    column-gap: 100px;
+    color: white;
+    width: 90%;
+    margin: 7.5vh auto 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    min-height: 92.5vh;
+    align-items: center;
+    justify-items: center;
+}
+
+.detalleAnuncio img {
+    max-width: 40%;
+    max-height: 100%;
+    object-fit: scale-down;
+}
+
+.detalleAnuncio .informacion {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detalleAnuncio .informacion > :not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.detalleAnuncio .informacion #precio {
+    font-size: 2em;
+}
+
+
+.detalleAnuncio hr {
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.detalleAnuncio #favoritos {
+    transition: .2s;
+    cursor: pointer;
+    color: lightgray;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.detalleAnuncio #favoritos:hover {
+    color: rgb(196, 160, 0);
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.detalleAnuncio #favoritos.seleccionado {
+    color: rgb(255, 208, 0);
 }
 
 @media screen and (max-width: 991px) {
@@ -501,9 +602,23 @@ label {
         width: 100%;
     }
 
-    main.active, .topbar.active {
+    main.active {
         width: calc(100% - 300px);
         left: 300px;
+    }
+
+    .topbar {
+        width: 100%;
+        position: static;
+    }
+
+    .topbar.active {
+        width: 100%;
+    }
+
+    .toggle {
+        transition: .2s;
+        z-index: 11;
     }
 
     .profile-pic {
@@ -511,8 +626,27 @@ label {
         min-height: 40px;
     }
 
-    .cuadricula, .contenedor-formulario .categorias {
+    .cuadricula, .contenido .categorias {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .detalleAnuncio {
+        flex-direction: column;
+    }
+
+    .detalleAnuncio img {
+        margin-bottom: 30px;
+        max-width: 50%;
+        max-height: 100%;
+        object-fit: scale-down;
+    }
+    
+    .detalleAnuncio .informacion {
+        width: 80%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -550,7 +684,38 @@ label {
         max-height: 40px;
     }
 
-    .cuadricula, .contenedor-formulario .categorias {
+    .cuadricula, .contenido .categorias {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .detalleAnuncio img {
+        margin-bottom: 30px;
+        max-width: 80%;
+        max-height: 100%;
+        object-fit: scale-down;
+    }
+
+    #precio {
+        order: 1;
+    }
+
+    #separador1 {
+        order: 2;
+    }
+
+    #nombre {
+        order: 3;
+    }
+
+    #separador2 {
+        order: 4;
+    }
+
+    #descripcion {
+        order: 5;
+    }
+
+    #favoritos {
+        order: 6;
     }
 }
