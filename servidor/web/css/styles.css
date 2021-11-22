@@ -587,6 +587,94 @@ label {
     color: rgb(255, 208, 0);
 }
 
+section {
+    display: flex;
+    flex-flow: row wrap;
+    width: 97%;
+    margin: 0 auto;
+}
+
+section .estadisticas {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+section .estadisticas .tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+    min-width: 30%;
+    height: 90%;
+    border-radius: 15px;
+    background-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+section .estadisticas .tarjeta ion-icon {
+    font-size: 2.5em;
+}
+
+.pedidos::before {
+    content: attr(titulo);
+    background-color: var(--blue);
+    padding: 10px;
+}
+
+.pedidos {
+    height: fit-content;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+    font-size: 1.1em;
+    width: 60%;
+    border-radius: 15px;
+    background-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pedidos div {
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pedidos div:nth-child(2n) {
+    background: linear-gradient(transparent, var(--black2), var(--black2), var(--black2), transparent);
+}
+
+.pedidos div *{
+    padding: 20px 0;
+}
+
+.grafico {
+    height: fit-content;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.grafico.lineas {
+    margin: 40px auto 0 auto;
+    width: 90%;
+}
+
+.grafico canvas {
+    max-width: 100%;
+}
+
+.grafico.circular {
+    margin-left: 2.5%;
+    width: 37.5%;
+}
+
 @media screen and (max-width: 991px) {
     nav {
         left: -300px;
@@ -647,6 +735,27 @@ label {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+    section {
+        display: flex;
+        flex-flow: column wrap;
+        width: 95%;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .estadisticas {
+        flex-direction: column;
+    }
+
+    .estadisticas div {
+        min-width: 100%;
+    }
+
+    section * {
+        min-width: 100%;
     }
 }
 
