@@ -22,6 +22,8 @@
     $tipos_img_validos = ["jpg", "jpeg", "png", "gif", "jfif"];
     $size_maxima = 10485760; // <- 10 MB
     $nombre_guardar_img = null;
+    $ruta_img = null;
+    $imagen_guardada = false;
 
     // Recogemos la imagen
     if (isset($_FILES["img"]) && $respuesta_json["codError"] == 0) {
@@ -41,6 +43,8 @@
             $respuesta_json["codError"] = 3;
         else if (!move_uploaded_file($_FILES["img"]["tmp_name"], $ruta_img . $nombre_guardar_img)) // Guardar la imagen
             $respuesta_json["codError"] = 4;
+
+        if ($respuesta_json["codError"] == 0) $imagen_guardada = true;
     }
 
     // Si no ha habido error, empezamos a insertar
@@ -84,6 +88,12 @@
 
     } else {
         $respuesta_json["exito"] = false;
+    }
+
+    if (!$respuesta_json["exito"] && $imagen_guardada) {
+        // Si la imagen se guardó pero no hemos podido guardar el anuncio, borramos la imagen
+        unlink($ruta_img . $nombre_guardar_img);
+        // TODO añadir al delete vendedor: array_map('unlink', glob($ruta_img . $id_vendedor . "*"));
     }
 
     // Cerramos conexión
