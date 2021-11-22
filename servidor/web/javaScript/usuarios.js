@@ -2,7 +2,7 @@ var paginaActual = 1;
 var paginaTope;
 var numeroTotalUsuarios;
 var numVecesCargar = 5; // Cuantas veces hay que cargar antes de pasar página
-var numeroElementos = 10; // Elementos a cargar cada vez
+var numeroElementos = 2; // Elementos a cargar cada vez
 var numVecesCargado = 0; // Número de veces cargado
 
 $(document).ready(() => {
@@ -67,7 +67,7 @@ function cogerUsuarios() {
     let filtro = ""; // TODO dani: obtener filtro
 
     console.log(inicio + " " + fin + " " + numVecesCargado)
-    console.log("SELECT id,username,email,tipo FROM usuarios LIMIT"+ inicio + ", "+ fin)
+    console.log("SELECT id,username,email,tipo FROM usuarios " + filtro + " LIMIT"+ inicio + ", "+ fin)
 
     let data = {
         inicio : inicio,
@@ -89,6 +89,7 @@ function cogerUsuarios() {
 
     // Añadimos hasta 5 veces, y después mostramos botón de pasar página y ocultamos botón cargar más
     if (numVecesCargado >= numVecesCargar) {
+        $("#cargar-mas-usuarios").prop('disabled', true);
         $("#siguiente-pag-usuarios").removeClass('display-none');
         $("#anterior-pag-usuarios").removeClass('display-none');
     }
@@ -132,7 +133,7 @@ function volcarUsuarios(usuarios) {
                     <span class="title">Habilitar&nbsp;</span>
                 </button>
                 ` : 
-                `<button type="submit" class="btn btn-editar" onclick="deshabilitarUsuario(this, ${usuario.id})"> <!-- Deshabilitar -->
+                `<button type="submit" class="btn btn-editar" onclick="eliminarUsuario(this, ${usuario.id})"> <!-- Deshabilitar -->
                     <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
                     <span class="title">Deshabilitar&nbsp;</span>
                 </button>
@@ -162,6 +163,7 @@ function siguientePagUsuarios() {
     paginaActual++;
     numVecesCargado = 0;
     vaciarYCogerUsuarios();
+    $("#cargar-mas-usuarios").prop('disabled', false);
     $("#anterior-pag-usuarios").prop('disabled', false);
     $("#siguiente-pag-usuarios").addClass('display-none');
 }
@@ -214,7 +216,7 @@ function habilitarUsuario(target, id) {
                 accion: "habilitar"
             };
             $.ajax({
-                url: "./webservices/ws-usuario-habilitar.php",
+                url: "./webservices/ws-usuario-acciones.php",
                 type: "post",
                 data:  data,
             })
@@ -260,7 +262,7 @@ function deshabilitarUsuario(target, id) {
                 accion: "deshabilitar"
             };
             $.ajax({
-                url: "./webservices/ws-usuario-habilitar.php",
+                url: "./webservices/ws-usuario-acciones.php",
                 type: "post",
                 data:  data,
             })
@@ -293,5 +295,45 @@ function deshabilitarUsuario(target, id) {
     });
 } 
 function eliminarUsuario(target, id) {
-    // TODO dani
+    Swal.fire({
+        title: '¡Estás a punto de eliminar un usuario!\n¿Are you sure, mate?',
+        showCancelButton: true,
+        confirmButtonText: '¡Sí!',
+        cancelButtonText: 'Mejor déjalo',
+        icon: "warning"
+    }).then((result) => {
+        if (result.isConfirmed) { // Deshabilitamos el usuario
+            let data = {
+                id: id,
+                accion: "eliminar"
+            };
+            $.ajax({
+                url: "./webservices/ws-usuario-acciones.php",
+                type: "post",
+                data:  data,
+            })
+            .then((respuesta) => {
+                if (respuesta.exito) {
+                    // Si se elimina, borramos la celda
+                    document.getElementById(id).remove();
+                    
+                    Swal.fire({
+                        title: 'Usuario elminado, ¡bye bye!',
+                        confirmButtonText: '¡Ok!',
+                        icon: "success",
+                        timer: 1500
+                    });
+                } else {
+                    throw Error('error');
+                }
+            })
+            .catch((err) => { // Si no se habilita con éxito
+                Swal.fire({
+                    title: 'Error al eliminar el usuario :(',
+                    confirmButtonText: 'Oh, vaya',
+                    icon: "error"
+                });
+            });
+        }
+    });
 } 

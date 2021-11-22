@@ -95,6 +95,14 @@
         return $result;
     }
 
+    // Elimina un usuario
+    function eliminarUsuario($dbh,$data) {
+        // Eliminar fotos del usuario
+        
+        $stmt = $dbh->prepare("DELETE FROM usuarios WHERE id = :id");
+        return $stmt->execute($data);
+    }
+
     function close($dbh){
         $dbh = null;
         return $dbh;

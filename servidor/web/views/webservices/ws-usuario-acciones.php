@@ -9,6 +9,7 @@
     $dbh=connect();
     if ($_POST["accion"] == "deshabilitar") $exito = deshabilitarUsuario($dbh,$data);
     else if ($_POST["accion"] == "habilitar") $exito = habilitarUsuario($dbh,$data);
+    else if ($_POST["accion"] == "eliminar") $exito = eliminarUsuario($dbh,$data);
     $dbh=close($dbh);
 
     header('Content-type:application/json');
