@@ -222,6 +222,7 @@ INSERT INTO categorias(nombre) VALUES('Material escolar');
 INSERT INTO categorias(nombre) VALUES('Limpieza');
 INSERT INTO categorias(nombre) VALUES('Hogar');
 INSERT INTO categorias(nombre) VALUES('Gaming');
+INSERT INTO categorias(nombre) VALUES('Otros');
 
 /*
 -------------------------- CATEGORÍAS-ANUNCIOS --------------------------

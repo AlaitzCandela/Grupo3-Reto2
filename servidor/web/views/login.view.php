@@ -21,7 +21,7 @@
                     <input type="password" name="password" placeholder="Contrase&ntilde;a" required>
                     <input type="password" name="repetir-password" placeholder="Repite la contrase&ntilde;a" required>
                     <label for="profile-pic" class="penultimo">Foto de perfil</label>
-                    <input type="file" name="imagen" accept="image/*" id="profile-pic">
+                    <input type="file" name="imagen" accept="image/.jpg,.jpeg,.png,.gif,.jfif" id="profile-pic">
                     <input type="submit" name="registro" value="Registrarse">
                     <input type="hidden" name="accion" value="register">
                 </form>
