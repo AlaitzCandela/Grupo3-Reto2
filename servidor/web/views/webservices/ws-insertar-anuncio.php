@@ -12,8 +12,8 @@
 
     // TODO dani: coger id asociado al token si reemplazamos el guardar directamente el id
     $id_vendedor = -1;
-    if (isset($_COOKIE["id"])) {
-        $id_vendedor = $_COOKIE["id"];
+    if (isset($_COOKIE["id_usuario"])) {
+        $id_vendedor = $_COOKIE["id_usuario"];
     } else {
         $respuesta_json["codError"] = 7;
     }

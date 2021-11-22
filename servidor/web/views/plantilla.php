@@ -12,7 +12,6 @@
         <?php require "./partials/menu.php";?>
         <main>
             <?php 
-                $profile_pic="../img/default_user.png";
                 require "./partials/topbar.php";
             ?>
         </main>

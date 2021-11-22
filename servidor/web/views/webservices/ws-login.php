@@ -4,6 +4,7 @@
 
     $id_usuario = -1;
     $login = false;
+    $foto = "default_user.png";
 
     if ($_POST["accion"] == "login") {
         $dbh = connect();
@@ -13,17 +14,23 @@
         // Comprobamos login
         $data = array('username'=>$username, 'password'=>$password);
         $id_usuario = comprobarSiExisteUsuario($dbh,$data);
-        $dbh = close($dbh);
-    
+        
         if ($id_usuario != null) {
+            // Recogemos foto usuario
+            $foto = obtenerFotoUsuario($dbh,array("id"=>$id_usuario));
             $login = true; 
         }
+        
+        $dbh = close($dbh);
     }
 
+    if ($foto == null || $foto == "undefined" || $foto == "") {
+        $foto = "default_user.png";
+    }
 
     // Preparamos la respuesta en formato JSON
     // Construimos el objeto JSON
-    $result_json = array('login' => $login, 'id_usuario' => $id_usuario);
+    $result_json = array('login' => $login, 'id_usuario' => $id_usuario, 'foto' => $foto);
 
     // Definimos en los headers el tipo de contenido (que será JSON)
     header('Content-type: application/json');

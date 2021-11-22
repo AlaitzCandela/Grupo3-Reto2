@@ -17,7 +17,7 @@
 
 
     function registrarUsuario($dbh,$data){
-        $stmt = $dbh->prepare("INSERT INTO usuarios(username,password,email,tipo) VALUES (:username,:password,:email,:tipo)");
+        $stmt = $dbh->prepare("INSERT INTO usuarios(username,password,email,tipo,foto) VALUES (:username,:password,:email,:tipo,:foto)");
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute($data);
         return $dbh->lastInsertId();
@@ -28,6 +28,14 @@
         $stmt->execute($data);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result["id"];
+    }
+
+    function obtenerFotoUsuario($dbh,$data) {
+        $stmt = $dbh->prepare("SELECT foto FROM usuarios WHERE id = :id");
+        $stmt->bindParam(':id', $data["id"], PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result["foto"];
     }
 
     function cogerAnuncios($dbh,$data){
