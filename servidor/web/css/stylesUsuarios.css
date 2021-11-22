@@ -1,0 +1,182 @@
+.card-usuarios-wrapper {
+    margin-top: 4em;
+    padding: 1em;
+}
+.leyenda {
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.leyenda p + p {
+    margin-left: 10px;
+}
+.leyenda-titulo {
+    color: white;
+}
+.leyenda-admin, .leyenda-cliente, .leyenda-vendedor {
+    border: 1px solid black;
+    padding: 0.5em;
+}
+.card-usuarios {
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    background-color: gainsboro;
+    overflow: auto;
+}
+#table-usuarios-encabezado th {
+    min-height: 30px;
+    padding: 0.75em;
+}
+.table-usuarios {
+    border-spacing: 0 10px;
+    width: 100%;
+}
+.table-usuarios tr {
+    box-shadow: 0 0 4px 1px rgb(134, 134, 134);
+}
+.table-usuarios tbody tr {
+    padding: 1em;
+    border-bottom: 1px solid blue;
+}
+.table-usuarios tbody td {
+    padding: 1.5em;
+}
+tr.usuario-cliente, .leyenda-cliente {
+    background-color: rgb(223, 255, 240);
+}
+tr.usuario-administrador, .leyenda-admin {
+    background-color: rgb(255, 252, 223);
+}
+tr.usuario-vendedor, .leyenda-vendedor {
+    background-color: rgb(223, 243, 255);
+}
+tr.usuarios-no-data p {
+    padding-left: 1em;
+}
+td.clave {
+    font-weight: bold;
+}
+.table-usuarios thead {
+    color: white;
+    background-color: #004494;
+}
+.table-usuarios th {
+    margin: 1em 0;
+}
+.th-usuario {
+    width: 15%;
+}
+.th-email {
+    width: 40%;
+}
+.th-tipo {
+    width: 8%;
+}
+.th-acciones {
+    width: 37%;
+}
+.usuario-acciones {
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    border: 0;
+    border-radius: 0.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    color: white;
+    cursor: pointer;
+}
+.display-none {
+    display: none;
+}
+.usuario-acciones button + button {
+    margin-left: 10px;
+}
+.btn:active {
+    filter: brightness(85%);
+}
+.btn > .icon {
+    color: var(--white);
+}
+.btn > .icon > ion-icon {
+    font-size: 1.75em;
+}
+.btn-editar > .title {
+    min-width: 76.25px;
+}
+.btn > .title {
+    margin-left: 10px;
+}
+.btn-ver {
+    background-color: #0d5375;
+}
+.btn-editar {
+    background-color: #c58939;
+}
+.btn-eliminar {
+    background-color: rgb(180, 53, 79);
+}
+.btn-ver:hover {
+    background-color: #2176a0;
+}
+.btn-editar:hover {
+    background-color: #d4a05b;
+}
+.btn-eliminar:hover {
+    background-color: rgb(209, 87, 111);
+}
+.btn-ver:disabled {
+    background-color: #475a64;
+}
+.botones-control {
+    margin-top: 1em;
+    display: flex;
+}
+.botones-control button + button {
+    margin-left: 10px;
+}
+
+/* No es mobile first porque está pensado como panel administración desde ordenador para poder ver los datos clave necesarios */
+@media (max-width: 991px) {
+    .card-usuarios {
+        padding: 0.5em 0;
+    }
+    .dn990 {
+        display: none;
+    }
+    .th-usuario {
+        width: 15%;
+    }
+    .th-tipo {
+        width: 8%;
+    }
+    .th-acciones {
+        width: 77%;
+    }
+}
+
+@media (max-width: 680px) {
+    .dn480 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .usuario-acciones {
+        flex-direction: column;
+    }
+    .usuario-acciones button + button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .th-usuario {
+        width: 30%;
+    }
+    .th-acciones {
+        width: 70%;
+    }
+}

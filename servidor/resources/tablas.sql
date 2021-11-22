@@ -30,7 +30,7 @@ CREATE TABLE usuarios (
     foto VARCHAR(100) DEFAULT NULL,
     descripcion VARCHAR(200),
     fecha_creacion TIMESTAMP NOT NULL DEFAULT NOW(),
-    habilitado TINYINT(1) DEFAULT 0,
+    habilitado TINYINT(1) DEFAULT 1,
     CONSTRAINT usu_hab_ck CHECK(habilitado BETWEEN 0 AND 1),
     CONSTRAINT usu_name_unique UNIQUE(username),
     CONSTRAINT usu_email_unique UNIQUE(email),
