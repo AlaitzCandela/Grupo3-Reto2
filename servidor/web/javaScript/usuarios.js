@@ -2,8 +2,9 @@ var paginaActual = 1;
 var paginaTope;
 var numeroTotalUsuarios;
 var numVecesCargar = 5; // Cuantas veces hay que cargar antes de pasar página
-var numeroElementos = 2; // Elementos a cargar cada vez
+var numeroElementos = 10; // Elementos a cargar cada vez
 var numVecesCargado = 0; // Número de veces cargado
+var filtro = false;
 
 $(document).ready(() => {
     // Petición que primero obtiene número total de usuarios y luego los obtiene
@@ -13,6 +14,10 @@ $(document).ready(() => {
     $("#cargar-mas-usuarios").on('click', mostrarMasUsuarios);
     $("#anterior-pag-usuarios").on('click', anteriorPagUsuarios);
     $("#siguiente-pag-usuarios").on('click', siguientePagUsuarios);
+    $("#search").on('click', mostrarInputBusqueda);
+    $("#search").on('change', filtrarUsuarios);
+    $("#search").keydown(keydownFiltrarUsuarios);
+    $("#filtro-tipo").on('change', filtrarUsuarios);
 
     /*Swal.fire({
         title: 'Do you want to save the changes?',
@@ -44,7 +49,6 @@ function cargarNumeroMaximoUsuarios() {
         }
     })
     .then((respuesta)=> {
-        console.log(respuesta.num_usuarios)
         if (!isNaN(respuesta.num_usuarios)) numeroTotalUsuarios = respuesta.num_usuarios;
         else numeroTotalUsuarios = 0;
 
@@ -64,16 +68,15 @@ function cogerUsuarios() {
     }
     let inicio = (paginaActual - 1) * (numeroElementos * numVecesCargar) + (numeroElementos * numVecesCargado);
     let fin = numeroElementos;
-    let filtro = ""; // TODO dani: obtener filtro
 
-    console.log(inicio + " " + fin + " " + numVecesCargado)
-    console.log("SELECT id,username,email,tipo FROM usuarios " + filtro + " LIMIT"+ inicio + ", "+ fin)
-
+    // Petición
     let data = {
         inicio : inicio,
         fin    : fin,
-        filtro : filtro
+        filtro_nombre : $("#search").val(),
+        filtro_tipo : $("#filtro-tipo").val()
     }
+
     $.ajax({
         url: "./webservices/ws-usuarios.php",
         type: "post",
@@ -83,7 +86,6 @@ function cogerUsuarios() {
         }
     })
     .then((respuesta)=> {
-        console.log(respuesta)
         if (respuesta.length > 0) volcarUsuarios(respuesta);
         else mostrarMensajeSinUsuarios();
 
@@ -100,11 +102,18 @@ function cogerUsuarios() {
 
 function mostrarNoUsuariosRegistrados() {
     $("#usuarios-registrados").html('');
-    $("#usuarios-registrados").append('<tr class="usuarios-no-data"><td colspan="2"><p>No existen usuarios registrados</p></td></tr>');
+    $("#usuarios-registrados").append('<tr class="usuarios-no-data"><td colspan="3"><p>No existen usuarios registrados</p></td></tr>');
 }
 
 function mostrarMensajeSinUsuarios() {
-    $("#usuarios-registrados").append('<tr class="usuarios-no-more-data"><td colspan="2">No hay más usuarios registrados</td></tr>');
+    if (!filtro) $("#usuarios-registrados").append('<tr class="usuarios-no-more-data"><td colspan="3">No hay más usuarios registrados</td></tr>');
+    else {
+        if (numVecesCargado > 0) {
+            $("#usuarios-registrados").append('<tr class="usuarios-no-more-data"><td colspan="3">Hay más usuarios que cumplan los criterios</td></tr>');
+        } else {
+            $("#usuarios-registrados").append('<tr class="usuarios-no-more-data"><td colspan="3">Ningún usuario cumple los criterios</td></tr>');
+        }
+    }
     $("#cargar-mas-usuarios").prop('disabled', true); // <- Si no hay más usuarios, deshabilitamos el botón
     $("#siguiente-pag-usuarios").prop('disabled', true); // <- Si no hay más usuarios, deshabilitamos el botón
 }
@@ -133,7 +142,7 @@ function volcarUsuarios(usuarios) {
                     <span class="title">Habilitar&nbsp;</span>
                 </button>
                 ` : 
-                `<button type="submit" class="btn btn-editar" onclick="eliminarUsuario(this, ${usuario.id})"> <!-- Deshabilitar -->
+                `<button type="submit" class="btn btn-editar" onclick="deshabilitarUsuario(this, ${usuario.id})"> <!-- Deshabilitar -->
                     <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
                     <span class="title">Deshabilitar&nbsp;</span>
                 </button>
@@ -197,11 +206,93 @@ function comprobarDisponibilidadPaginas() {
     
 }
 
+/* Mostrar input para buscar usuario cuando hay poco espacio */
+function mostrarInputBusqueda() {
+    if ($(window).width() < 330) {
+        let valor = $("#search").val();
+
+        Swal.fire({
+            title: 'Filtrar',
+            input: 'text',
+            inputAttributes: {
+                placeholder: '',
+                value: valor,
+                autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Buscar',
+            cancelButtonText: 'Cancelar',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false,
+            preConfirm: (search) => {
+                return { search: search }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#search").val(result.value.search.trim());
+                filtrarUsuarios();
+            }
+        });
+    } else {
+
+    }
+}
 
 /* Ver, deshabilitar y eliminar usuario */
+// Muestra una alerta para ver los datos del usuario seleccionado
 function verUsuario(target, id) {
-    // TODO dani
+    // Obtenemos los datos del usuario
+    let data = {
+        id: id,
+        accion: "obtener"
+    };
+    $.ajax({
+        url: "./webservices/ws-usuario-acciones.php",
+        type: "post",
+        data:  data,
+    })
+    .then((respuesta) => {
+        if (respuesta.exito) { // Si ha recogido datos con éxito, mostramos usuario
+            let datos = respuesta.datos_usuario;
+            // Parseamos el tipo
+            let tipo;
+            if (datos.tipo.toUpperCase() == 'A') tipo = `<p class="usuario-tipo-admin">Administrador</p>`;
+            else if (datos.tipo.toUpperCase() == 'V') tipo = `<p class="usuario-tipo-vendedor">Vendedor</p>`;
+            else tipo = `<p class="usuario-tipo-cliente">Cliente</p>`;
+            // Parseamos habilitado
+            let habilitado = datos.habilitado == 0 ? `<p class="usuario-deshabilitado">Deshabilitado</p>` : `<p class="usuario-habilitado">Habilitado</p>`;
+            // Parseamos foto
+            let foto = (datos.foto == null) ? "default_user.png" : datos.foto;
+            // Parseamos descripción
+            let desc = (datos.descripcion == null) ? `<p class="usuario-desc no-desc">Sin descripción...</p>` : `<p class="usuario-desc">${datos.descripcion}</p>`;
+            // Mostramos los datos
+            Swal.fire({
+                html:
+                    `<h3>${datos.username}</h3>
+                    <img class="usuario-imagen" src="../img/usuarios/${foto}">
+                    <p>${datos.email}</p>
+                    ${desc}
+                    ${tipo}
+                    ${habilitado}`,
+                showCloseButton: true,
+                confirmButtonText: 'Volver'
+            });
+
+        } else {
+            throw Error('error');
+        }
+    })
+    .catch((err) => { // Si se encuentra algún error
+        Swal.fire({
+            title: 'Error al obtener el usuario :(',
+            confirmButtonText: 'Oh, vaya',
+            icon: "error"
+        });
+    });
+    
 } 
+
+// Muestra alerta con botones para habilitar el usuario seleccionado
 function habilitarUsuario(target, id) {
     Swal.fire({
         title: '¿Quieres habilitar el usuario?',
@@ -248,6 +339,8 @@ function habilitarUsuario(target, id) {
         }
     });
 } 
+
+// Muestra alerta con botones para deshabilitar el usuario seleccionado
 function deshabilitarUsuario(target, id) {
     Swal.fire({
         title: '¿Quieres deshabilitar el usuario?',
@@ -337,3 +430,27 @@ function eliminarUsuario(target, id) {
         }
     });
 } 
+
+/* Filtrar usuarios */
+
+// Si aprieta una tecla, comenzamos cuenta atrás de 700ms, si lleva 700ms sin escribir, procede a filtrar, así evitamos petar el WS a consultas
+var keydownTimeOut;
+function keydownFiltrarUsuarios() {
+    clearTimeout(keydownTimeOut);
+    keydownTimeOut = setTimeout(filtrarUsuarios, 700);
+}
+
+function filtrarUsuarios() {
+    paginaActual = 0;
+    numVecesCargado = 0;
+    $("#anterior-pag-usuarios").prop('disabled', true);
+    $("#anterior-pag-usuarios").addClass('display-none');
+    $("#siguiente-pag-usuarios").prop('disabled', false);
+    $("#siguiente-pag-usuarios").addClass('display-none');
+    $("#cargar-mas-usuarios").prop('disabled', false);
+
+    if (!$("#search").val() && !$("#filtro-tipo").val()) filtro = false;
+    else filtro = true;
+
+    vaciarYCogerUsuarios();
+}

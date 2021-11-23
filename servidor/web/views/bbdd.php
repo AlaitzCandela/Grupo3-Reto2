@@ -85,10 +85,18 @@
         $filtro = $data["filtro"];
         $inicio = $data["inicio"];
         $fin = $data["fin"];
-        $stmt = $dbh->prepare("SELECT id,username,email,tipo,habilitado FROM usuarios LIMIT $inicio, $fin $filtro");
+        $stmt = $dbh->prepare("SELECT id,username,email,tipo,habilitado FROM usuarios $filtro LIMIT $inicio, $fin");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    // Obtiene los datos de un usuario buscando por ID y los devuelve
+    function datosUsuario($dbh,$data) {
+        $stmt = $dbh->prepare("SELECT id,username,email,tipo,habilitado,foto,descripcion FROM usuarios WHERE id = :id");
+        $stmt->execute($data);
+        $datos_usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $datos_usuario;
     }
 
     // Deshabilita un usuario
@@ -113,7 +121,7 @@
 
     // Elimina un usuario
     function eliminarUsuario($dbh,$data) {
-        // Eliminar fotos del usuario
+        // TODO dani: Eliminar fotos del usuario
         
         $stmt = $dbh->prepare("DELETE FROM usuarios WHERE id = :id");
         return $stmt->execute($data);

@@ -346,3 +346,10 @@ UPDATE anuncios SET foto = "13-bolso.jpg" WHERE id = 47;
 UPDATE anuncios SET foto = "13-cinta.jfif" WHERE id = 48;
 UPDATE anuncios SET foto = "13-collarDoble.jpg" WHERE id = 49;
 UPDATE anuncios SET foto = "13-pendientes.jpg" WHERE id = 50;
+
+
+/*
+-------------------------- FOTOS USUARIOS --------------------------
+*/
+
+UPDATE usuarios SET foto = "3-dani.jpg" WHERE id = (SELECT id FROM usuarios WHERE(UPPER(username)='DANI');
