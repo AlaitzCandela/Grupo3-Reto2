@@ -21,8 +21,10 @@
                 <div class="cuadricula" id="cuadricula-anuncios">
                 </div>
             </section>
-            <button id="mas">M&aacute;s</button>
-
+            <div id="boton">
+                <button id="mas">M&aacute;s</button>
+            </div>
+           
         </main>
     </div>
     <?php require "./partials/scripts.php";?>
