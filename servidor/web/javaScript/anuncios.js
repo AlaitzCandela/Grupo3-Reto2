@@ -60,7 +60,7 @@ function volcarAnuncios(anuncios) {
         // Añadimos el contenido de cada anuncio
         contenido += `<div class="anuncio" style="color:white !important;" id="${anuncio.id}">
             <h2>${anuncio.nombre}</h2>
-            <img src="../img/${url_foto}" alt="" style="max-width:80px !important;">
+            <img src="../img/anuncios/${url_foto}" alt="" style="max-width:80px !important;">
             <p>${anuncio.precio}</p>
             <p>${anuncio.fecha_publicacion}</p>
         </div>

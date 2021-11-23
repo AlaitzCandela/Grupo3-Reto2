@@ -12,6 +12,14 @@
         </div>
     </div>
     <div class="profile-pic">
+        <?php
+            $profile_pic="../img/usuarios/";
+            if (isset($_COOKIE["foto"])) {
+                $profile_pic .= $_COOKIE["foto"];
+            } else {
+                $profile_pic .= "default_user.png";
+            }
+        ?>
         <img src="<?=$profile_pic?>" alt="Foto de perfil">
     </div>
 </div>

@@ -37,7 +37,6 @@ function insertarAnuncio(e){
     var form_data = new FormData();    
 
     // Preparamos las categorias anuncio
-    
     let categorias_ids = [];
     for (const categoria of categoriasTotal) {
         categorias_ids.push(categoria.value);

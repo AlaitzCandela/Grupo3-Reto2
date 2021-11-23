@@ -55,7 +55,7 @@ CREATE TABLE anuncios (
     precio DOUBLE NOT NULL,
     vendido TINYINT(1) DEFAULT 0,
     id_vendedor INT,
-    CONSTRAINT anu_ven_fk FOREIGN KEY(id_vendedor) REFERENCES vendedores(id)
+    CONSTRAINT anu_ven_fk FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE 
 );
 
 CREATE TABLE categorias (
@@ -287,3 +287,62 @@ INSERT INTO categoriasAnuncios (id_anuncio,id_categoria) VALUES(47,3);
 INSERT INTO categoriasAnuncios (id_anuncio,id_categoria) VALUES(48,3);
 INSERT INTO categoriasAnuncios (id_anuncio,id_categoria) VALUES(49,3);
 INSERT INTO categoriasAnuncios (id_anuncio,id_categoria) VALUES(50,3);
+
+
+/*
+-------------------------- FOTOS ANUNCIOS --------------------------
+*/
+UPDATE anuncios SET foto = "4-camisetaRayas.jpg" WHERE id = 1;
+UPDATE anuncios SET foto = "4-packCalcetines.jpg" WHERE id = 5;
+UPDATE anuncios SET foto = "4-pantalonesVaquerosNegros.jpg" WHERE id = 2;
+UPDATE anuncios SET foto = "4-smokeGrey.jpg" WHERE id = 4;
+UPDATE anuncios SET foto = "4-sudaderaGris.jfif" WHERE id = 3;
+UPDATE anuncios SET foto = "5-abrigoLanaOverzie.jpg" WHERE id = 7;
+UPDATE anuncios SET foto = "5-camisaBlanca.jpg" WHERE id = 8;
+UPDATE anuncios SET foto = "5-gorroCashmereNegro.jpg" WHERE id = 9;
+UPDATE anuncios SET foto = "5-vestidoRojo.png" WHERE id = 6;
+UPDATE anuncios SET foto = "5-camisetaUCLA.jpg" WHERE id = 10;
+
+UPDATE anuncios SET foto = "6-tecladoAsus.jpg" WHERE id = 11;
+UPDATE anuncios SET foto = "6-ratonPro.jpg" WHERE id = 12;
+UPDATE anuncios SET foto = "6-portatil.jpg" WHERE id = 13;
+UPDATE anuncios SET foto = "6-sims.jfif" WHERE id = 14;
+UPDATE anuncios SET foto = "6-fifa.jpg" WHERE id = 15;
+UPDATE anuncios SET foto = "7-fregasuelosLavanda.jpg" WHERE id = 16;
+UPDATE anuncios SET foto = "7-bano.jpg" WHERE id = 17;
+UPDATE anuncios SET foto = "7-limpiaCristales.jpg" WHERE id = 18;
+UPDATE anuncios SET foto = "7-bayetas.jpg" WHERE id = 19;
+UPDATE anuncios SET foto = "7-multiusos.jpg" WHERE id = 20;
+
+UPDATE anuncios SET foto = "8-estanteria.jpg" WHERE id = 21;
+UPDATE anuncios SET foto = "8-armario.jpg" WHERE id = 22;
+UPDATE anuncios SET foto = "8-muebleBlanco.jpg" WHERE id = 23;
+UPDATE anuncios SET foto = "8-muebleHemnes.jpg" WHERE id = 24;
+UPDATE anuncios SET foto = "8-armario.jpg" WHERE id = 25;
+UPDATE anuncios SET foto = "9-cuaderno.jpg" WHERE id = 26;
+UPDATE anuncios SET foto = "9-boliBic.jpg" WHERE id = 27;
+UPDATE anuncios SET foto = "9-boliPilot.jpg" WHERE id = 28;
+UPDATE anuncios SET foto = "9-recambio.jpg" WHERE id = 29;
+UPDATE anuncios SET foto = "9-lapiz.jpg" WHERE id = 30;
+
+UPDATE anuncios SET foto = "10-ljdh.jpg" WHERE id = 31;
+UPDATE anuncios SET foto = "10-hp4.jfif" WHERE id = 32;
+UPDATE anuncios SET foto = "10-hp6.jpg" WHERE id = 33;
+UPDATE anuncios SET foto = "10-nacidosDeLaBruma.jpg" WHERE id = 34;
+UPDATE anuncios SET foto = "10-elBestiarioDeAxlin.jpg" WHERE id = 35;
+UPDATE anuncios SET foto = "11-altavoz.jpg" WHERE id = 36;
+UPDATE anuncios SET foto = "11-lenovo.jpg" WHERE id = 37;
+UPDATE anuncios SET foto = "11-elite2.jpg" WHERE id = 38;
+UPDATE anuncios SET foto = "11-ratonMini.jpg" WHERE id = 39;
+UPDATE anuncios SET foto = "11-auriculares.jpg" WHERE id = 40;
+
+UPDATE anuncios SET foto = "12-pollo.jfif" WHERE id = 41;
+UPDATE anuncios SET foto = "12-verdura.jpg" WHERE id = 42;
+UPDATE anuncios SET foto = "12-arrozConLeche.jpg" WHERE id = 43;
+UPDATE anuncios SET foto = "12-solomillo.jpg" WHERE id = 44;
+UPDATE anuncios SET foto = "12-merluza.jpg" WHERE id = 45;
+UPDATE anuncios SET foto = "13-anillos.jfif" WHERE id = 46;
+UPDATE anuncios SET foto = "13-bolso.jpg" WHERE id = 47;
+UPDATE anuncios SET foto = "13-cinta.jfif" WHERE id = 48;
+UPDATE anuncios SET foto = "13-collarDoble.jpg" WHERE id = 49;
+UPDATE anuncios SET foto = "13-pendientes.jpg" WHERE id = 50;

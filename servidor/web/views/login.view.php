@@ -38,8 +38,6 @@
                     <input type="submit" name="login" value="Iniciar sesi&oacute;n">
                     <input type="hidden" name="accion" value="login">
                 </form>
-
-
             </div>
         </div>
     </div>

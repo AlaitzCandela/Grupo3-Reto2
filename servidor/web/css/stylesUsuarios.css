@@ -147,7 +147,7 @@ td.clave {
 }
 
 /* No es mobile first porque está pensado como panel administración desde ordenador para poder ver los datos clave necesarios */
-@media (max-width: 991px) {
+@media (max-width: 1307px) {
     .card-usuarios {
         padding: 0.5em 0;
     }
