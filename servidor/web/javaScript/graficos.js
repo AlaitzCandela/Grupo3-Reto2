@@ -1,6 +1,10 @@
 var ctx = document.getElementById("graficoLineas").getContext("2d");
-
+var ctxCircular = document.getElementById("graficoCircular").getContext("2d");
+var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 let width, height, gradient;
+
+
+
 function getGradient(ctx, chartArea) {
 	const chartWidth = chartArea.right - chartArea.left;
 	const chartHeight = chartArea.bottom - chartArea.top;
@@ -18,7 +22,7 @@ function getGradient(ctx, chartArea) {
 	return gradient;
 }
 
-var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
 
 var data = {
 	labels: labels,
@@ -57,14 +61,14 @@ var data = {
 	]
 };
 
-var ctxCircular = document.getElementById("graficoCircular").getContext("2d");
+
 
 const data2 = {
 	labels: labels,
 	datasets: [
 		{
 		label: 'Dataset 1',
-		data: [7,3,5,2,8,12,9,17,4,3,1,20],
+		data: [5,7,6,7,4,6,5,7,5,4,6,7],
 		backgroundColor: [
 			"#ce99ff",
 			"#99a0ff",

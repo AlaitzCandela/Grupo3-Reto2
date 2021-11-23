@@ -301,7 +301,7 @@ input[type="file"] {
     display: none;
 }
 
-.contenido form {
+.contenido form, .ajustes form {
     width: 60%;
     max-width: 800px;
     margin: 0 auto;
@@ -315,9 +315,27 @@ input[type="file"] {
     display: none;
 }
 
-.contenido form label {
+.contenido form label, .ajustes form label {
     cursor: pointer;
-}  
+}
+
+.ajustes form label:first-child {
+
+    padding: 0;
+    overflow: hidden;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.ajustes form label:first-child img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+}
 
 #placeholder {
     display: block;
@@ -328,7 +346,7 @@ input[type="file"] {
     font-size: 2em;
 }
 
-.contenido form img {
+.contenido form img, .ajustes form img {
     padding: 20px;
     max-width: 400px;
     transition: .2s;
@@ -336,7 +354,7 @@ input[type="file"] {
     object-fit: scale-down;
 }
 
-.contenido form > *:nth-child(n) {
+.contenido form > *:nth-child(n), .ajustes form > *:nth-child(n) {
     color: white;
     font-size: 1em;
     background-color: var(--black2);
@@ -348,11 +366,11 @@ input[type="file"] {
     padding: 10px;
 }
 
-.contenido form label:first-child {
+.contenido form label:first-child, .ajustes form label:first-child {
     text-align: center;
 }
 
-.contenido form label img {
+.contenido form label img, .ajustes form label img {
     max-width: 100%;
 }
 
@@ -361,7 +379,7 @@ input[type="range"] {
     border: none;
 }
 
-.contenido form textarea {
+.contenido form textarea, .ajustes form textarea {
     width: 60%;
     resize: none;
 }
@@ -421,7 +439,7 @@ input[type="range"] {
     text-align: center;
 }
 
-.contenido p:hover {
+.contenido p:hover, .ajustes p:hover {
     background-color: var(--blue);
 }
 
@@ -465,12 +483,12 @@ label {
     background-color: var(--blue2);
 }
 
-.contenido form input[type="submit"] {
+.contenido form input[type="submit"], .ajustes form input[type="submit"] {
     cursor: pointer;
     background-color: var(--black2);
 }
 
-.contenido form input[type="submit"]:hover {
+.contenido form input[type="submit"]:hover, .ajustes form input[type="submit"]:hover {
     animation-name: btnSubmit;
     animation-duration: 1s;
     animation-iteration-count: infinite;
@@ -684,6 +702,109 @@ section {
     width: 37.5%;
 }
 
+.ajustes {
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 80%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.ajustes p {
+    transition: .2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+#serVendedor {
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 80%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+#serVendedor h3 {
+    margin-bottom: 10px;
+}
+
+#serVendedor button {
+    transition: .2s;
+    cursor: pointer;
+    background-color: var(--black2);
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+#serVendedor button:hover {
+    animation-name: btnSubmit;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    box-shadow: 0 0 20px var(--blue2);
+}
+
+#serVendedor .modal {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(15px);
+    justify-content: center;
+    align-items: center;
+}
+
+#serVendedor .contenido {
+    padding: 0;
+    margin: 0;
+}
+
+#serVendedor .modal form {
+    background-color: var(--black1);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px var(--black1);
+    max-width: 500px;
+}
+
+#serVendedor .modal form > *:last-child {
+    margin: 0;
+}
+
+#serVendedor .modal form > *:nth-child(n) {
+    transition: .2s;
+    border: none;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+}
+
+#serVendedor .modal form > *:nth-child(n):hover {
+    box-shadow: 0 0 6px var(--blue);
+}
+
+#serVendedor .modal form > *:nth-child(n):focus {
+    box-shadow: 0 0 10px var(--blue2);
+}
+
+#serVendedor .modal form > *:last-child:hover {
+    box-shadow: 0 0 10px var(--blue2);
+}
+
 @media screen and (max-width: 991px) {
     nav {
         left: -300px;
@@ -835,5 +956,9 @@ section {
 
     .estadisticas .tarjeta {
         width: 100%;
+    }
+
+    .modal {
+        position: fixed;
     }
 }

@@ -4,7 +4,7 @@
 <?php
     require "./partials/metas.php";
 ?>
-    <title>Plantilla bien perrona</title>
+    <title>Anuncio</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
