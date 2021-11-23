@@ -45,7 +45,8 @@ function cogerAnuncios(){
 
 function mostrarMensajeSinAnuncios() {
     // TODO: personalizar mensaje con clase
-    $("#cuadricula-anuncios").append('<p>No hay más anuncios disponibles</p>');
+    $("#cuadricula-anuncios").append('<p style="color:white;">No hay más anuncios disponibles</p>');
+    $("#mas").css("display","none");
 }
 
 // Recorre todos los anuncios, los consturye en HTML y los añade
@@ -58,10 +59,12 @@ function volcarAnuncios(anuncios) {
         }
 
         // Añadimos el contenido de cada anuncio
-        contenido += `<div class="anuncio" style="color:white !important;" id="${anuncio.id}">
+        contenido += `<div class="anuncio" id="${anuncio.id}">
             <h2>${anuncio.nombre}</h2>
-            <img src="../img/anuncios/${url_foto}" alt="" style="max-width:80px !important;">
-            <p>${anuncio.precio}</p>
+            <div class='imagen'>
+                <img src="../img/anuncios/${url_foto}" alt="" style="max-width:80px !important;">
+            </div>
+            <p>${anuncio.precio}&euro;</p>
             <p>${anuncio.fecha_publicacion}</p>
         </div>
         `;

@@ -294,10 +294,10 @@ INSERT INTO categoriasAnuncios (id_anuncio,id_categoria) VALUES(50,3);
 */
 UPDATE anuncios SET foto = "4-camisetaRayas.jpg" WHERE id = 1;
 UPDATE anuncios SET foto = "4-packCalcetines.jpg" WHERE id = 5;
-UPDATE anuncios SET foto = "4-pantalonesVaquerosNegros.jpg" WHERE id = 2;
-UPDATE anuncios SET foto = "4-smokeGrey.jpg" WHERE id = 4;
-UPDATE anuncios SET foto = "4-sudaderaGris.jfif" WHERE id = 3;
-UPDATE anuncios SET foto = "5-abrigoLanaOverzie.jpg" WHERE id = 7;
+UPDATE anuncios SET foto = "4-pantalonesVaquerosNegros.png" WHERE id = 2;
+UPDATE anuncios SET foto = "4-smokeGrey.png" WHERE id = 4;
+UPDATE anuncios SET foto = "4-sudaderaGris.png" WHERE id = 3;
+UPDATE anuncios SET foto = "5-abrigoLanaOverzie.png" WHERE id = 7;
 UPDATE anuncios SET foto = "5-camisaBlanca.jpg" WHERE id = 8;
 UPDATE anuncios SET foto = "5-gorroCashmereNegro.jpg" WHERE id = 9;
 UPDATE anuncios SET foto = "5-vestidoRojo.png" WHERE id = 6;
