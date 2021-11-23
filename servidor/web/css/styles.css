@@ -594,29 +594,38 @@ section {
     margin: 0 auto;
 }
 
-section .estadisticas {
+.estadisticas {
+    padding: 0 40px;
     width: 100%;
-    height: 100px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-section .estadisticas .tarjeta {
-    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 1em;
     align-items: center;
     justify-content: space-evenly;
-    color: white;
-    min-width: 30%;
-    height: 90%;
-    border-radius: 15px;
-    background-color: transparent;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
-section .estadisticas .tarjeta ion-icon {
-    font-size: 2.5em;
+.estadisticas .tarjeta {
+    transition: .2s;
+    font-size: 1.2em;
+    padding: 30px;
+    margin: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-basis: 100px;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.estadisticas .tarjeta:hover {
+    box-shadow: 0 0 20px rgba(0, 68, 148, 0.6);
+}
+
+.estadisticas .tarjeta ion-icon {
+    font-size: 2em;
 }
 
 .pedidos::before {
@@ -746,15 +755,7 @@ section .estadisticas .tarjeta ion-icon {
         justify-content: center;
     }
 
-    .estadisticas {
-        flex-direction: column;
-    }
-
-    .estadisticas div {
-        min-width: 100%;
-    }
-
-    section * {
+    section > * {
         min-width: 100%;
     }
 }
@@ -826,5 +827,13 @@ section .estadisticas .tarjeta ion-icon {
 
     #favoritos {
         order: 6;
+    }
+
+    .estadisticas {
+        flex-direction: column;
+    }
+
+    .estadisticas .tarjeta {
+        width: 100%;
     }
 }

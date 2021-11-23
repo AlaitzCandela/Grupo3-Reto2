@@ -18,9 +18,9 @@
 
             <section>
                 <div class="estadisticas">
-                    <div class="tarjeta"><p>Visitas</p><ion-icon name="eye-outline"></ion-icon></div>
-                    <div class="tarjeta"><p>Beneficios</p><ion-icon name="cash-outline"></ion-icon></div>
-                    <div class="tarjeta"><p>Ventas</p><ion-icon name="bag-handle-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Visitas: 234976</p><ion-icon name="eye-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Beneficios: 1645€</p><ion-icon name="cash-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Ventas: 162534</p><ion-icon name="bag-handle-outline"></ion-icon></div>
                 </div>
 
                 <div titulo="PEDIDOS" class="pedidos">
