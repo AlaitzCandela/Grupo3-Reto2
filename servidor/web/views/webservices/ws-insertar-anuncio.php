@@ -2,7 +2,7 @@
     require "../bbdd.php";
     
     // Conectamos BBDD
-    $dbh=connect();
+    $dbh=connect(true);
 
     // Inicializamos la respuesta
     $respuesta_json = [

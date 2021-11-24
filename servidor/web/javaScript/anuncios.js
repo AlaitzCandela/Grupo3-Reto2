@@ -39,6 +39,10 @@ function cogerAnuncios(){
         }
     })
     .then((respuesta)=> {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         if (respuesta.length > 0) volcarAnuncios(respuesta);
         else mostrarMensajeSinAnuncios();
     });

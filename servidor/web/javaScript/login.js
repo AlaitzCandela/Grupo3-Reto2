@@ -37,6 +37,13 @@ function cambiarSelectedIni() {
     })
     .then((respuesta) => {
         console.log(respuesta);
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            $('#login input[name="username"]').val('');
+            $('#login input[name="password"]').val('');
+            return;
+        }
+
         if (respuesta.login) {
             // Guardamos el id del usuario
             document.cookie = "id_usuario=" + respuesta.id_usuario;
@@ -47,9 +54,10 @@ function cambiarSelectedIni() {
         } else {
             // Vaciamos la contraseña para que la vuelva a introducir
             $('#login input[name="password"]').val('');
-            
+
             // Mostramos error por credenciales incorrectas
             throw Error("Credenciales incorrectas");
+           
         }
     })
     .catch((err) => {
@@ -136,6 +144,15 @@ $('#register').submit((e) => {
         }
     })
     .then((respuesta) => {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            $('#login input[name="username"]').val('');
+            $('#login input[name="password"]').val('');
+            $('#login input[name="email"]').val('');
+            $('#login input[name="repetir-password"]').val('');
+            return;
+        }
+
         console.log(respuesta);
         if (respuesta.register) {
             if (respuesta.id_usuario > 0) { // Registrado con éxito

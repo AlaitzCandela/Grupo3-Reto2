@@ -26,7 +26,7 @@
     
     $data = array('inicio'=>$inicio,'fin'=>$fin,'filtro'=>$filtro);
 
-    $dbh=connect();
+    $dbh=connect(true);
     $usuarios = cogerUsuarios($dbh,$data);
     $dbh=close($dbh);
 

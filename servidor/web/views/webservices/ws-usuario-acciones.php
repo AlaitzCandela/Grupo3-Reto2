@@ -7,7 +7,7 @@
     $exito = false;
     $datos_usuario = [];
 
-    $dbh=connect();
+    $dbh=connect(true);
     if ($_POST["accion"] == "deshabilitar") $exito = deshabilitarUsuario($dbh,$data);
     else if ($_POST["accion"] == "habilitar") $exito = habilitarUsuario($dbh,$data);
     else if ($_POST["accion"] == "eliminar") $exito = eliminarUsuario($dbh,$data);

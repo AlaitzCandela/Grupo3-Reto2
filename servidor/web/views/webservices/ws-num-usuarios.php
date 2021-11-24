@@ -1,7 +1,7 @@
 <?php
     require "../bbdd.php";
    
-    $dbh=connect();
+    $dbh=connect(true);
     $num_usuarios = numeroUsuariosRegistrados($dbh);
     $dbh=close($dbh);
 

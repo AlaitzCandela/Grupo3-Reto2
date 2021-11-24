@@ -19,6 +19,10 @@ function cogerCategorias(){
     .then((categorias)=>{
        // console.log(categorias);
         let contenido = "";
+        if (categorias.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         for (const categoria of categorias) {
                 contenido += `<div>
                 <input type="checkbox" name="categoria" value="${categoria.id}" id="cat${categoria.id}" class="categoria-check">
@@ -74,11 +78,11 @@ function insertarAnuncio(e){
     })
     .then((response) => {
         console.log(response)
-        if (response.exito) {
-            // Si ha insertado bien, redireccionamos al .php donde se cargue la vista del anuncio
-            // TODO: poner la redirección
-            //window.location.href = './home.php';
-        } else {
+        if (response.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
+        if (!response.exito) {
             // Analizamos el código de error
             switch(response.codError) {
                 case 1: // Error por imagen: demasiado grande
@@ -107,22 +111,5 @@ function insertarAnuncio(e){
             }
         }
         console.log(datos)
-    /*
-        $.ajax({
-            url:"./insertar-anuncios.php",
-            type:"post",
-            data: datos,
-            error: function(error){
-                alert(error)
-            }
-        })
-        .then((response) => {
-            console.log(response)
-            if (response.exito) {
-                // Si ha insertado bien, redirigimos
-            } else {
-                alert('Imposible registrar el anuncio')
-            }
-        }); */
     });
 }

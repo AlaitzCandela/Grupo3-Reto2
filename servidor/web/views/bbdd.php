@@ -1,6 +1,6 @@
 <?php
-    function connect(){
-        $host= 'localhost';
+    function connect($webService=false){
+        $host= 'localhoOst';
         $dbName = 'TN';
         $user = 'admin';
         $pass = 'admin';
@@ -9,8 +9,12 @@
             return $dbh;
         }
         catch (PDOException $e){
-            echo $e->getMessage();
-            // TODO: reenviar a página de error
+            if ($webService) {
+                header('Content-type: application/json');
+                echo json_encode(["error" => "Servidor no disponible", "codError" => 503]);
+                die();
+            }
+            require "./error-503.view.php";
             die();
         }
     } 
