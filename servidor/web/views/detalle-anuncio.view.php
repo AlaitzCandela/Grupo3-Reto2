@@ -17,20 +17,20 @@
             ?>
 
             <div class="detalleAnuncio">
-                <img src="https://via.placeholder.com/2500" alt="">
+                <img src="../img/anuncios/<?=$datos["foto"]?>" alt="">
 
                 <div class="informacion">
-                    <h1 id="nombre">Nombre</h1>
+                    <h1 id="nombre"><?=$datos["nombre"]?></h1>
                     <hr id="separador1">
-                    <h5 id="descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero exercitationem eligendi, ut quisquam laboriosam architecto illo natus, neque repudiandae sint qui eos deleniti. Est saepe quisquam delectus illo pariatur doloribus?</h5>
-                    <ion-icon id="favoritos" name="star-outline"></ion-icon>
+                    <h5 id="descripcion"><?=$datos["descripcion"]?></h5>
+                    <ion-icon id="favoritos" name="<?= $fav_icon_name ?>" <?= $fav_icon_class ?> onclick='favoritos(<?=$datos["id"]?>)'></ion-icon>
                     <hr id="separador2">
-                    <p id="precio">16.99 &euro;</p>
+                    <p id="precio"> <?=$datos["precio"]?> &euro;</p>
                 </div>
             </div>
         </main>
     </div>
     <?php require "./partials/scripts.php";?>
-    
+    <script src="../javaScript/anuncios.js"></script>
 </body>
 </html>

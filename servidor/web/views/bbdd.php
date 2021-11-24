@@ -111,6 +111,14 @@
         return $result;
     }
 
+
+    //Obtener los datos de un anuncio en concreto
+    function detalleAnuncio($dbh,$data){
+        $stmt = $dbh->prepare("SELECT id,nombre,descripcion,foto,precio FROM anuncios WHERE id = :id");
+        $stmt->execute($data);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     function close($dbh){
         $dbh = null;
         return $dbh;
