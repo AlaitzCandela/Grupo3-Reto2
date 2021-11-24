@@ -49,6 +49,10 @@ function cargarNumeroMaximoUsuarios() {
         }
     })
     .then((respuesta)=> {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         if (!isNaN(respuesta.num_usuarios)) numeroTotalUsuarios = respuesta.num_usuarios;
         else numeroTotalUsuarios = 0;
 
@@ -86,6 +90,10 @@ function cogerUsuarios() {
         }
     })
     .then((respuesta)=> {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         if (respuesta.length > 0) volcarUsuarios(respuesta);
         else mostrarMensajeSinUsuarios();
 
@@ -252,6 +260,10 @@ function verUsuario(target, id) {
         data:  data,
     })
     .then((respuesta) => {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         if (respuesta.exito) { // Si ha recogido datos con éxito, mostramos usuario
             let datos = respuesta.datos_usuario;
             // Parseamos el tipo

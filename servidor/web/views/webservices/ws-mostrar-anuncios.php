@@ -5,7 +5,7 @@
     
     $data = array('inicio'=>$inicio,'fin'=>$fin);
 
-    $dbh=connect();
+    $dbh=connect(true);
     $anuncios = cogerAnuncios($dbh,$data);
     $dbh=close($dbh);
 

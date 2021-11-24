@@ -5,8 +5,7 @@
     require "./partials/metas.php";
 ?>
     <title>Error 403</title>
-    <link rel="stylesheet" href="<?= $ruta_dir ?>css/styles.css">
-    <link rel="stylesheet" href="<?= $ruta_dir ?>css/styleErrores.css">
+    <link rel="stylesheet" href="../css/styleErrores.css">
 </head>
 <body>
     <div class="contenedor">

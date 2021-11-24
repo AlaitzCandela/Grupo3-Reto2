@@ -1,5 +1,5 @@
 <?php
-    function connect(){
+    function connect($webService=false){
         $host= 'localhost';
         $dbName = 'TN';
         $user = 'admin';
@@ -9,8 +9,12 @@
             return $dbh;
         }
         catch (PDOException $e){
-            echo $e->getMessage();
-            // TODO: reenviar a página de error
+            if ($webService) {
+                header('Content-type: application/json');
+                echo json_encode(["error" => "Servidor no disponible", "codError" => 503]);
+                die();
+            }
+            require "./error-503.view.php";
             die();
         }
     } 
@@ -49,7 +53,7 @@
     function cogerAnuncios($dbh,$data){
         $inicio = $data["inicio"];
         $fin = $data["fin"];
-        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 LIMIT $inicio, $fin");
+        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() LIMIT $inicio, $fin ");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

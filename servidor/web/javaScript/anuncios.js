@@ -39,6 +39,10 @@ function cogerAnuncios(){
         }
     })
     .then((respuesta)=> {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         if (respuesta.length > 0) volcarAnuncios(respuesta);
         else mostrarMensajeSinAnuncios();
     });
@@ -106,3 +110,14 @@ function favoritos(id) {
         document.cookie = "favoritos=" + anuncios_favoritos;
     }
 }
+
+$('#anadirCarrito').on('click',() => {
+    if($('#anadirCarrito').prop('name') == 'bag-add-outline') {
+      $('#anadirCarrito').prop('name','bag-remove-outline');
+      document.querySelector('#anadirCarrito').classList.toggle('rojo');
+    }
+    else {
+      $('#anadirCarrito').prop('name','bag-add-outline');
+      document.querySelector('#anadirCarrito').classList.toggle('rojo');
+    }
+  });

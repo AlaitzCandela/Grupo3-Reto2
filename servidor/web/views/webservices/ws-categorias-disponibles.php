@@ -1,7 +1,7 @@
 <?php
     require "../bbdd.php";
 
-    $dbh=connect();
+    $dbh=connect(true);
     $categorias = cogerCategorias($dbh);
     $dbh=close($dbh);
 

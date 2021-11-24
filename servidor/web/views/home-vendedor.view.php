@@ -5,7 +5,6 @@
     require "./partials/metas.php";
 ?>
     <title>Home</title>
-    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="contenedor">
@@ -23,12 +22,13 @@
                     <div class="tarjeta"><p>Ventas: 162534</p><ion-icon name="bag-handle-outline"></ion-icon></div>
                 </div>
 
-                <div titulo="PEDIDOS" class="pedidos">
-                    <div><span>Nombre del producto</span><span>Cliente</span><span>Precio</span></div>
-                    <div><span>Producto de prueba</span><span>Cliente de prueba</span><span>00.00 &euro;</span></div>
-                    <div><span>Producto de prueba</span><span>Cliente de prueba</span><span>00.00 &euro;</span></div>
-                    <div><span>Producto de prueba</span><span>Cliente de prueba</span><span>00.00 &euro;</span></div>
-                    <div><span>Producto de prueba</span><span>Cliente de prueba</span><span>00.00 &euro;</span></div>
+                <div titulo="MIS ANUNCIOS" class="pedidos">
+                    <div><span>Nombre del producto</span><span>Enlace</span><span>Acci&oacute;n</span></div>
+                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
+                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
+                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
+                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
+                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
                 </div>
 
                 <div class="grafico circular"><canvas id="graficoCircular"></canvas></div>

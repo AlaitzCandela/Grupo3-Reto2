@@ -7,7 +7,7 @@
     $foto = "default_user.png";
 
     if ($_POST["accion"] == "login") {
-        $dbh = connect();
+        $dbh = connect(true);
         $username = $_POST["username"];
         $password = $_POST["password"];
     

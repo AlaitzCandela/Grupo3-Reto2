@@ -20,25 +20,7 @@ $('#favoritos').on('click',() => {
   document.querySelector('#favoritos').classList.toggle('seleccionado');
 });
 
-imgInp.onchange = evt => {
-  $("#btnBorrarImagen").css('display','block');
-  $("#preview").css('display','inline');
-  $('#placeholder').css('display','none');
-  $('#placeholder-img').css('display','none');
-  const [file] = imgInp.files
-  if (file) {
-    document.querySelector('#preview').src = URL.createObjectURL(file);
-  }
-}
 
-$("#btnBorrarImagen").on('click',() => {
-  $('#img-input').prop('value',null);
-  document.querySelector('#preview').src = '#';
-  $("#btnBorrarImagen").css('display','none');
-  $('#preview').css('display','none');
-  $('#placeholder').css('display','block');
-  $('#placeholder-img').css('display','inline-block');
-})
 
 $("textarea").each(function () {
     this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
@@ -47,9 +29,9 @@ $("textarea").each(function () {
     this.style.height = (this.scrollHeight) + "px";
 });
 
-$('#caducidad').on('input', function() {
-    let value = $('#caducidad').prop('value');
-    document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
-})
 
 
+function cerrarSesion(){
+  document.cookie = "id_usuario=,max-age=0";
+  window.location.href = "./login.view.php";
+}

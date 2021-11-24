@@ -7,6 +7,11 @@
     $data = array("id"=>$id_usuario);
     $tipo = cogerTipoUsuario($dbh,$data);
     $dbh=close($dbh);
+
+    if($tipo == false){
+        require "./login.view.php";
+        die();
+    }
  
     // Redireccionar al usuario en base a su tipo
     if($tipo == "A") {
@@ -20,7 +25,7 @@
     }
     else{
         // Si es vendedor: cargar página estadísticas
-        require './anuncios.view.php';
+        require './home-vendedor.view.php';
     }
 
 

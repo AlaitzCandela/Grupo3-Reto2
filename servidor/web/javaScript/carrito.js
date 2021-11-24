@@ -4,7 +4,7 @@ $(document).ready((evt) => {
         document.querySelector('#menuCarrito').classList.add('selected');
     });
 
-    let nombres = document.querySelectorAll('.carrito .producto .nombreProducto');
+    let nombres = document.querySelectorAll('.carrito .producto .nombreProducto a');
     nombres.forEach(element => {
         element.innerHTML=element.innerHTML.replace(/\s/g, "&nbsp;");
     });

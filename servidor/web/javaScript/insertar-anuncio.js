@@ -1,4 +1,36 @@
 $(document).ready(() => {
+    $('#caducidad').on('input', function() {
+        let value = $('#caducidad').prop('value');
+        document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
+    });
+
+    $("textarea").each(function () {
+        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+      }).on("input", function () {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
+    });
+
+    imgInp.onchange = evt => {
+        $("#btnBorrarImagen").css('display','block');
+        $("#preview").css('display','inline');
+        $('#placeholder').css('display','none');
+        $('#placeholder-img').css('display','none');
+        const [file] = imgInp.files
+        if (file) {
+          document.querySelector('#preview').src = URL.createObjectURL(file);
+        }
+      };
+
+    $("#btnBorrarImagen").on('click',() => {
+        $('#img-input').prop('value',null);
+        document.querySelector('#preview').src = '#';
+        $("#btnBorrarImagen").css('display','none');
+        $('#preview').css('display','none');
+        $('#placeholder').css('display','block');
+        $('#placeholder-img').css('display','inline-block');
+    });
+
     cogerCategorias();
     $("#form-insertar-anuncio").on('submit', insertarAnuncio);
 
@@ -19,6 +51,10 @@ function cogerCategorias(){
     .then((categorias)=>{
        // console.log(categorias);
         let contenido = "";
+        if (categorias.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
         for (const categoria of categorias) {
                 contenido += `<div>
                 <input type="checkbox" name="categoria" value="${categoria.id}" id="cat${categoria.id}" class="categoria-check">
@@ -74,11 +110,11 @@ function insertarAnuncio(e){
     })
     .then((response) => {
         console.log(response)
-        if (response.exito) {
-            // Si ha insertado bien, redireccionamos al .php donde se cargue la vista del anuncio
-            // TODO: poner la redirección
-            //window.location.href = './home.php';
-        } else {
+        if (response.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            return;
+        }
+        if (!response.exito) {
             // Analizamos el código de error
             switch(response.codError) {
                 case 1: // Error por imagen: demasiado grande
@@ -107,22 +143,5 @@ function insertarAnuncio(e){
             }
         }
         console.log(datos)
-    /*
-        $.ajax({
-            url:"./insertar-anuncios.php",
-            type:"post",
-            data: datos,
-            error: function(error){
-                alert(error)
-            }
-        })
-        .then((response) => {
-            console.log(response)
-            if (response.exito) {
-                // Si ha insertado bien, redirigimos
-            } else {
-                alert('Imposible registrar el anuncio')
-            }
-        }); */
     });
 }
