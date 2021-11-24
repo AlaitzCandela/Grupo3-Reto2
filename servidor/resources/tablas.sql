@@ -753,3 +753,20 @@ TIMESTAMP('2021-11-01'), TIMESTAMP('2021-12-09'),'Manga Compresora Blanco Novemb
 INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
 VALUES((SELECT vendedores.id FROM vendedores, usuarios WHERE vendedores.id = usuarios.id AND UPPER(usuarios.username) = 'BERSHKA'), 
 TIMESTAMP('2021-11-01'), TIMESTAMP('2021-12-03'),'Manga Compresora Cyan November Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 1);
+
+
+select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios group by MONTH(fecha_publicacion);
+select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
+select MONTH(fecha_publicacion) as mes, SUM(precio) as total_ganancias from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
+
+-- TODO dani:
+-- crear algunos clientes
+-- vincular vengas a los clientes
+-- añadir visitas a tabla anuncios
+-- añadir que al visitar un anuncio, sume una visita
+-- ? añadir comprobación e-mail usuario ajax ?
+-- exportar bbdd nueva y reemplazar
+-- ? añadir alguna clave para conectarse con PuTTY ?
+
+
+
