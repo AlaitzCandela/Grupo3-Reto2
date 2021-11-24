@@ -4,7 +4,7 @@
 <?php
     require "./partials/metas.php";
 ?>
-    <title>Plantilla bien perrona</title>
+    <title>Mi carrito</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -16,9 +16,50 @@
                 require "./partials/topbar.php";
             ?>
             <div class="carrito">
+            <div class="producto favorito">
+                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
+                    <div class="acciones">
+                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
+                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+                    </div>
+                </div>
+
                 <div class="producto ">
                     <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto">Gatito super mega cute 4k real no fake 1 link mega</div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
+                    <div class="acciones">
+                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
+                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <div class="producto ">
+                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
+                    <div class="acciones">
+                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
+                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <div class="producto ">
+                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
+                    <div class="acciones">
+                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
+                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+                    </div>
+                </div>
+
+                <div class="producto ">
+                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
                     <div class="acciones">
                         <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
                         <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
@@ -27,37 +68,18 @@
 
                 <div class="producto favorito">
                     <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto">Super cool</div>
+                    <div class="nombreProducto"><a href="#">Gatito</a></div>
+                    <div class="precios">14.99&euro;</div>
                     <div class="acciones">
                         <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
                         <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
                     </div>
                 </div>
 
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto">Gatito</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto">Gatito</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto favorito">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto">Gatito</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+                <div class="carritoOtros">
+                    <span id="precioTotal">Precio Total: 89,94 &euro;</span>
+                    <div class="controlesCarrito">
+                        <button>Comprar todo</button><button>Vaciar Carrito</button>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,36 @@
 $(document).ready(() => {
+    $('#caducidad').on('input', function() {
+        let value = $('#caducidad').prop('value');
+        document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
+    });
+
+    $("textarea").each(function () {
+        this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
+      }).on("input", function () {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight) + "px";
+    });
+
+    imgInp.onchange = evt => {
+        $("#btnBorrarImagen").css('display','block');
+        $("#preview").css('display','inline');
+        $('#placeholder').css('display','none');
+        $('#placeholder-img').css('display','none');
+        const [file] = imgInp.files
+        if (file) {
+          document.querySelector('#preview').src = URL.createObjectURL(file);
+        }
+      };
+
+    $("#btnBorrarImagen").on('click',() => {
+        $('#img-input').prop('value',null);
+        document.querySelector('#preview').src = '#';
+        $("#btnBorrarImagen").css('display','none');
+        $('#preview').css('display','none');
+        $('#placeholder').css('display','block');
+        $('#placeholder-img').css('display','inline-block');
+    });
+
     cogerCategorias();
     $("#form-insertar-anuncio").on('submit', insertarAnuncio);
 
