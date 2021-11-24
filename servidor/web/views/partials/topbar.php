@@ -3,13 +3,31 @@
         <ion-icon name="menu-outline"></ion-icon>
     </div>
     <div class="search">
-        <label>
-            <input type="text" name="busqueda" id="search" placeholder="Buscar">
-            <ion-icon name="search-outline"></ion-icon>
-        </label>
-        <div class="filtro">
-            <ion-icon name="options-outline"></ion-icon>
-        </div>
+        <?php if($pagina == "usuarios"): ?> <!-- Usuarios -->
+            <label>
+                <input type="text" name="busqueda" id="search" placeholder="Buscar">
+                <ion-icon name="search-outline"></ion-icon>
+            </label>
+            <div class="filtro-tipo-select">
+                <select name="filtro-tipo" id="filtro-tipo">
+                    <option value="">Todos</option>
+                    <option value="A">Admins</option>
+                    <option value="C">Clientes</option>
+                    <option value="V">Vendedores</option>
+                </select>
+            </div>
+        <?php elseif($pagina == "panel-admin"): ?> <!-- Panel admin -->
+            
+        <?php else: ?> <!-- Por defecto -->
+            <label>
+                <input type="text" name="busqueda" id="search" placeholder="Buscar">
+                <ion-icon name="search-outline"></ion-icon>
+            </label>
+            <div class="filtro">
+                <ion-icon name="options-outline"></ion-icon>
+            </div>
+        <?php endif; ?>
+        
     </div>
     <div class="profile-pic">
         <?php
