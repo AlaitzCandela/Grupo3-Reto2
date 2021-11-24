@@ -14,6 +14,13 @@
             </a>
         </li>
 
+        <li id="menuCarrito" class="selected">
+            <a href="">
+                <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                <span class="title">Carrito&nbsp;de&nbsp;la&nbsp;compra</span>
+            </a>
+        </li>
+
         <li id="menuChat">
             <a href="">
                 <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>

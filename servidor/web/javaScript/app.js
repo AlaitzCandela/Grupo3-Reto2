@@ -11,7 +11,6 @@ toggle.onclick = function() {
 }
 
 $('#favoritos').on('click',() => {
-  console.log($('#favoritos').prop('name'));
   if($('#favoritos').prop('name') == 'star-outline') {
     $('#favoritos').prop('name','star');
   }
