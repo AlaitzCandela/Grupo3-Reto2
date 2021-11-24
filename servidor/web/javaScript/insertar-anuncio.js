@@ -1,6 +1,11 @@
 $(document).ready(() => {
     cogerCategorias();
     $("#form-insertar-anuncio").on('submit', insertarAnuncio);
+
+    document.querySelectorAll('nav ul li').forEach((evt) => {
+        evt.classList.remove('selected');
+        document.querySelector('#menuSubirAnuncio').classList.add('selected');
+    });
 });
 
 function cogerCategorias(){

@@ -21,10 +21,10 @@
             </a>
         </li>
 
-        <li id="menuChat">
+        <li id="menuSubirAnuncio">
             <a href="">
-                <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
-                <span class="title">Mensajes</span>
+                <span class="icon"><ion-icon name="cloud-upload-outline"></ion-icon></span>
+                <span class="title">Subir&nbsp;anuncio</span>
             </a>
         </li>
 
