@@ -52,4 +52,7 @@ $('#caducidad').on('input', function() {
     document.getElementById('valorCaducidad').innerHTML = value + " D&iacute;as";
 })
 
-
+function cerrarSesion(){
+  document.cookie = "id_usuario=,max-age=0";
+  window.location.href = "./login.view.php";
+}

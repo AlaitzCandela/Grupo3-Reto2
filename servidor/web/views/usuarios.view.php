@@ -5,9 +5,7 @@
     require "./partials/metas.php";
 ?>
     <title>Gestión Usuarios</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/stylesUsuarios.css">
-    <link rel="stylesheet" href="../css/sweetalert2.min.css">
 </head>
 <body>
     <div class="contenedor">
@@ -47,10 +45,8 @@
         </main>   
     </div>
     <?php 
-        $no_appjs = true;
         require "./partials/scripts.php";
     ?>
-    <script src="../javaScript/sweetalert2.min.js"></script>
     <script src="../javaScript/usuarios.js"></script>
 </body>
 </html>

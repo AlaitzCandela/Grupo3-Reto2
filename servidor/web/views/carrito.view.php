@@ -5,7 +5,6 @@
     require "./partials/metas.php";
 ?>
     <title>Plantilla bien perrona</title>
-    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="contenedor">

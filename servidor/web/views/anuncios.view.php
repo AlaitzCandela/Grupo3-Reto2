@@ -5,7 +5,6 @@
         require "./partials/metas.php";
     ?>
     <title>Descubrir anuncios</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/styleAnuncio.css">
 </head>
 <body>

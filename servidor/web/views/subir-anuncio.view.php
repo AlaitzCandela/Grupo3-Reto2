@@ -5,7 +5,6 @@
     require "./partials/metas.php";
 ?>
     <title>Sube tu anuncio</title>
-    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="contenedor">
