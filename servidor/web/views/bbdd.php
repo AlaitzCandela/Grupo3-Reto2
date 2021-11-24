@@ -1,6 +1,6 @@
 <?php
     function connect($webService=false){
-        $host= 'localhoOst';
+        $host= 'localhost';
         $dbName = 'TN';
         $user = 'admin';
         $pass = 'admin';
@@ -53,7 +53,7 @@
     function cogerAnuncios($dbh,$data){
         $inicio = $data["inicio"];
         $fin = $data["fin"];
-        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 LIMIT $inicio, $fin");
+        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() LIMIT $inicio, $fin ");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

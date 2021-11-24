@@ -110,3 +110,14 @@ function favoritos(id) {
         document.cookie = "favoritos=" + anuncios_favoritos;
     }
 }
+
+$('#anadirCarrito').on('click',() => {
+    if($('#anadirCarrito').prop('name') == 'bag-add-outline') {
+      $('#anadirCarrito').prop('name','bag-remove-outline');
+      document.querySelector('#anadirCarrito').classList.toggle('rojo');
+    }
+    else {
+      $('#anadirCarrito').prop('name','bag-add-outline');
+      document.querySelector('#anadirCarrito').classList.toggle('rojo');
+    }
+  });

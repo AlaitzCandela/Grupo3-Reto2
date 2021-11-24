@@ -605,6 +605,22 @@ label {
     color: rgb(255, 208, 0);
 }
 
+.detalleAnuncio #anadirCarrito {
+    transition: .2s;
+    cursor: pointer;
+    color: lightgray;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.detalleAnuncio #anadirCarrito.rojo {
+    color: rgb(236, 89, 89);
+}
+
+.detalleAnuncio #anadirCarrito {
+    color: var(--blue2);
+}
+
 section {
     display: flex;
     flex-flow: row wrap;
@@ -1125,7 +1141,7 @@ section {
         order: 5;
     }
 
-    #favoritos {
+    .accionesAnuncio {
         order: 6;
     }
 
