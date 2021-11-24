@@ -4,7 +4,7 @@
 <?php
     require "./partials/metas.php";
 ?>
-    <title>Plantilla bien perrona</title>
+    <title>Mi cesta</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -60,6 +60,8 @@
                         <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
                     </div>
                 </div>
+
+                <button>Limpiar cesta</button>
             </div>
         </main>
     </div>
