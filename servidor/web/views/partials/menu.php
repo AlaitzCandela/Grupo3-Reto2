@@ -45,7 +45,7 @@
         <li id="menuLogout">
             <a href="">
                 <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-                <span class="title">Cerrar&nbsp;sesi&oacute;n</span>
+                <span class="title" onclick="cerrarSesion()">Cerrar&nbsp;sesi&oacute;n</span>
             </a>
         </li>
     </ul>

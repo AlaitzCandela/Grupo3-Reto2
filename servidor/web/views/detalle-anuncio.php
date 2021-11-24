@@ -15,6 +15,7 @@
     // Recogemos datos del anuncio
     $data = array("id"=>$id_anuncio);
     $dbh = connect();
+    
     $datos = detalleAnuncio($dbh,$data);
     $dbh=close($dbh);
 
@@ -24,7 +25,7 @@
         die();
     }
 
-    // Mostramos la vista
+    // Mostramos la vista  
     require "detalle-anuncio.view.php";
 
 

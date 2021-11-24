@@ -32,14 +32,13 @@
         $data = array('username'=>$username,'password'=>$password);
         $id_usuario=comprobarSiExisteUsuario($dbh,$data);
         if($id_usuario == null){
-            echo "no existe";
-            require 'login.views.php';   
+            require './login.views.php';   
         }
         else{
-            echo "bieeeen";
-            require 'login.views.php';   //Lo pongo separado para que pueda cojer el id de usuario desde javascript para hacer un localStorage
+            require './home.php';  
         }
     }
+
 
    
 ?>

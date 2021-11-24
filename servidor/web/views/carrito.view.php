@@ -5,7 +5,6 @@
     require "./partials/metas.php";
 ?>
     <title>Mi carrito</title>
-    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="contenedor">

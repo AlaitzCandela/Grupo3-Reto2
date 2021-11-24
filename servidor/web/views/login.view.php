@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../img/tomNookDinero.png" type="image/x-icon">
+<?php
+    require "./partials/metas.php";
+?>
     <link rel="stylesheet" href="../css/login.css">
     <title>Entrar en Tom Nook</title>
 </head>
@@ -41,7 +40,9 @@
             </div>
         </div>
     </div>
-    <script src="../javaScript/jquery-3.6.0.min.js"></script>
+    <?php 
+        require "./partials/scripts.php";
+    ?>
     <script src="../javaScript/login.js"></script>
 </body>
 </html>

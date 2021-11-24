@@ -31,4 +31,7 @@ $("textarea").each(function () {
 
 
 
-
+function cerrarSesion(){
+  document.cookie = "id_usuario=,max-age=0";
+  window.location.href = "./login.view.php";
+}

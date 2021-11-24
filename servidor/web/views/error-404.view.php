@@ -4,8 +4,7 @@
 <?php
     require "./partials/metas.php";
 ?>
-    <title>Plantilla bien perrona</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Error 404</title>
     <link rel="stylesheet" href="../css/styleErrores.css">
 </head>
 <body>

@@ -1,15 +1,54 @@
+* {
+    user-select: none;
+}
+
+/* Custom Sweet Alert 2 */
+.swal2-html-container {
+    margin: 10px 0 !important;
+    overflow: hidden !important;
+}
+#sa-search {
+    min-width: 100px !important;
+}
+
+/* Filtros */
+.filtro-tipo-select {
+    align-self: stretch;
+}
+#filtro-tipo {
+    border-radius: 0 20px 20px 0;
+    border: white;
+    background-color: #303135;
+    color: white;
+    min-width: 104px;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+#filtro-tipo:focus {
+    outline: none;
+}
+.search label input {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 1px solid gray !important;
+}
+
+
+/* Tabla */ 
 .card-usuarios-wrapper {
-    margin-top: 4em;
+    margin-top: 2em;
     padding: 1em;
 }
 .leyenda {
-    padding: 1em;
+    padding: 1em 1em 1em 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
-.leyenda p + p {
-    margin-left: 10px;
+.leyenda p {
+    margin-top: 5px;
+    margin-left: 5px;
 }
 .leyenda-titulo {
     color: white;
@@ -53,6 +92,9 @@ tr.usuario-vendedor, .leyenda-vendedor {
 }
 tr.usuarios-no-data p {
     padding-left: 1em;
+}
+td.usuario-email {
+    user-select: text;
 }
 td.clave {
     font-weight: bold;
@@ -132,6 +174,8 @@ td.clave {
 .btn-ver:disabled {
     background-color: #475a64;
 }
+
+/* Botones navegación */
 .botones-control {
     margin-top: 1em;
     display: flex;
@@ -139,6 +183,30 @@ td.clave {
 .botones-control button + button {
     margin-left: 10px;
 }
+
+/* Info usuario al saltar sweet alert */
+.usuario-tipo-admin {
+    color: rgb(243, 226, 75);
+}
+.usuario-tipo-cliente {
+    color: rgb(106, 228, 143);
+}
+.usuario-tipo-vendedor {
+    color: rgb(94, 177, 228);
+}
+.usuario-desc {
+    margin: 1em auto;
+    padding: 5px;
+    width: fit-content;
+    min-width: 50%;
+    max-width: 90%;
+}
+.usuario-desc.no-desc {
+    color: rgb(202, 202, 202);
+    font-style: italic;
+}
+
+
 
 /* No es mobile first porque está pensado como panel administración desde ordenador para poder ver los datos clave necesarios */
 @media (max-width: 1307px) {
@@ -156,6 +224,12 @@ td.clave {
     }
     .th-acciones {
         width: 77%;
+    }
+}
+
+@media (max-width: 990px) {
+    .card-usuarios-wrapper {
+        margin-top: 0;
     }
 }
 

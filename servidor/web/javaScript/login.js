@@ -37,6 +37,13 @@ function cambiarSelectedIni() {
     })
     .then((respuesta) => {
         console.log(respuesta);
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            $('#login input[name="username"]').val('');
+            $('#login input[name="password"]').val('');
+            return;
+        }
+
         if (respuesta.login) {
             // Guardamos el id del usuario
             document.cookie = "id_usuario=" + respuesta.id_usuario;
@@ -45,14 +52,60 @@ function cambiarSelectedIni() {
             // Usamos el sistema de rutas tope genial
             window.location.href = './home.php';
         } else {
-            // Mostramos error por credenciales incorrectas
-            
             // Vaciamos la contraseña para que la vuelva a introducir
             $('#login input[name="password"]').val('');
+
+            // Mostramos error por credenciales incorrectas
+            throw Error("Credenciales incorrectas");
+           
         }
     })
     .catch((err) => {
-        alert("error");
+        Swal.fire({
+            title: 'Usuario y/o contraseña incorrectos',
+            icon: 'error',
+            showDenyButton: true,
+            confirmButtonText: 'Ok',
+            denyButtonText: '(╯°□°）╯︵ ┻━┻',
+        }).then((result) => {
+            if (result.isDenied) {
+                Swal.fire({
+                    title: 'Pero, no te enfades :(',
+                    icon: 'question',
+                    showDenyButton: true,
+                    confirmButtonText: '(ヘ･_･)ヘ┳━┳',
+                    denyButtonText: 'w(ﾟДﾟ)w',
+                }).then((result) => {
+                    if (result.isDenied) {
+                        Swal.fire({
+                            title: '¡Eh! Te relajas',
+                            icon: 'warning',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Perdón',
+                            cancelButtonText: '(;´༎ຶД༎ຶ`)', 
+                            denyButtonText: '(╬▔皿▔)╯',
+                        }).then((result) => {
+                            if (result.isDenied) {
+                                Swal.fire({
+                                    title: 'Never...',
+                                    icon: 'error',
+                                    confirmButtonText: '??',
+                                }).then((result) => {
+                                    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                                });
+                            }
+                        });
+                    } else if (result.isDismissed) {
+                        Swal.fire({
+                            title: 'No te preocupes, todo saldrá bien',
+                            icon: 'info',
+                            confirmButtonText: '(* ￣3)(ε￣ *)',
+                        })
+                    }
+                });
+            }
+        });
         $('#login input[name="password"]').val('');
     });
 
@@ -91,6 +144,15 @@ $('#register').submit((e) => {
         }
     })
     .then((respuesta) => {
+        if (respuesta.codError == 503) {
+            window.location.href = "./error-503.view.php";
+            $('#login input[name="username"]').val('');
+            $('#login input[name="password"]').val('');
+            $('#login input[name="email"]').val('');
+            $('#login input[name="repetir-password"]').val('');
+            return;
+        }
+
         console.log(respuesta);
         if (respuesta.register) {
             if (respuesta.id_usuario > 0) { // Registrado con éxito
