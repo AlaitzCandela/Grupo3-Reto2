@@ -1,6 +1,15 @@
+$(document).ready(() => {
+    let formModal = document.querySelector('.modal');
+    formModal.innerHTML += "<button id='cancelar' onclick='ocultarModal()'>Cancelar</button>";
+})
+
+function ocultarModal() {
+    $('.modal').css("display", "none");
+}
+
 document.querySelectorAll('nav ul li').forEach((evt) => {
     evt.classList.remove('selected');
-    document.querySelector('#menuPerfil').classList.add('selected')
+    document.querySelector('#menuPerfil').classList.add('selected');
 });
 
 $('#btnVendedor').on('click', (evt) => {

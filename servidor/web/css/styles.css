@@ -775,34 +775,16 @@ section {
     margin: 0;
 }
 
-#serVendedor .modal form {
-    background-color: var(--black1);
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 0 0 30px var(--black1);
-    max-width: 500px;
+#serVendedor .contenido .modal {
+    flex-flow: column wrap;
 }
 
-#serVendedor .modal form > *:last-child {
-    margin: 0;
-}
-
-#serVendedor .modal form > *:nth-child(n) {
+#serVendedor button#cancelar {
     transition: .2s;
-    border: none;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
-}
-
-#serVendedor .modal form > *:nth-child(n):hover {
-    box-shadow: 0 0 6px var(--blue);
-}
-
-#serVendedor .modal form > *:nth-child(n):focus {
-    box-shadow: 0 0 10px var(--blue2);
-}
-
-#serVendedor .modal form > *:last-child:hover {
-    box-shadow: 0 0 10px var(--blue2);
+    width: 60%;
+    max-width: 500px;
+    padding: 10px;
+    background-color: var(--blue);
 }
 
 @media screen and (max-width: 991px) {
