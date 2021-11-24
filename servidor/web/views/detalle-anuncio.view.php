@@ -28,6 +28,8 @@
                     </div>
                     <hr id="separador2">
                     <p id="precio"> <?=$datos["precio"]?> &euro;</p>
+                    <hr id="separador3">
+                    <p id="datosContacto"> <span>Email: placeholder@gmail.com</span> <span>Tel&eacute;fono: 123456789</span> <span>Direcci&oacute;n: C/placeholder Nº00</span> </p>
                 </div>
             </div>
         </main>

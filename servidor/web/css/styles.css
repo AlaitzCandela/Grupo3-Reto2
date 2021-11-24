@@ -574,6 +574,12 @@ label {
     justify-content: center;
 }
 
+.detalleAnuncio .informacion #datosContacto {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+}
+
 .detalleAnuncio .informacion > :not(:last-child) {
     margin-bottom: 10px;
 }
@@ -1143,6 +1149,14 @@ section {
 
     .accionesAnuncio {
         order: 6;
+    }
+
+    #separador3 {
+        order: 7;
+    }
+
+    #datosContacto {
+        order: 8;
     }
 
     .estadisticas {
