@@ -245,7 +245,6 @@ main .profile-pic img {
 }
 
 .search .filtros-container {
-    top: -50px;
     opacity: 0;
     display: grid;
     padding: 10px;
@@ -262,7 +261,7 @@ main .profile-pic img {
 }
 
 .search .filtros-container.showing {
-    top: 0;
+    top: 0 !important;
     opacity: 1;
 }
 
@@ -1274,10 +1273,10 @@ div#historial {
     }
 
     .search .filtros-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .accionFiltros {
-        grid-column: span 1;
+        grid-column: span 2;
     }
 }

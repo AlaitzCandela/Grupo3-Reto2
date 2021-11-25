@@ -30,12 +30,6 @@
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
-                <div class="filtroButton">Filtro</div>
                 <button class="accionFiltros" id="aplicarFiltros">Aplicar</button>
                 <button class="accionFiltros" id="resetearFiltros">Resetear</button>
             </div>
