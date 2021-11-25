@@ -1,28 +1,34 @@
 <?php
-    
+
+    // Si el método POST no indica la acción login, devolvemos json error
+    if ($_POST["accion"] != "login") { 
+        header('Content-type: application/json');
+        echo json_encode(["codError" => 400, "error" => "Bad request"]);
+        die();
+    }
+
     require '../bbdd.php';
 
     $id_usuario = -1;
     $login = false;
     $foto = "default_user.png";
 
-    if ($_POST["accion"] == "login") {
-        $dbh = connect(true);
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+    $dbh = connect(true);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Comprobamos login
+    $data = array('username'=>$username, 'password'=>$password);
+    $id_usuario = comprobarCredencialesUsuario($dbh,$data);
     
-        // Comprobamos login
-        $data = array('username'=>$username, 'password'=>$password);
-        $id_usuario = comprobarSiExisteUsuario($dbh,$data);
-        
-        if ($id_usuario != null) {
-            // Recogemos foto usuario
-            $foto = obtenerFotoUsuario($dbh,array("id"=>$id_usuario));
-            $login = true; 
-        }
-        
-        $dbh = close($dbh);
+    if ($id_usuario != null) {
+        // Recogemos foto usuario
+        $foto = obtenerFotoUsuario($dbh,array("id"=>$id_usuario));
+        $login = true; 
     }
+    
+    $dbh = close($dbh);
+    
 
     if ($foto == null || $foto == "undefined" || $foto == "") {
         $foto = "default_user.png";

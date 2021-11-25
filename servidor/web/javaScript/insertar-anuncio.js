@@ -52,7 +52,7 @@ function cogerCategorias(){
        // console.log(categorias);
         let contenido = "";
         if (categorias.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         for (const categoria of categorias) {
@@ -111,7 +111,7 @@ function insertarAnuncio(e){
     .then((response) => {
         console.log(response)
         if (response.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         if (!response.exito) {

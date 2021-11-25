@@ -78,7 +78,7 @@
                 <div class="carritoOtros">
                     <span id="precioTotal">Precio Total: 89,94 &euro;</span>
                     <div class="controlesCarrito">
-                        <button>Comprar todo</button><button>Vaciar Carrito</button>
+                        <button id="comprar-carrito">Comprar todo</button><button id="comprar-carrito">Vaciar Carrito</button>
                     </div>
                 </div>
             </div>

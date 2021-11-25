@@ -20,7 +20,7 @@
             <img src="../img/tomNookSad.svg"/>
         </div>
         <div class="error">
-            <h1>ERROR 503: SERVICIO NO ENCONTRADO </h1>
+            <h1>ERROR 503: SERVICIO NO DISPONIBLE </h1>
             <br/>
             <p>El servidor no está listo para manejar la petición. Causas comunes puede ser que el servidor está caído por mantenimiento o está sobrecargado. </p>
             <br/>

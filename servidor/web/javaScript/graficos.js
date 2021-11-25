@@ -1,8 +1,17 @@
+/* DOCUMENT READY */
+$(document).ready(() => {
+    document.querySelectorAll('nav ul li').forEach((evt) => {
+        evt.classList.remove('selected');
+        document.querySelector('#menuHome').classList.add('selected');
+    });
+});
+
+
+/* JS GRÁFICAS */
 var ctx = document.getElementById("graficoLineas").getContext("2d");
 var ctxCircular = document.getElementById("graficoCircular").getContext("2d");
 var labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 let width, height, gradient;
-
 
 
 function getGradient(ctx, chartArea) {
@@ -21,7 +30,6 @@ function getGradient(ctx, chartArea) {
 
 	return gradient;
 }
-
 
 
 var data = {
@@ -62,7 +70,6 @@ var data = {
 };
 
 
-
 const data2 = {
 	labels: labels,
 	datasets: [
@@ -86,6 +93,7 @@ const data2 = {
 		}
 	]
 };
+
 
 const graficaLineas = new Chart(ctx, {
  	type: 'line',

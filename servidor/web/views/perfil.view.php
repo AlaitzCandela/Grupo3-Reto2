@@ -15,6 +15,7 @@
                 require "./partials/topbar.php";
             ?>
             <section>
+                <?php if($datos_usuario["tipo"] == 'C'): ?>
                 <div id="serVendedor">
                     <div class="contenido">
                     <?php require "./partials/modal.php"?>
@@ -23,22 +24,32 @@
                     <p>Para convertirte en vendedor deber&aacute;s introducir algunos datos extra</p>
                     <button id="btnVendedor">Convertirme en vendedor</button>
                 </div>
+                <?php endif; ?>
 
                 <div class="ajustes">
                     <form action="" method="post" id="form-perfil">
-                        <label for="profile-pic-input"><img src="../img/usuarios/default_user.png" alt="   " id="preview-profile-pic"></label>
-                        <input type="file" name="imagen" id="profile-pic-input" accept="image/.jpg,.jpeg,.png,.gif,.jfif">
+                        <label for="profile-pic-input"><img src="../img/usuarios/<?= $datos_usuario["foto"] ?>" alt="   " id="preview-profile-pic"></label>
+                        <input <?= $disabled ? "disabled" : "" ?> type="file" name="imagen" id="profile-pic-input" accept="image/.jpg,.jpeg,.png,.gif,.jfif">
 
-                        <p id="btnBorrarImagen">Borrar imagen</p>
+                        <?php if (!$disabled): ?>
+                            <?php if ($datos_usuario["foto"] == null || $datos_usuario["foto"] == "default_user.png"): ?>
+                                    <p id="btnBorrarImagen">Añadir imagen</p>
+                                <?php else: ?>
+                                    <p id="btnBorrarImagen">Borrar imagen</p>
+                            <?php endif; ?>
+                        <?php endif; ?>
 
-                        <input class="input" type="text" autocomplete="off" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
+                        <input <?= $disabled ? "disabled" : "" ?> value="<?= $datos_usuario["username"] ?>" class="input" type="text" autocomplete="off" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
 
-                        <textarea class="input" autocomplete="off" name="descripcionUsuario" rows="2" id="descripcionUsuario" placeholder="Descripci&oacute;n"></textarea>
-
-                        <input type="password" name="password" id="password" placeholder="Nueva contrase&ntilde;a">
-                        <input type="password" name="password" id="reppassword" placeholder="Repetir contrase&ntilde;a">
+                        <textarea <?= $disabled ? "disabled" : "" ?> value="<?= $datos_usuario["descripcion"] ?>" class="input" autocomplete="off" name="descripcionUsuario" rows="2" id="descripcionUsuario" 
+                        placeholder="<?= !$disabled ? "Sin descripción... ¡Añade algo!" : "Sin descripción" ?>"></textarea>
+                        
+                        <?php if (!$disabled): ?>
+                        <input <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="password" placeholder="Nueva contrase&ntilde;a">
+                        <input <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="reppassword" placeholder="Repetir contrase&ntilde;a">
 
                         <input type="submit" name="actualizarPerfil" id="enviarDatos" value="Actualizar perfil">
+                        <?php endif; ?>
                     </form>
                 </div>
             </section>

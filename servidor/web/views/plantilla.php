@@ -1,3 +1,6 @@
+<?php // Comprobamos que no ha cargado a mano la URL de la vista
+    require "./partials/controlado.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

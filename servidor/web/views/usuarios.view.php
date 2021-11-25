@@ -1,3 +1,9 @@
+<?php 
+    if (!$permiso_admin) {
+        require "./error-403.php";
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

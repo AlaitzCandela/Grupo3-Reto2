@@ -1,6 +1,21 @@
 $('#animacionRegistro').on('click',cambiarSelectedReg);
 $('#animacionLogin').on('click',cambiarSelectedIni);
 
+$(document).ready(() => {
+    // Comprobamos si el usuario ha sido deshabilitado y por eso se le ha cerrado la sesión, para mostrar una alerta personalizada
+    let cookies = document.cookie.split("; ");
+    let deshabilitado = cookies.find((elm) => elm.includes("usuario-deshabilitado"));
+    if (deshabilitado) {
+        Swal.fire({
+            title: 'Usuario deshabilitado :(',
+            text: 'Si consideras que se trata de un problema, contacta con soporte para solventarlo.',
+            confirmButtonText: 'Ok',
+        });
+        document.cookie = "usuario-deshabilitado=;max-age=0;";
+    }
+});
+
+
 function cambiarSelectedReg() {
     let registro = document.querySelector('.registro');
     let iniciosesion = document.querySelector('.inicio-sesion');
@@ -28,7 +43,6 @@ function cambiarSelectedIni() {
         password: $('#login input[name="password"]').val().trim(),
         accion: $('#login input[name="accion"]').val(),
     }
-
     $form = $(this);
     $.ajax({
         url: "./webservices/ws-login.php",
@@ -38,7 +52,7 @@ function cambiarSelectedIni() {
     .then((respuesta) => {
         console.log(respuesta);
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             $('#login input[name="username"]').val('');
             $('#login input[name="password"]').val('');
             return;
@@ -60,7 +74,7 @@ function cambiarSelectedIni() {
            
         }
     })
-    .catch((err) => {
+    .catch((err, a, b) => {
         Swal.fire({
             title: 'Usuario y/o contraseña incorrectos',
             icon: 'error',
@@ -129,7 +143,6 @@ $('#register').submit((e) => {
     form_data.append('email', $('#register input[name="email"]').val().trim());
     form_data.append('accion', $('#register input[name="accion"]').val());
 
-    $form = $(this);
     $.ajax({
         url: "./webservices/ws-register.php",
         dataType: 'json',
@@ -145,7 +158,7 @@ $('#register').submit((e) => {
     })
     .then((respuesta) => {
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             $('#login input[name="username"]').val('');
             $('#login input[name="password"]').val('');
             $('#login input[name="email"]').val('');
@@ -164,17 +177,21 @@ $('#register').submit((e) => {
                 window.location.href = './home.php';
             } else { // Error al registrar (ya existía)
                 // TODO: alert
+                $('#register input[name="username"]').focusin();
                 $('#register input[name="password"]').val('');
+                $('#register input[name="repetir-password"]').val('');
             }
             
         } else {
             // Error en la BBDD
             $('#register input[name="password"]').val('');
+            $('#register input[name="repetir-password"]').val('');
         }
     })
     .catch((err) => {
         alert("error");
         $('#register input[name="password"]').val('');
+        $('#register input[name="repetir-password"]').val('');
     });
 
 });

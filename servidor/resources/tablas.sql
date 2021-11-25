@@ -7,19 +7,11 @@ FLUSH PRIVILEGES;*/
 USE TN;
 
 DROP TABLE IF EXISTS historialCompras;
-DROP TABLE IF EXISTS historialVentas;
 DROP TABLE IF EXISTS categoriasAnuncios;
 DROP TABLE IF EXISTS categorias;
 DROP TABLE IF EXISTS anuncios;
 DROP TABLE IF EXISTS vendedores;
 DROP TABLE IF EXISTS usuarios;
-
-DROP TABLE IF EXISTS pruebaimg;
-
-CREATE TABLE pruebaimg (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    img LONGBLOB
-);
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,7 +19,7 @@ CREATE TABLE usuarios (
     password VARCHAR(500) NOT NULL,
     email VARCHAR(50) NOT NULL,
     tipo CHAR(1) NOT NULL,
-    foto VARCHAR(100) DEFAULT NULL,
+    foto VARCHAR(100) DEFAULT 'default_user.png',
     descripcion VARCHAR(200),
     fecha_creacion TIMESTAMP NOT NULL DEFAULT NOW(),
     habilitado TINYINT(1) DEFAULT 1,
@@ -54,6 +46,7 @@ CREATE TABLE anuncios (
     foto VARCHAR(100) DEFAULT NULL,
     precio DOUBLE NOT NULL,
     vendido TINYINT(1) DEFAULT 0,
+	num_visitas INT DEFAULT 0,
     id_vendedor INT,
     CONSTRAINT anu_ven_fk FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE 
 );
@@ -74,38 +67,31 @@ CREATE TABLE categoriasAnuncios (
 CREATE TABLE historialCompras (
     id_anuncio INT,
     id_comprador INT,
+	id_vendedor INT,
     fecha_compra TIMESTAMP NOT NULL DEFAULT NOW(),
-    CONSTRAINT hist_comp_pk PRIMARY KEY (id_anuncio, id_comprador),
+    CONSTRAINT hist_comp_pk PRIMARY KEY (id_anuncio, id_comprador, id_vendedor),
     CONSTRAINT rel_histcomp_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
-    CONSTRAINT rel_histcomp_comp FOREIGN KEY(id_comprador) REFERENCES usuarios(id) ON DELETE CASCADE
-);
-
-CREATE TABLE historialVentas (
-    id_anuncio INT,
-    id_vendedor INT,
-    fecha_venta TIMESTAMP NOT NULL DEFAULT NOW(),
-    CONSTRAINT hist_vent_pk PRIMARY KEY (id_anuncio, id_vendedor),
-    CONSTRAINT rel_histvent_anu FOREIGN KEY(id_anuncio) REFERENCES anuncios(id) ON DELETE CASCADE,
-    CONSTRAINT rel_histvent_comp FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE
+    CONSTRAINT rel_histcomp_comp FOREIGN KEY(id_comprador) REFERENCES usuarios(id) ON DELETE CASCADE,
+	CONSTRAINT rel_histvent_comp FOREIGN KEY(id_vendedor) REFERENCES vendedores(id) ON DELETE CASCADE
 );
 
 /*
 -------------------------- USUARIOS --------------------------
 */
-
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Alaitz','1234','alaitz.candela@ikasle.egibide.org','A');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Raul','1234','raul.melgosa@ikasle.egibide.org','A');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Dani','1234','daniel.tamargo@ikasle.egibide.org','A');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('bershka','3drvEKk9','bershka@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Zara','gkQqjOtq','zara@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Game','tLicxim1','game@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Don limpio','cFn7qOdU','donlimpio@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Ikea','WI1fNLi4','ikea@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Eroski','dnsC9NCy','eroski@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('La casa del libro','gQFULBT9','laCasaDelLibro@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('PC Componentes','XWwgQvBM','PcCom@gmail.com','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Wetaca','rBrEyaw3','wetaca@ikasle.egibide.org','V');
-INSERT INTO usuarios(username,password,email,tipo) VALUES('Primark','sv6hVsGs','primark@gmail.com','V');
+-- Contraseñas: 1234 (hasheadas y salteadas)
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Alaitz','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','alaitz.candela@ikasle.egibide.org','A');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Raul','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','raul.melgosa@ikasle.egibide.org','A');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Dani','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','daniel.tamargo@ikasle.egibide.org','A');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('bershka','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','bershka@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Zara','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','zara@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Game','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','game@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Don limpio','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','donlimpio@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Ikea','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','ikea@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Eroski','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','eroski@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('La casa del libro','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','laCasaDelLibro@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('PC Componentes','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','PcCom@gmail.com','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Wetaca','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','wetaca@ikasle.egibide.org','V');
+INSERT INTO usuarios(username,password,email,tipo) VALUES('Primark','$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m','primark@gmail.com','V');
 
 
 /*
@@ -123,8 +109,9 @@ INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PC
 INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='WETACA')),'Madrid',931904577);
 INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PRIMARK')),'Dublín',926778196);
 
+
 /*
--------------------------- ANUNCIOS --------------------------
+-------------------------- ANUNCIOS REALES --------------------------
 */
 
 /*BERSHKA*/
@@ -346,3 +333,386 @@ UPDATE anuncios SET foto = "13-bolso.png" WHERE id = 47;
 UPDATE anuncios SET foto = "13-cinta.png" WHERE id = 48;
 UPDATE anuncios SET foto = "13-collarDoble.png" WHERE id = 49;
 UPDATE anuncios SET foto = "13-pendientes.png" WHERE id = 50;
+
+/*
+-------------------------- FOTOS USUARIOS --------------------------
+*/
+UPDATE usuarios SET foto = "3-dani.jpg" WHERE id = 3; -- Dani
+
+/*
+-------------------------- ANUNCIOS BULTO --------------------------
+*/
+
+/*ANUNCIOS PARA ESTADÍSTICAS (NO NECESITAN NI CATEGORÍA, SOLO ESTAR VINCULADOS*/
+/*
+-------------------------- VENTAS ANUNCIOS --------------------------
+*/
+
+-- Enero
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Pantalones Hip Hop Top', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Camiseta Hip Hop Hombre', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Camiseta Hip Hop Mujer', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Zapatillas Hip Hop', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Gorra Hip Hop', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Negro', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Azul', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Verde', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Morado', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Amarillo', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-01-01'), TIMESTAMP('2021-01-08'),'Manga Compresora Cyan', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Febrero
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Pantalones Hip Hop Top February Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Camiseta Hip Hop Hombre February Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Camiseta Hip Hop Mujer February Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Zapatillas Hip Hop February Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Gorra Hip Hop February Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora February Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Negro February Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Azul February Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Verde February Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Morado February Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Amarillo February Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-02-01'), TIMESTAMP('2021-02-08'),'Manga Compresora Cyan February Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Marzo
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Pantalones Hip Hop Top March Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Manga Compresora Negro March Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Manga Compresora Azul March Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Manga Compresora Verde March Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Manga Compresora Amarillo March Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-03-01'), TIMESTAMP('2021-03-08'),'Manga Compresora Cyan March Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Abril
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-04-01'), TIMESTAMP('2021-04-08'),'Pantalones Hip Hop Top April Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-04-01'), TIMESTAMP('2021-04-08'),'Camiseta Hip Hop Hombre April Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-04-01'), TIMESTAMP('2021-04-08'),'Camiseta Hip Hop Mujer April Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-04-01'), TIMESTAMP('2021-04-08'),'Zapatillas Hip Hop April Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-04-01'), TIMESTAMP('2021-04-08'),'Gorra Hip Hop April Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+
+-- Mayo
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora May Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Negro May Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Azul May Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Verde May Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Morado May Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Amarillo May Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-05-01'), TIMESTAMP('2021-05-08'),'Manga Compresora Cyan May Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Junio
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-06-01'), TIMESTAMP('2021-06-08'),'Manga Compresora Azul June Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-06-01'), TIMESTAMP('2021-06-08'),'Manga Compresora Verde June Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-06-01'), TIMESTAMP('2021-06-08'),'Manga Compresora Morado June Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-06-01'), TIMESTAMP('2021-06-08'),'Manga Compresora Amarillo June Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-06-01'), TIMESTAMP('2021-06-08'),'Manga Compresora Cyan June Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Julio
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Pantalones Hip Hop Top July Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Camiseta Hip Hop Hombre July Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Camiseta Hip Hop Mujer July Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Zapatillas Hip Hop July Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Gorra Hip Hop July Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora July Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Negro July Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Azul July Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Verde July Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Morado July Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Amarillo July Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-07-01'), TIMESTAMP('2021-07-08'),'Manga Compresora Cyan July Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+
+-- Agosto
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-08-01'), TIMESTAMP('2021-08-08'),'Pantalones Hip Hop Top August Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-08-01'), TIMESTAMP('2021-08-08'),'Camiseta Hip Hop Hombre August Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-08-01'), TIMESTAMP('2021-08-08'),'Camiseta Hip Hop Mujer August Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-08-01'), TIMESTAMP('2021-08-08'),'Zapatillas Hip Hop August Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+-- Septiembre
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Pantalones Hip Hop Top September Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Camiseta Hip Hop Hombre September Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Camiseta Hip Hop Mujer September Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Zapatillas Hip Hop September Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Gorra Hip Hop September Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora September Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Negro September Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Azul September Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Verde September Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Morado September Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Amarillo September Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-09-01'), TIMESTAMP('2021-09-08'),'Manga Compresora Cyan September Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 0);
+
+-- Octubre
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Pantalones Hip Hop Top October Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Camiseta Hip Hop Hombre October Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Camiseta Hip Hop Mujer October Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Zapatillas Hip Hop October Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Gorra Hip Hop October Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-10-01'), TIMESTAMP('2021-10-08'),'Manga Compresora October Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+-- Noviembre
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Pantalones Hip Hop Top November Edition', 'Tasty Life Pantalones Hip Hop callejeros deportivos', 9.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Camiseta Hip Hop Hombre November Edition', 'Tasty Life Camiseta Hip Hop hombre callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Camiseta Hip Hop Mujer November Edition', 'Tasty Life Camiseta Hip Hop mujer callejera', 7.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Zapatillas Hip Hop November Edition', 'Tasty Life Zapatillas Hip Hop callejeras deportivas', 24.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Gorra Hip Hop November Edition', 'Tasty Life Gorra Hip Hop hombre callejera', 15.95, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora November Edition', 'Tasty Life Manga compresora (1 ud)', 3.25, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Negro November Edition', 'Tasty Life Manga compresora color negro (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Azul November Edition', 'Tasty Life Manga compresora color azul (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Verde November Edition', 'Tasty Life Manga compresora color verde (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Morado November Edition', 'Tasty Life Manga compresora color morado (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Amarillo November Edition', 'Tasty Life Manga compresora color Amarillo (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Red Bull November Edition', 'Tasty Life Manga compresora edición especial Red Bull (1 ud)', 3.50, 0);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-11-08'),'Manga Compresora Palace November Edition', 'Tasty Life Manga compresora palace edition (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-12-09'),'Manga Compresora Blanco November Edition', 'Tasty Life Manga compresora color Blanco (1 ud)', 3.50, 1);
+
+INSERT INTO anuncios(id_vendedor, fecha_publicacion, fecha_caducidad, nombre, descripcion, precio, vendido) 
+VALUES(4, TIMESTAMP('2021-11-01'), TIMESTAMP('2021-12-03'),'Manga Compresora Cyan November Edition', 'Tasty Life Manga compresora color Cyan (1 ud)', 3.50, 1);
+
+/* foto genérica para estos anuncios de bulto */
+UPDATE anuncios SET foto = "generic_img.png" WHERE id > 50;
+
+/* vincular las ventas a unos pocos clientes */
+INSERT INTO usuarios(username, password, email, tipo, foto, descripcion) VALUES ('compulsivo', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'compradorcompulsivo@gmail.com', 'C', 'compradorcompulsivo.jpg', 'ME ENCANTA COMPRAR, ES MI PASIÓN, QUIERO COMPRAR MÁS, MÁS, MÁÁÁÁÁÁÁS!! SI ME ESTÁS LEYENDO POR FAVOR PUBLICA ALGO, ¡¡¡¡YO TE LO COMPRO!!!!');
+INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES 
+(51, 4, 14), (52, 4, 14), (53, 4, 14), (54, 4, 14), (55, 4, 14), (56, 4, 14),
+(57, 4, 14), (58, 4, 14), (60, 4, 14), (61, 4, 14), (62, 4, 14),
+(63, 4, 14), (64, 4, 14), (65, 4, 14), (66, 4, 14), (67, 4, 14), 
+(77, 4, 14), (81, 4, 14), (82, 4, 14), (83, 4, 14), (84, 4, 14), (85, 4, 14), 
+(86, 4, 14), (87, 4, 14), (88, 4, 14), (90, 4, 14), (93, 4, 14), (95, 4, 14), 
+(98, 4, 14), (99, 4, 14), (100, 4, 14), (101, 4, 14), (102, 4, 14), (103, 4, 14), 
+(104, 4, 14), (105, 4, 14), (107, 4, 14), (110, 4, 14), (111, 4, 14), (112, 4, 14), 
+(113, 4, 14), (114, 4, 14), (115, 4, 14), (116, 4, 14), (117, 4, 14), (118, 4, 14), 
+(119, 4, 14), (120, 4, 14), (121, 4, 14), (123, 4, 14), (126, 4, 14), (127, 4, 14), 
+(128, 4, 14), (129, 4, 14), (130, 4, 14), (131, 4, 14), (132, 4, 14), (134, 4, 14), 
+(135, 4, 14), (136, 4, 14), (137, 4, 14), (138, 4, 14), (139, 4, 14), (141, 4, 14), 
+(144, 4, 14), (145, 4, 14), (146, 4, 14);
+
+
+--select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios group by MONTH(fecha_publicacion);
+--select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
+--select MONTH(fecha_publicacion) as mes, SUM(precio) as total_ganancias from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
+
+
+-- TODO:
+
+-- Raúl:
+---- Vista tablas mis ventas / mis compras
+
+
+-- * cerrar sesión (al darle en el menú)
+-- en contacto ir a página wordpress? cuál es el enlace?
+-- obtener datos y volcar en perfil y perfil vendedor (estadísticas)
+-- ventana editar datos anuncio ??? 
+-- filtros anuncios
+-- convertir cliente en vendedor (cuando salta el modal)
+-- añadir a la cesta, quitar de la cesta, vaciar cesta (cesta en cookies)
+-- al comprar la cesta, vaciar la cesta y todos los anuncios de la cesta marcarlos como vendido y añadirlos a historialCompras
+-- refactorizar parte común de obtener tipo a una función que se llame desde cualquier lado?
+-- documentación
+
+
+-- TODO dani:
+
+-- BBDD
+-- * crear algunos clientes
+-- * vincular ventas a los clientes
+-- * añadir visitas a tabla anuncios
+-- añadir que al visitar un anuncio, sume una visita
+-- exportar bbdd nueva y reemplazar
+-- 
+
+-- WEB
+-- * administrar permisos, comprobar enrutamiento
+-- * si deshabilitamos usuario saca alerta y le expulsa de sesión
+-- * modificar menú (revisar!)
+-- * hash password
+-- * cambiar passwords usuarios
+-- * borrar imagenes al borrar anuncio / usuario
+-- ? añadir comprobación e-mail usuario ajax ?
+
+-- SERVER
+-- ? añadir alguna clave para conectarse con PuTTY ?
+-- ? algún usuario que pueda ir por contraseña ?
+
+
