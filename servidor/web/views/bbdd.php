@@ -218,9 +218,9 @@
 
     // Suma una visita al anuncio
     function sumarVisita($dbh,$id_anuncio) {
-        $stmt = $dbh->prepare("UPDATE anuncios SET num_visitas = num_visitas + 1 id = :id");
+        $stmt = $dbh->prepare("UPDATE anuncios SET num_visitas = num_visitas + 1 WHERE id = :id");
         $stmt->bindParam(':id', $id_anuncio, PDO::PARAM_INT);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     // Cerrar conexión
