@@ -17,6 +17,16 @@ $(document).ready(() => {
     }
     cogerAnuncios();
     $("#mas").click(mostrarMasAnuncios);
+
+    // Marcamos anuncios en el menú lateral
+    document.querySelectorAll('nav ul li').forEach((evt) => {
+        evt.classList.remove('selected');
+    });
+    if (document.getElementById('menuAnuncios')) {
+        document.querySelector('#menuAnuncios').classList.add('selected');
+    } else {
+        document.querySelector('#menuHome').classList.add('selected');
+    }
 });
 
 function cogerAnuncios(){

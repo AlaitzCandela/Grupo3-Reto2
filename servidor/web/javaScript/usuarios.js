@@ -19,6 +19,12 @@ $(document).ready(() => {
     $("#search").keydown(keydownFiltrarUsuarios);
     $("#filtro-tipo").on('change', filtrarUsuarios);
 
+    // Seleccionamos home a la izquierda en el menú lateral
+    document.querySelectorAll('nav ul li').forEach((evt) => {
+        evt.classList.remove('selected');
+        document.querySelector('#menuHome').classList.add('selected');
+    });
+
     /*Swal.fire({
         title: 'Do you want to save the changes?',
         showDenyButton: true,

@@ -20,20 +20,29 @@
             </a>
         </li>
 
+        <?php if ($tipo != 'C'): ?>
+            <li id="menuAnuncios" class="selected">
+                <a href="./anuncios.php">
+                    <span class="icon"><ion-icon name="albums-outline"></ion-icon></span>
+                    <span class="title">Anuncios</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
         <?php if ($tipo != 'A'): ?>
-        <li id="menuCarrito" class="selected">
-            <a href="./carrito.php">
-                <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
-                <span class="title">Carrito&nbsp;de&nbsp;la&nbsp;compra</span>
-            </a>
-        </li>
-        
-        <li id="menuSubirAnuncio">
-            <a href="./subir-anuncio.php">
-                <span class="icon"><ion-icon name="cloud-upload-outline"></ion-icon></span>
-                <span class="title">Subir&nbsp;anuncio</span>
-            </a>
-        </li>
+            <li id="menuCarrito" class="selected">
+                <a href="./carrito.php">
+                    <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                    <span class="title">Carrito&nbsp;de&nbsp;la&nbsp;compra</span>
+                </a>
+            </li>
+            
+            <li id="menuSubirAnuncio">
+                <a href="./subir-anuncio.php">
+                    <span class="icon"><ion-icon name="cloud-upload-outline"></ion-icon></span>
+                    <span class="title">Subir&nbsp;anuncio</span>
+                </a>
+            </li>
         <?php endif; ?>
 
         <li id="menuAyuda">

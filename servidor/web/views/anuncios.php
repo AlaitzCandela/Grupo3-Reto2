@@ -1,7 +1,6 @@
 <?php
-
     require "./bbdd.php";
-        
+    
     // Comprobamos si hay usuario loggeado y si aún está habilitado
     usuarioLoggeadoYHabilitado();
 
@@ -12,5 +11,5 @@
     $data = array("id"=>$id_usuario);
     $tipo = cogerTipoUsuario($dbh,$data);
     $dbh=close($dbh);
-
-    require "./carrito.view.php";
+    
+    require './anuncios.view.php';

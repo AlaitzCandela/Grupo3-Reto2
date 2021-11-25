@@ -1,16 +1,18 @@
 $(document).ready(() => {
     let formModal = document.querySelector('.modal');
-    formModal.innerHTML += "<button id='cancelar' onclick='ocultarModal()'>Cancelar</button>";
-})
+    if (formModal) formModal.innerHTML += "<button id='cancelar' onclick='ocultarModal()'>Cancelar</button>";
+
+    document.querySelectorAll('nav ul li').forEach((evt) => {
+        evt.classList.remove('selected');
+        document.querySelector('#menuPerfil').classList.add('selected');
+    });
+});
 
 function ocultarModal() {
     $('.modal').css("display", "none");
 }
 
-document.querySelectorAll('nav ul li').forEach((evt) => {
-    evt.classList.remove('selected');
-    document.querySelector('#menuPerfil').classList.add('selected');
-});
+
 
 $('#btnVendedor').on('click', (evt) => {
     $('.modal').css("display", "flex");
