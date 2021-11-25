@@ -26,6 +26,19 @@
             <div class="filtro">
                 <ion-icon name="options-outline"></ion-icon>
             </div>
+            <div class="filtros-container">
+                <div class="filtroButton seleccionado">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <div class="filtroButton">Filtro</div>
+                <button class="accionFiltros" id="aplicarFiltros">Aplicar</button>
+                <button class="accionFiltros" id="resetearFiltros">Resetear</button>
+            </div>
         <?php endif; ?>
         
     </div>

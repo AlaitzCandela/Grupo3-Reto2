@@ -236,6 +236,74 @@ main .profile-pic img {
     font-size: 1.5em;
 }
 
+.search .filtros-container {
+    display: none;
+    transition: .2s;
+    box-shadow: 0 0 20px rgb(5, 5, 5);
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    gap: 10px;
+    background-color: rgb(5, 5, 5);
+    grid-template-columns: repeat(3,1fr);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 50px);
+}
+
+.search .filtros-container .filtroButton {
+    cursor: pointer;
+    transition: .2s;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: gray;
+}
+
+.search .filtros-container .filtroButton:hover {
+    background-color: #19683a;
+}
+
+.search .filtros-container .filtroButton.seleccionado {
+    background-color: #34be6e;
+}
+
+.accionFiltros {
+    transition: .2s;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    grid-column: span 3;
+}
+
+#aplicarFiltros {
+    background-color: var(--blue);
+    box-shadow: 0 0 20px var(--blue);
+}
+
+#aplicarFiltros:hover {
+    animation-name: btnSubmit;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    box-shadow: 0 0 20px var(--blue2);
+}
+
+#resetearFiltros {
+    background-color: rgb(172, 52, 52);
+    box-shadow: 0 0 20px rgb(172, 52, 52);
+}
+
+#resetearFiltros:hover {
+    background-color: var(--blue);
+    animation-name: btnCancel;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 .search label input {
     color: var(--white);
     background-color: #303135;

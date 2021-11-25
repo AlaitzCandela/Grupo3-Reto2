@@ -3,6 +3,11 @@ var numeroElementos = 10; // Elementos a cargar cada vez
 var numVecesCargado = 1; // Cargamos 5 veces y después mostramos pasar página
 var anuncios_favoritos = []; //Array con todos los id de los anuncios favoritos
 $(document).ready(() => {
+    $('.filtro').on('click', (evt)=> {
+        if($('.filtros-container').css('display') == 'none') {
+            $('.filtros-container').css('display', 'grid');
+        }
+    });
     // Cargamos los anuncios iniciales
     let cookies = document.cookie.split('; ');
     let favoritos = cookies.find((elm) => elm.includes('favoritos'));
