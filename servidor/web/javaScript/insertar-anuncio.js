@@ -44,12 +44,8 @@ function cogerCategorias(){
     $.ajax({
         url: "./webservices/ws-categorias-disponibles.php",
         type: "post",
-        error: function(error) {
-            alert(error);
-        }
     })
     .then((categorias)=>{
-       // console.log(categorias);
         let contenido = "";
         if (categorias.codError == 503) {
             window.location.href = "./error-503.php";
@@ -69,8 +65,15 @@ function insertarAnuncio(e){
     e.preventDefault();
 
     let categoriasTotal = $(".categoria-check:checked");
-    if (categoriasTotal.length <= 0) { // TODO dani: cambiar por sweet alert
-        alert('Selecciona al menos una categoría');
+    if (categoriasTotal.length <= 0) {
+        Swal.fire({
+            title: 'No tan deprisa!',
+            text: 'Selecciona al menos una categoría :)',
+            icon: 'info',
+            timer: 2500,
+            confirmButtonText: 'Okay!',
+        });
+        
         return;
     }
  
@@ -104,44 +107,46 @@ function insertarAnuncio(e){
         processData: false,
         data: form_data,                         
         type: 'post',
-        error: function(error){
-            alert(error)
-        }
     })
     .then((response) => {
-        console.log(response)
         if (response.codError == 503) {
             window.location.href = "./error-503.php";
             return;
         }
         if (!response.exito) {
             // Analizamos el código de error
+            let msg;
             switch(response.codError) {
-                case 1: // Error por imagen: demasiado grande
-                    alert('Imagen demasiado grande (máximo 10 megas)')
+                case 1:
+                    msg = 'Imagen demasiado grande (máximo 10 megas)';
                     break;
                 case 2: // Error por imagen: no es una imagen ò.ó
-                    alert('No es una imagen, cuidado con lo que intentas, ¿eh?')
+                    msg = 'No es una imagen, cuidado con lo que intentas, ¿eh?';
                     break;
                 case 3: // Error por imagen: formato no soportado
-                    alert('Formato de imagen no soportado')
+                    msg = 'Formato de imagen no soportado';
                     break;
                 case 4: // Error por imagen: imposible guardarla
-                    alert('Error al guardar la imagen :(')
+                    msg = 'Error al guardar la imagen :(';
                     break;
                 case 5: // Error al insertar el anuncio
-                    alert('Error al crear el anuncio, el nombre ya existe')
+                    msg = 'Error al crear el anuncio, el nombre ya existe';
                     break;
                 case 6: // Error al insertar las categorías del anuncio
-                    alert('Error al asociar las categorías al anuncio :(')
+                    msg = 'Error al asociar las categorías al anuncio :(';
                     break;
                 case 7: // Error al asociar el vendedor al anuncio
-                    alert('Error al asociar el vendedor al anuncio')
+                    msg = 'Error al asociar el vendedor al anuncio';
                     break;
                 default: // Sweet alert con error genérico
-                    alert('Error desconocido')
+                    msg = 'Error desconocido';
             }
+            Swal.fire({
+                title: 'Error',
+                text: msg,
+                icon: 'error',
+                confirmButtonText: 'Okay!',
+            });
         }
-        console.log(datos)
     });
 }

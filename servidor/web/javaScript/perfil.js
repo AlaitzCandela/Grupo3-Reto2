@@ -45,14 +45,9 @@ function actualizarPerfil(e) {
         contentType: false,
         processData: false,
         data: form_data,                         
-        type: 'post',
-        error: function(error) {
-            // Error en la petición
-            alert("error");
-        }
+        type: 'post'
     })
     .then((respuesta) => {
-        console.log(respuesta)
         if (respuesta.exito) {
             Swal.fire({
                 title: '¡Hecho!',

@@ -64,10 +64,7 @@ function cogerAnuncios(){
     $.ajax({
         url: "./webservices/ws-mostrar-anuncios.php",
         type: "post",
-        data : data,
-        error : function (error){
-            alert(error);
-        }
+        data : data
     })
     .then((respuesta)=> {
         if (respuesta.codError == 503) {

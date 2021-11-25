@@ -95,13 +95,17 @@ function clickFavoritos(id) {
 }
 
 function comprarCarrito() {
-    console.log("hola")
     if (anuncios_carrito.length > 0) {
         let id_comprador = -1;
         try {
             id_comprador = document.cookie.split("; ").find((elm) => elm.includes("id_usuario")).split("=")[1];
         } catch (error) {
-            // TODO dani: sweet alert error al cargar usuario contacta soporte
+            Swal.fire({
+                title: 'Error',
+                text: 'No hemos podido cargar el usuario :( Contacta con soporte si sigue ocurriendo',
+                icon: 'error',
+                confirmButtonText: 'Oh, vaya',
+            });
             return;
         }
         
@@ -116,18 +120,37 @@ function comprarCarrito() {
             data:  data
         })
         .then((respuesta) => {
-            console.log(respuesta); 
             if (respuesta.exito) {
-                // TODO dani: alerta carrito comprado con éxito
+                Swal.fire({
+                    title: '¡¡Woow!!',
+                    text: '¡Compra realizada con éxito! Gracias por utiliza nuestra página (＾Ｕ＾)ノ',
+                    icon: 'success',
+                    timer: 2500,
+                    confirmButtonText: 'Okay!',
+                }).then(() => {
+                    if (evt.target.id == "span-nieto") {
+                        evt.target.parentElement.parentElement.remove();
+                    } else {
+                        evt.target.parentElement.remove();
+                    }
+                });
                 vaciarCarrito();
                 window.location.href = "./home.php";
             } else {
-                // TODO dani: alerta personalizada con error
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se ha podido procesar la compra :(',
+                    icon: 'error',
+                    confirmButtonText: 'Oh, vaya',
+                });
             }
         });
-
-
     } else {
-        // TODO dani: sweet alert no puedes comprar sin tener nada añadido bro
+        Swal.fire({
+            title: '¡Ey!',
+            text: 'No puedes comprar sin tener nada en el carrito (✿◠‿◠)',
+            icon: 'info',
+            confirmButtonText: 'Oh, vaya',
+        });
     }
 }

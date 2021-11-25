@@ -50,7 +50,6 @@ function cambiarSelectedIni() {
         data:  data
     })
     .then((respuesta) => {
-        console.log(respuesta);
         if (respuesta.codError == 503) {
             window.location.href = "./error-503.php";
             $('#login input[name="username"]').val('');
@@ -150,11 +149,7 @@ $('#register').submit((e) => {
         contentType: false,
         processData: false,
         data: form_data,                         
-        type: 'post',
-        error: function(error) {
-            // Error en la petición
-            alert("error");
-        }
+        type: 'post'
     })
     .then((respuesta) => {
         if (respuesta.codError == 503) {
@@ -166,7 +161,6 @@ $('#register').submit((e) => {
             return;
         }
 
-        console.log(respuesta);
         if (respuesta.register) {
             if (respuesta.id_usuario > 0) { // Registrado con éxito
                 // Guardamos el id del usuario
@@ -176,7 +170,13 @@ $('#register').submit((e) => {
                 // Usamos el sistema de rutas tope genial
                 window.location.href = './home.php';
             } else { // Error al registrar (ya existía)
-                // TODO: alert
+                Swal.fire({ // TODO dani: comprobar si ya existe el email?
+                    title: 'Error',
+                    text: 'El usuario ya existe :(',
+                    icon: 'error',
+                    confirmButtonText: 'Oh, vaya',
+                });
+                
                 $('#register input[name="username"]').focusin();
                 $('#register input[name="password"]').val('');
                 $('#register input[name="repetir-password"]').val('');
@@ -189,7 +189,12 @@ $('#register').submit((e) => {
         }
     })
     .catch((err) => {
-        alert("error");
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al intentar procesar el registro :(',
+            icon: 'error',
+            confirmButtonText: 'Oh, vaya',
+        });
         $('#register input[name="password"]').val('');
         $('#register input[name="repetir-password"]').val('');
     });

@@ -50,9 +50,6 @@ function cargarNumeroMaximoUsuarios() {
         url: "./webservices/ws-num-usuarios.php",
         type: "get",
         error : function (error, a, b) {
-            console.log(error)
-            console.log(a)
-            console.log(b)
             numeroTotalUsuarios = 0;
         }
     })
@@ -92,11 +89,7 @@ function cogerUsuarios() {
     $.ajax({
         url: "./webservices/ws-usuarios.php",
         type: "post",
-        data : data,
-        error : function (error) {
-            console.log(error)
-            alert(error);
-        }
+        data : data
     })
     .then((respuesta)=> {
         if (respuesta.codError == 503) {

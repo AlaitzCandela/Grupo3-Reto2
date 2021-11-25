@@ -106,7 +106,6 @@ $(document).ready(() => {
 	num_ganancias_por_mes = $("#valores-ganancias-mes").val().split(",");
 	num_ventas_por_mes = $("#valores-ventas-mes").val().split(",");
 	mediaPlataforma = $("#valores-ventas-media").val().split(",");
-	console.log(num_ganancias_por_mes)
 	
 	/* JS GRÁFICAS */
 	var ctx = document.getElementById("graficoLineas").getContext("2d");
