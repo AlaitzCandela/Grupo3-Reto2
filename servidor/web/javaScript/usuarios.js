@@ -43,14 +43,16 @@ function cargarNumeroMaximoUsuarios() {
     $.ajax({
         url: "./webservices/ws-num-usuarios.php",
         type: "get",
-        error : function (error){
-            alert(error);
+        error : function (error, a, b) {
+            console.log(error)
+            console.log(a)
+            console.log(b)
             numeroTotalUsuarios = 0;
         }
     })
     .then((respuesta)=> {
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         if (!isNaN(respuesta.num_usuarios)) numeroTotalUsuarios = respuesta.num_usuarios;
@@ -86,12 +88,13 @@ function cogerUsuarios() {
         type: "post",
         data : data,
         error : function (error) {
+            console.log(error)
             alert(error);
         }
     })
     .then((respuesta)=> {
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         if (respuesta.length > 0) volcarUsuarios(respuesta);
@@ -261,7 +264,7 @@ function verUsuario(target, id) {
     })
     .then((respuesta) => {
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         if (respuesta.exito) { // Si ha recogido datos con éxito, mostramos usuario

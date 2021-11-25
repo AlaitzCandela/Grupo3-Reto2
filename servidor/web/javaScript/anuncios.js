@@ -11,8 +11,10 @@ $(document).ready(() => {
         anuncios_favoritos = ids_favoritos.split(",");
     }
     console.log(anuncios_favoritos)
-
-
+    if ($("#id-anuncio")) {
+        let id_anuncio = $("#id-anuncio").val();
+        console.log(id_anuncio);
+    }
     cogerAnuncios();
     $("#mas").click(mostrarMasAnuncios);
 });
@@ -40,7 +42,7 @@ function cogerAnuncios(){
     })
     .then((respuesta)=> {
         if (respuesta.codError == 503) {
-            window.location.href = "./error-503.view.php";
+            window.location.href = "./error-503.php";
             return;
         }
         if (respuesta.length > 0) volcarAnuncios(respuesta);

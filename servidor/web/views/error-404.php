@@ -22,7 +22,7 @@
         </div>
         
         <div class="error">
-            <h2>ERROR 404: SERVIDOR NO ENCONTRADO </h2>
+            <h2>ERROR 404: NO ENCONTRADO </h2>
             <br/>
             <p>El servidor no pudo encontrar el contenido solicitado. Este código de respuesta es uno de los más famosos dada su alta ocurrencia en la web</p>
             <br/>

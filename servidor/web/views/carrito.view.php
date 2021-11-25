@@ -1,3 +1,6 @@
+<?php // Comprobamos que no ha cargado a mano la URL de la vista
+    require "./partials/controlado.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,7 +81,7 @@
                 <div class="carritoOtros">
                     <span id="precioTotal">Precio Total: 89,94 &euro;</span>
                     <div class="controlesCarrito">
-                        <button>Comprar todo</button><button>Vaciar Carrito</button>
+                        <button id="comprar-carrito">Comprar todo</button><button id="comprar-carrito">Vaciar Carrito</button>
                     </div>
                 </div>
             </div>

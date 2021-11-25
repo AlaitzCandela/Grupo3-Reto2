@@ -29,7 +29,7 @@
         <?php endif; ?>
         
     </div>
-    <div class="profile-pic">
+    <a href="./perfil.php?id=<?= $_COOKIE["id_usuario"] ?>" class="profile-pic">
         <?php
             $profile_pic="../img/usuarios/";
             if (isset($_COOKIE["foto"])) {
@@ -39,5 +39,5 @@
             }
         ?>
         <img src="<?=$profile_pic?>" alt="Foto de perfil">
-    </div>
+    </a>
 </div>
