@@ -269,6 +269,29 @@
         return $exito;
     }
 
+    // Elimina un anuncio y la imagen de este
+    function eliminarAnuncio($dbh,$data,$webservice=false) {
+        $stmt = $dbh->prepare("SELECT foto FROM anuncios WHERE id = :id");
+        $stmt->execute($data);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result["foto"] != null && $result["foto"] != "default_anuncio.svg") {
+            $ruta = "../";
+            if ($webservice) $ruta = "../../";
+            unlink($ruta ."img/anuncios/". $result["foto"]);
+        }
+
+        $stmt = $dbh->prepare("DELETE FROM anuncios WHERE id = :id");
+        return $stmt->execute($data);
+    }
+
+    function cargarAnunciosVendedor($dbh,$data) {
+        $stmt = $dbh->prepare("SELECT id, nombre FROM anuncios WHERE id_vendedor = :id_vendedor ORDER BY fecha_publicacion DESC");
+        $stmt->execute($data);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // Actualiza los datos del usuario
     function actualizarUsuario($dbh, $data) {
         $stmt = null;
@@ -302,8 +325,7 @@
 
     // Suma una visita al anuncio
     function sumarVisita($dbh,$id_anuncio) {
-        $stmt = $dbh->prepare("UPDATE anuncios SET num_visitas = num_visitas + 1 WHERE id = :id");
-        $stmt->bindParam(':id', $id_anuncio, PDO::PARAM_INT);
+        $stmt = $dbh->prepare("UPDATE anuncios SET num_visitas = num_visitas + 1 WHERE id = " . $id_anuncio);
         return $stmt->execute();
     }
 

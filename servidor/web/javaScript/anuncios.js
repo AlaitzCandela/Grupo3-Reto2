@@ -6,18 +6,14 @@ var anuncios_carrito = [];
 $(document).ready(() => {
     // Sumamos visita
     if ($("#id-anuncio")) {
-        let id_anuncio = $("#id-anuncio").val();
         let data = {
-            id_anuncio : id_anuncio
+            id_anuncio : $("#id-anuncio").val()
         }
         $.ajax({
-            url: "./webservices/ws-mostrar-anuncios.php",
+            url: "./webservices/ws-sumar-visita.php",
             type: "post",
-            data : data,
-            error : function (error){
-                alert(error);
-            }
-        })
+            data : data
+        });
     }
 
     // Cargamos cookies favoritos
@@ -33,9 +29,6 @@ $(document).ready(() => {
     if (carrito) { // Si ya existían los carrito, los recogemos
         let ids_carrito = carrito.split("=")[1];
         anuncios_carrito = ids_carrito.split(",");
-    }
-    if ($("#id-anuncio")) {
-        let id_anuncio = $("#id-anuncio").val();
     }
 
     // Cargamos anuncios

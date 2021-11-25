@@ -9,13 +9,11 @@
         // Si es administrador: cargar página administración de usuarios
         $permiso_admin = true;
         require "./usuarios.view.php";
-    }
-    else if ($tipo == "C") {
+    } else if ($tipo == "C") {
         // Si es cliente: cargar página de anuncios
-        require './anuncios.view.php';
-    }
-    else {
+        require './anuncios.php';
+    } else {
         // Si es vendedor: cargar página de perfil y estadísticas
-        require './home-vendedor.view.php';
+        require './home-vendedor.php';
     }
 

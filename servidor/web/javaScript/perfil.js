@@ -37,7 +37,7 @@ function actualizarPerfil(e) {
     form_data.append('password', $('#password').val().trim());
     form_data.append('descripcion', $('#descripcionUsuario').val().trim());
     form_data.append('accion', 'actualizar');
-console.log(img)
+
     $.ajax({
         url: "./webservices/ws-register.php",
         dataType: 'json',

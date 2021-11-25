@@ -1,12 +1,3 @@
-<?php 
-    if ($tipo == "C") {
-        require "./error-403.php";
-        die();
-    } else if ($tipo == "A") {
-        header ("location: .\home.php");
-        die();
-    }
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,22 +14,35 @@
                 $profile_pic="../img/default_user.png";
                 require "./partials/topbar.php";
             ?>
-
+            <input type="hidden" id="id-vendedor" value="<?= $_GET["id"] ?>">
+            <input type="hidden" id="valores-ganancias-mes" value="<?= implode(',', $num_ganancias_por_mes) ?>">
+            <input type="hidden" id="valores-ventas-mes" value="<?= implode(',', $num_ventas_por_mes) ?>">
+            <input type="hidden" id="valores-ventas-media" value="<?= implode(',', $mediaPlataforma) ?>">
             <section>
                 <div class="estadisticas">
-                    <div class="tarjeta"><p>Visitas: 234976</p><ion-icon name="eye-outline"></ion-icon></div>
-                    <div class="tarjeta"><p>Beneficios: 1645€</p><ion-icon name="cash-outline"></ion-icon></div>
-                    <div class="tarjeta"><p>Ventas: 162534</p><ion-icon name="bag-handle-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Visitas: <?= $num_visitas_totales ?></p><ion-icon name="eye-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Beneficios: <?= number_format($ganancias_totales, 2) ?>€</p><ion-icon name="cash-outline"></ion-icon></div>
+                    <div class="tarjeta"><p>Ventas: <?= $num_ventas_totales ?></p><ion-icon name="bag-handle-outline"></ion-icon></div>
                 </div>
 
-                <div titulo="MIS ANUNCIOS" class="pedidos">
-                    <div><span>Nombre del producto</span><span>Enlace</span><span>Acci&oacute;n</span></div>
-                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
-                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
-                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
-                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
-                    <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
-                    <div id="verTodo">Ver todos los anuncios</div>
+                <div id="misAnuncios" titulo="MIS ANUNCIOS" class="pedidos">
+                    <?php if (count($ultimosAnuncios) <= 0): ?>
+                        <div><span>Sin anuncios publicados</span></div>
+                    <?php else: ?>
+                        <div><span>Nombre del producto</span><span>Enlace</span><span>Acci&oacute;n</span></div>
+                        <?php foreach($ultimosAnuncios as $anuncio): ?>
+                            <div class="anuncioLista">
+                                <span><?= $anuncio["nombre"] ?></span>
+                                <span><a href="./detalle-anuncio.php?id=<?= $anuncio['id'] ?>">Ver mi anuncio</a></span>
+                                <span onclick="eliminarAnuncio(event, <?= $anuncio['id'] ?>)">
+                                    <span id="span-nieto">Borrar</span>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php if ($num_anuncios > 5): ?>
+                            <div id="verTodo">Ver todos los anuncios</div>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
 
                 <div class="grafico circular"><canvas id="graficoCircular"></canvas></div>

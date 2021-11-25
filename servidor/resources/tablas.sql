@@ -675,26 +675,29 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 
 
 -- TODO:
+---- ion icons se ven por encima de la topbar
 ---- filtros anuncios
 ---- botón registrarse y login hover cursor pointer
 
----- obtener datos y volcar en perfil y perfil vendedor (estadísticas)
+---- * obtener datos y volcar en perfil
+--------  y perfil vendedor (estadísticas)
+---- tabla historial compras / ventas
 ---- * convertir cliente en vendedor (cuando salta el modal)
+---- * [WebClient + WebService] actualizar perfil (mucha pereza)
 
 ---- exportar bbdd nueva y reemplazar
 ---- cambiar todos los alerts
 ---- eliminar todos los console logs
----- repasar servidor .htaccess y demás
 ---- documentación
 
 -- PUEDE:
----- [WebClient + WebService] actualizar perfil (mucha pereza)
 ---- [Web-Client] añadir comprobación e-mail usuario ajax ?
 ---- [Server] añadir alguna clave para conectarse con PuTTY ?
 ---- [Server] algún usuario que pueda ir por contraseña ?
 
 -- NO:
 ---- ventana editar datos anuncio
+---- repasar servidor .htaccess y demás
 
 -- HECHO
 ---- * cerrar sesión (al darle en el menú)
