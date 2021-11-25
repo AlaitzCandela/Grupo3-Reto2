@@ -14,21 +14,32 @@
                 $profile_pic="../img/default_user.png";
                 require "./partials/topbar.php";
             ?>
-            <div class="carrito">
-            <div class="producto">
-                    <div class="imagenCarrito"><img src="" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#"></a></div>
-                    <div class="precios"></div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
+            <div class="carrito" id="carrito-productos">
+                <?php if (count($productos_carrito) <= 0): ?>
+                    <div class="producto">
+                        <div class="nombreProducto"><a href="./anuncios.php">Sin productos en la cesta.</a></div>
                     </div>
-                </div>
+                <?php endif; ?>
+                <?php foreach($productos_carrito as $producto): ?>
+                    <div class="producto" id="carrito-producto-<?= $producto['id'] ?>">
+                        <div class="imagenCarrito"><img src="../img/anuncios/<?=$producto['foto']?>" alt="foto"></div>
+                        <div class="nombreProducto"><a href="./detalle-anuncio.php?id=<?= $producto['id'] ?>"><?=$producto['nombre']?></a></div>
+                        <div class="precios"><?=$producto['precio']?></div>
+                        <div class="acciones">
+                            <?php if (in_array($producto["id"], explode(",",$_COOKIE["favoritos"]))): ?>
+                                <div class="toggleFavorito"><ion-icon onclick="clickFavoritos(<?= $producto['id'] ?>)" name="star"></ion-icon></div>
+                            <?php else: ?>
+                                <div class="toggleFavorito"><ion-icon onclick="clickFavoritos(<?= $producto['id'] ?>)" name="star-outline"></ion-icon></div>
+                            <?php endif; ?>
+                            <div class="eliminarProducto" onclick="eliminarDeCesta(<?= $producto['id'] ?>, <?= $producto['precio'] ?>)"><ion-icon name="close-outline"></ion-icon></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
 
                 <div class="carritoOtros">
-                    <span id="precioTotal">Precio Total: 89,94 &euro;</span>
+                    <span id="precioTotal">Total: <span id="precioTotalValor"><?= $precio_total ?></span>&euro;</span>
                     <div class="controlesCarrito">
-                        <button id="comprar-carrito">Comprar todo</button><button id="comprar-carrito">Vaciar Carrito</button>
+                        <button id="comprar-carrito" onclick="comprarCarrito()">Comprar todo</button><button id="vaciar-carrito" onclick="vaciarCarrito()">Vaciar Carrito</button>
                     </div>
                 </div>
             </div>
