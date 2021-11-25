@@ -119,6 +119,40 @@
         return $result;
     }
 
+    // Compra todos los productos
+    function productoVendido($dbh, $id_anuncio) {
+        $stmt = $dbh->prepare("UPDATE anuncios SET vendido = 1 WHERE id = :id");
+        $stmt->bindParam(':id', $id_anuncio, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+    function insertarHistorialCompra($dbh, $id_anuncio, $id_comprador) {
+        $stmt = $dbh->prepare("INSERT INTO historialCompras VALUES (:id_anuncio, :id_comprador, (SELECT id_vendedor FROM anuncios WHERE id = :id_anuncio), NOW())");
+        return $stmt->execute(["id_anuncio" => $id_anuncio, "id_comprador" => $id_comprador]);
+    }
+    function comprarProductos($dbh,$data) {
+        foreach($data["id_anuncios"] as $id_anuncio) {
+            // Lo marcamos como vendido
+            if (!productoVendido($dbh,$id_anuncio)) {
+                return ["exito" => false, "codError" => 1];
+            }
+
+            // Lo añadimos a la tabla historialCompras
+            if (!insertarHistorialCompra($dbh, $id_anuncio, $data["id_comprador"])) {
+                return ["exito" => false, "codError" => 2];
+            }
+        }
+
+        return ["exito" => true, "codError" => 0];
+    }
+
+    // Recibe un array con los ids del carrito
+    function detallesAnunciosCarrito($dbh,$ids_carrito) {
+        $stmt = $dbh->prepare("SELECT id,nombre,foto,precio FROM anuncios WHERE id in ($ids_carrito)");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // Obtiene los datos de un usuario buscando por ID y los devuelve
     function datosUsuario($dbh,$data) {
         $stmt = $dbh->prepare("SELECT id,username,email,tipo,habilitado,foto,descripcion FROM usuarios WHERE id = :id");

@@ -869,6 +869,7 @@ section {
     align-items: center;
     width: auto;
     height: 100%;
+    min-width: 10%;
     max-width: 10%;
     align-self: flex-start;
 }
@@ -885,13 +886,14 @@ section {
     text-overflow:ellipsis;
     font-size: 1.2em;
     padding-left: 5px;
-    width: 50%;
+    width: 60%;
 }
 
 .carrito .producto .precios {
     overflow: hidden;
     text-overflow:ellipsis;
-    width: 25%;
+    text-align: end;
+    width: 15%;
 }
 
 .carrito .producto .acciones {
