@@ -17,7 +17,7 @@
 
             <section>
 
-                <div titulo="HISTORIAL" class="pedidos">
+                <div titulo="HISTORIAL" class="pedidos" id="historial">
                     <div><span>Nombre del producto</span><span>Enlace</span><span>Fecha</span></div>
                     <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver el anuncio</a></span><span>dd/MM/yyyy</></div>
                     <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver el anuncio</a></span><span>dd/MM/yyyy</></div>
@@ -30,5 +30,6 @@
         </main>
     </div>
     <?php require "./partials/scripts.php";?>
+    <script src="../javaScript/historial.js"></script>
 </body>
 </html>
