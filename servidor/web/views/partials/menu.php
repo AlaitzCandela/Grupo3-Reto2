@@ -7,7 +7,7 @@
             </a>
         </li>
 
-        <li id="menuHome" class="selected">
+        <li id="menuHome" class="">
             <a href="./home.php">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                 <?php if ($tipo == 'A'): ?>
@@ -21,7 +21,7 @@
         </li>
 
         <?php if ($tipo != 'C'): ?>
-            <li id="menuAnuncios" class="selected">
+            <li id="menuAnuncios" class="">
                 <a href="./anuncios.php">
                     <span class="icon"><ion-icon name="albums-outline"></ion-icon></span>
                     <span class="title">Anuncios</span>
@@ -30,12 +30,22 @@
         <?php endif; ?>
 
         <?php if ($tipo != 'A'): ?>
-            <li id="menuCarrito" class="selected">
+            <li id="menuCarrito" class="">
                 <a href="./carrito.php">
                     <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
                     <span class="title">Carrito&nbsp;de&nbsp;la&nbsp;compra</span>
                 </a>
             </li>
+
+            
+
+            <li id="menuHistorial" class="">
+                <a href="./carrito.php">
+                    <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
+                    <span class="title"><?= ($tipo == 'C') ? 'Mis compras' : 'Mis ventas' ;?></span>
+                </a>
+            </li>
+            
             
             <li id="menuSubirAnuncio">
                 <a href="./subir-anuncio.php">

@@ -38,6 +38,7 @@
                     <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
                     <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
                     <div class="anuncioLista"><span>Producto de prueba</span><span><a href="#">Ver mi anuncio</a></span><span><span>Borrar</span></span></div>
+                    <div id="verTodo">Ver todos los anuncios</div>
                 </div>
 
                 <div class="grafico circular"><canvas id="graficoCircular"></canvas></div>
