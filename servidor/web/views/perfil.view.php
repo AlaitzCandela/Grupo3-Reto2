@@ -32,17 +32,22 @@
                         <input <?= $disabled ? "disabled" : "" ?> type="file" name="imagen" id="profile-pic-input" accept="image/.jpg,.jpeg,.png,.gif,.jfif">
 
                         <?php if (!$disabled): ?>
-                        <p id="btnBorrarImagen">Borrar imagen</p>
+                            <?php if ($datos_usuario["foto"] == null || $datos_usuario["foto"] == "default_user.png"): ?>
+                                    <p id="btnBorrarImagen">Añadir imagen</p>
+                                <?php else: ?>
+                                    <p id="btnBorrarImagen">Borrar imagen</p>
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <input <?= $disabled ? "disabled" : "" ?> value="<?= $datos_usuario["username"] ?>" class="input" type="text" autocomplete="off" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
 
-                        <textarea <?= $disabled ? "disabled" : "" ?> value="<?= $datos_usuario["descripcion"] ?>" class="input" autocomplete="off" name="descripcionUsuario" rows="2" id="descripcionUsuario" placeholder="Sin descripción... ¡Añade algo!"></textarea>
-
+                        <textarea <?= $disabled ? "disabled" : "" ?> value="<?= $datos_usuario["descripcion"] ?>" class="input" autocomplete="off" name="descripcionUsuario" rows="2" id="descripcionUsuario" 
+                        placeholder="<?= !$disabled ? "Sin descripción... ¡Añade algo!" : "Sin descripción" ?>"></textarea>
+                        
+                        <?php if (!$disabled): ?>
                         <input <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="password" placeholder="Nueva contrase&ntilde;a">
                         <input <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="reppassword" placeholder="Repetir contrase&ntilde;a">
 
-                        <?php if (!$disabled): ?>
                         <input type="submit" name="actualizarPerfil" id="enviarDatos" value="Actualizar perfil">
                         <?php endif; ?>
                     </form>

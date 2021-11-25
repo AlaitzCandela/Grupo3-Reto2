@@ -675,10 +675,16 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 
 
 -- TODO:
--- cerrar sesión (al darle en el menú)
+
+-- Raúl:
+---- Vista tablas mis ventas / mis compras
+
+
+-- * cerrar sesión (al darle en el menú)
 -- en contacto ir a página wordpress? cuál es el enlace?
 -- obtener datos y volcar en perfil y perfil vendedor (estadísticas)
 -- ventana editar datos anuncio ??? 
+-- filtros anuncios
 -- convertir cliente en vendedor (cuando salta el modal)
 -- añadir a la cesta, quitar de la cesta, vaciar cesta (cesta en cookies)
 -- al comprar la cesta, vaciar la cesta y todos los anuncios de la cesta marcarlos como vendido y añadirlos a historialCompras

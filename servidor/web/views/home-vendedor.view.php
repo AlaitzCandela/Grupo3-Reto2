@@ -1,3 +1,12 @@
+<?php 
+    if ($tipo == "C") {
+        require "./error-403.php";
+        die();
+    } else if ($tipo == "A") {
+        header ("location: .\home.php");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
