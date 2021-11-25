@@ -92,8 +92,9 @@
 
     // Obtener los datos de un anuncio en concreto
     function detalleAnuncio($dbh,$data){
-        $stmt = $dbh->prepare("SELECT id,nombre,descripcion,foto,precio FROM anuncios WHERE id = :id");
-        $stmt->execute($data);
+        $stmt = $dbh->prepare(" SELECT a.id,a.nombre,a.descripcion,a.precio,a.foto,u.email,v.telefono,v.direccion FROM usuarios u,anuncios a,vendedores v  WHERE u.id = a.id_vendedor AND v.id = a.id_vendedor AND a.id = :id;");
+        $stmt->bindParam(':id', $data["id"], PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
