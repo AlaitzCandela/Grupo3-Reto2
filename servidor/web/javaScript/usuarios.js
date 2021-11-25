@@ -290,7 +290,7 @@ function verUsuario(target, id) {
             Swal.fire({
                 html:
                     `<h3>${datos.username}</h3>
-                    <img class="usuario-imagen" src="../img/usuarios/${foto}">
+                    <img class="usuario-imagen" src="../img/usuarios/${foto}" style="max-height:250px;">
                     <p>${datos.email}</p>
                     ${desc}
                     ${tipo}

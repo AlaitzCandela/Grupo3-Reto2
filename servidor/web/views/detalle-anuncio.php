@@ -1,27 +1,18 @@
 <?php
 
-    require "./bbdd.php";
-        
-    // Comprobamos si hay usuario loggeado y si aún está habilitado
-    usuarioLoggeadoYHabilitado();
-
-    // Coger ID / token del usuario registrado
-    $id_usuario = $_COOKIE["id_usuario"];
-    // Comprobar en la BBDD el tipo de usuario
-    $dbh=connect();
-    $data = array("id"=>$id_usuario);
-    $tipo = cogerTipoUsuario($dbh,$data);
-    $dbh=close($dbh);
-
-
     if (!isset($_GET["id"])) {
         require './error-404.php';
         die();
     }
+
+    require "./bbdd.php";
+        
+    // Obtenemos el tipo a la par que comprobamos que el usuario sigue loggeado
+    $tipo = obtenerTipoUsuario();
+    
     
     $id_anuncio = $_GET["id"];
     
-
     // Propiedades del icono estrella (favoritos)
     $fav_icon_name  = "star-outline";
     $fav_icon_class = '';

@@ -45,11 +45,10 @@
     // Devuelve el string de la foto del usuario
     function obtenerFotoUsuario($dbh,$data) {
         $stmt = $dbh->prepare("SELECT foto FROM usuarios WHERE id = :id");
-        $stmt->bindParam(':id', $data["id"], PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute($data);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result["foto"];
-    }
+    }    
 
     // Obtiene el tipo de usuario
     function cogerTipoUsuario($dbh,$data){
@@ -235,20 +234,70 @@
         return $habilitado;
     }
 
+    // Comprueba si el usuario loggeado existe y sigue habilitado, y devuelve el tipo
+    function obtenerTipoUsuario() {
+        // Comprobamos si hay usuario loggeado y si aún está habilitado
+        usuarioLoggeadoYHabilitado();
+
+        // Coger ID / token del usuario registrado
+        $id_usuario = $_COOKIE["id_usuario"];
+        // Comprobar en la BBDD el tipo de usuario
+        $dbh=connect();
+        $data = array("id"=>$id_usuario);
+        $tipo = cogerTipoUsuario($dbh,$data);
+        $dbh=close($dbh);
+
+        return $tipo;
+    }
+
     // Elimina un usuario (y las imágenes vinculadas a él y sus anuncios para evitar archivos residuales)
-    function eliminarUsuario($dbh,$data) {
+    function eliminarUsuario($dbh,$data,$webservice=false) {
+        $ruta = "../";
+        if ($webservice) $ruta = "../../";
+
         // Eliminar usuario
+        $foto_usuario = obtenerFotoUsuario($dbh,$data);
         $stmt = $dbh->prepare("DELETE FROM usuarios WHERE id = :id");
         $exito = $stmt->execute($data);
         if ($exito) { // Si elimina el usuario con éxito...
             // Eliminar fotos de anuncios del usuario (sus anuncios se eliminarán por ON DELETE CASCADE)
-            array_map('unlink', glob("../img/anuncios/" . $data["id"] . "*"));
+            array_map('unlink', glob($ruta ."img/anuncios/" . $data["id"] . "*"));
             
             // Eliminar foto personal del usuario
-            $foto_usuario = obtenerFotoUsuario($dbh,$data);
-            if ($foto_usuario != null && $foto_usuario != "default_user.png") unlink("../img/usuarios/". $foto_usuario);
+            if ($foto_usuario != null && $foto_usuario != "default_user.png") unlink($ruta ."img/usuarios/". $foto_usuario);
         }
         return $exito;
+    }
+
+    // Actualiza los datos del usuario
+    function actualizarUsuario($dbh, $data) {
+        $stmt = null;
+        if ($data["foto"]) {
+            $stmt = $dbh->prepare("UPDATE usuarios SET descripcion = '" . $data["descripcion"] . "', password = '" . $data["password"] . "', foto = '" . $data["foto"] . "' WHERE username = '" . $data["username"] . "'");
+        } else {
+            $stmt = $dbh->prepare("UPDATE usuarios SET descripcion = '" . $data["descripcion"] . "', password = '" . $data["password"] . "' WHERE username = '" . $data["username"] . "'");
+        }
+        return $stmt->execute();
+    }
+
+    // Recibe username y elimina la foto asociada a él
+    function eliminarFotoUsuario($dbh, $data, $webservice=false) {
+        $stmt = $dbh->prepare("SELECT foto FROM usuarios WHERE username = '" . $data["username"] . "'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $foto_usuario = $result["foto"]; 
+
+        $ruta = "../";
+        if ($webservice) $ruta = "../../";
+        if ($foto_usuario != null && $foto_usuario != "default_user.png") unlink($ruta ."img/usuarios/". $foto_usuario);
+    }
+
+    // Registra un nuevo vendedor
+    function registrarVendedor($dbh, $data) {
+        $stmt = $dbh->prepare("INSERT INTO vendedores (id, direccion, telefono) VALUES (:id, :direccion, :telefono)");
+        if (!$stmt->execute($data)) return false;
+        $stmt = $dbh->prepare("UPDATE usuarios SET tipo = 'V' WHERE id = " . $data["id"]);
+        return $stmt->execute();
     }
 
     // Suma una visita al anuncio

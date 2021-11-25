@@ -33,7 +33,7 @@ CREATE TABLE usuarios (
 CREATE TABLE vendedores (
     id INT PRIMARY KEY,
     direccion VARCHAR(200) NOT NULL,
-    telefono INT(15) NOT NULL UNIQUE,
+    telefono VARCHAR(15) NOT NULL UNIQUE,
     CONSTRAINT ven_usu_id_fk FOREIGN KEY(id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
@@ -98,16 +98,16 @@ INSERT INTO usuarios(username,password,email,tipo) VALUES('Primark','$2y$08$0lzt
 -------------------------- VENDEDORES --------------------------
 */
 
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='BERSHKA')),'Barcelona',923277146);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='ZARA')),'La Coruña',968455918);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='GAME')),'Texas',972713100);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='DON LIMPIO')),'Ohio',980081113);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='IKEA')),'Kronoberg',978827424);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='EROSKI')),'País Vasco',956042238);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='LA CASA DEL LIBRO')),'Albacete',988197660);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PC COMPONENTES')),'Murcia',964563035);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='WETACA')),'Madrid',931904577);
-INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PRIMARK')),'Dublín',926778196);
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='BERSHKA')),'Barcelona','923277146');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='ZARA')),'La Coruña','968455918');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='GAME')),'Texas','972713100');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='DON LIMPIO')),'Ohio','980081113');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='IKEA')),'Kronoberg','978827424');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='EROSKI')),'País Vasco','956042238');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='LA CASA DEL LIBRO')),'Albacete','988197660');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PC COMPONENTES')),'Murcia','964563035');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='WETACA')),'Madrid','931904577');
+INSERT INTO vendedores VALUES((SELECT id FROM usuarios WHERE(UPPER(username)='PRIMARK')),'Dublín','926778196');
 
 
 /*
@@ -675,44 +675,43 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 
 
 -- TODO:
+---- filtros anuncios
+---- botón registrarse y login hover cursor pointer
 
--- Raúl:
----- Vista tablas mis ventas / mis compras
+---- obtener datos y volcar en perfil y perfil vendedor (estadísticas)
+---- * convertir cliente en vendedor (cuando salta el modal)
 
+---- exportar bbdd nueva y reemplazar
+---- cambiar todos los alerts
+---- eliminar todos los console logs
+---- repasar servidor .htaccess y demás
+---- documentación
 
--- * cerrar sesión (al darle en el menú)
--- en contacto ir a página wordpress? cuál es el enlace?
--- obtener datos y volcar en perfil y perfil vendedor (estadísticas)
--- ventana editar datos anuncio ??? 
--- filtros anuncios
--- convertir cliente en vendedor (cuando salta el modal)
--- añadir a la cesta, quitar de la cesta, vaciar cesta (cesta en cookies)
--- al comprar la cesta, vaciar la cesta y todos los anuncios de la cesta marcarlos como vendido y añadirlos a historialCompras
--- refactorizar parte común de obtener tipo a una función que se llame desde cualquier lado?
--- documentación
+-- PUEDE:
+---- [WebClient + WebService] actualizar perfil (mucha pereza)
+---- [Web-Client] añadir comprobación e-mail usuario ajax ?
+---- [Server] añadir alguna clave para conectarse con PuTTY ?
+---- [Server] algún usuario que pueda ir por contraseña ?
 
+-- NO:
+---- ventana editar datos anuncio
 
--- TODO dani:
+-- HECHO
+---- * cerrar sesión (al darle en el menú)
+---- * en contacto ir a página wordpress? cuál es el enlace?
+---- * añadir a la cesta, quitar de la cesta, vaciar cesta (cesta en cookies)
+---- * al comprar la cesta, vaciar la cesta y todos los anuncios de la cesta marcarlos como vendido y añadirlos a historialCompras
+---- * refactorizar parte común de obtener tipo a una función que se llame desde cualquier lado?
+---- * crear algunos clientes
+---- * vincular ventas a los clientes
+---- * añadir visitas a tabla anuncios
+---- * añadir que al visitar un anuncio, sume una visita
+---- * administrar permisos, comprobar enrutamiento
+---- * si deshabilitamos usuario saca alerta y le expulsa de sesión
+---- * modificar menú (revisar!)
+---- * hash password
+---- * cambiar passwords usuarios
+---- * borrar imagenes al borrar anuncio / usuario
 
--- BBDD
--- * crear algunos clientes
--- * vincular ventas a los clientes
--- * añadir visitas a tabla anuncios
--- añadir que al visitar un anuncio, sume una visita
--- exportar bbdd nueva y reemplazar
--- 
-
--- WEB
--- * administrar permisos, comprobar enrutamiento
--- * si deshabilitamos usuario saca alerta y le expulsa de sesión
--- * modificar menú (revisar!)
--- * hash password
--- * cambiar passwords usuarios
--- * borrar imagenes al borrar anuncio / usuario
--- ? añadir comprobación e-mail usuario ajax ?
-
--- SERVER
--- ? añadir alguna clave para conectarse con PuTTY ?
--- ? algún usuario que pueda ir por contraseña ?
 
 

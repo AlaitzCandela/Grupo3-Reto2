@@ -1,7 +1,7 @@
 <?php
 
     // Si el método POST no indica la acción register, devolvemos json error
-    if ($_POST["accion"] != "register") { 
+    if ($_POST["accion"] != "register" && $_POST["accion"] != "actualizar") { 
         header('Content-type: application/json');
         echo json_encode(["codError" => 400, "error" => "Bad request"]);
         die();
@@ -16,6 +16,7 @@
 
     $dbh = connect(true);
     $username = $_POST["username"];
+    $descripcion = $_POST["descripcion"];
     $password = $_POST["password"];
     $email = $_POST["email"];
 
@@ -49,32 +50,62 @@
     }
 
     // Si guardamos la imagen, almacenamos el nombre utilizado
-    if ($nombre_guardar_img != null) {
-        $foto = $nombre_guardar_img;
-    }        
+    if ($imagen_guardada) {
+        if ($nombre_guardar_img != null) {
+            $foto = $nombre_guardar_img;
+        }        
+    }
 
     // Hasheamos la contraseña
     $password = hashPassword($password);
 
-    // Comprobamos registro
-    $data = array('username'=>$username, 'password'=>$password, 'email'=>$email, 'tipo'=>'C', 'foto'=>$foto);
-    // Obtenemos el id del usuario recién registrado
-    $id_usuario = registrarUsuario($dbh, $data);
+    if ($_POST["accion"] == "register") {
+        // Comprobamos registro
+        $data = array('username'=>$username, 'password'=>$password, 'email'=>$email, 'tipo'=>'C', 'foto'=>$foto);
+        // Obtenemos el id del usuario recién registrado
+        $id_usuario = registrarUsuario($dbh, $data);
 
-    $dbh = close($dbh);
+        $dbh = close($dbh);
 
-    if ($id_usuario != null && $id_usuario > 0) {
-        $register = true; 
-    } else {
-        // Si ha guardado la imagen, pero no ha podido crear el usuario, borramos la imagen para evitar archivos residuales
-        $codError = 5;
-        unlink($ruta_img . $nombre_guardar_img);
-    }
+        if ($id_usuario != null && $id_usuario > 0) {
+            $register = true; 
+        } else {
+            // Si ha guardado la imagen, pero no ha podido crear el usuario, borramos la imagen para evitar archivos residuales
+            $codError = 5;
+            unlink($ruta_img . $nombre_guardar_img);
+        }
 
         // Preparamos la respuesta en formato JSON
-    // Construimos el objeto JSON
-    $result_json = array('register' => $register, 'id_usuario' => $id_usuario, 'codError' => $codError, 'foto' => $foto);
+        // Construimos el objeto JSON
+        $result_json = array('register' => $register, 'id_usuario' => $id_usuario, 'codError' => $codError, 'foto' => $foto);
+    } else {
+        // Eliminamos la foto anterior si ha guardado una nueva
+        if ($imagen_guardada) {
+            eliminarFotoUsuario($dbh, ["username" => $username], true);
+            setcookie("foto", $foto, time()+60*60*24*720);
+        }
+        else $foto = null;
+        
+        // Comprobamos update
+        $data = array('username'=>$username, 'descripcion'=>$descripcion, 'password'=>$password, 'foto'=>$foto);
+        
+        // Guardamos los datos nuevos
+        $exito = actualizarUsuario($dbh, $data);
 
+        $dbh = close($dbh);
+
+        if (!$exito) {
+            // Si ha guardado la imagen, pero no ha podido crear el usuario, borramos la imagen para evitar archivos residuales
+            $codError = 5;
+            unlink($ruta_img . $nombre_guardar_img);
+        }
+
+        // Preparamos la respuesta en formato JSON
+        // Construimos el objeto JSON
+        $result_json = array('exito' => $exito, 'codError' => $codError, 'img_guardada' => $imagen_guardada, 'foto' => $foto);
+
+    }
+   
     // Definimos en los headers el tipo de contenido (que será JSON)
     header('Content-type: application/json');
 

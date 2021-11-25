@@ -10,11 +10,11 @@
     $dbh=connect(true);
     if ($_POST["accion"] == "deshabilitar") $exito = deshabilitarUsuario($dbh,$data);
     else if ($_POST["accion"] == "habilitar") $exito = habilitarUsuario($dbh,$data);
-    else if ($_POST["accion"] == "eliminar") $exito = eliminarUsuario($dbh,$data);
+    else if ($_POST["accion"] == "eliminar") $exito = eliminarUsuario($dbh,$data,true);
     else if ($_POST["accion"] == "obtener") {
         $datos_usuario = datosUsuario($dbh,$data);
         if ($datos_usuario != null && $datos_usuario != "") $exito = true;
-    } 
+    }
         
     $dbh=close($dbh);
 

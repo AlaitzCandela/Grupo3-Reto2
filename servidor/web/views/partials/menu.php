@@ -56,7 +56,7 @@
         <?php endif; ?>
 
         <li id="menuAyuda">
-            <a href="">
+            <a href="https://codefun973161967.wordpress.com/" target="_blank">
                 <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
                 <span class="title">Contacto</span>
             </a>
