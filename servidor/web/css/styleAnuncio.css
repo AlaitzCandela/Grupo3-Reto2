@@ -1,4 +1,7 @@
 .anuncio{
+    transition: .2s;
+    cursor: pointer;
+    padding: 10px;
     height:500px;
     border:1px solid white;
     display: flex;
@@ -7,6 +10,12 @@
     justify-content: center;
     border-radius: 10px;
     background-color: rgb(48, 48, 48);
+}
+
+.anuncio:hover {
+    position: relative;
+    transform: scale(1.1,1.1);
+    border-color: var(--blue2);
 }
 
 .anuncio h2 , p{

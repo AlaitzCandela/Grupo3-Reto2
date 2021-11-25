@@ -4,9 +4,22 @@ var numVecesCargado = 1; // Cargamos 5 veces y después mostramos pasar página
 var anuncios_favoritos = []; //Array con todos los id de los anuncios favoritos
 $(document).ready(() => {
     $('.filtro').on('click', (evt)=> {
-        if($('.filtros-container').css('display') == 'none') {
-            $('.filtros-container').css('display', 'grid');
-        }
+        document.querySelector('.filtros-container').classList.toggle('showing');
+    });
+
+    $('#aplicarFiltros').on('click', (evt) => {
+
+        evt.target.parentElement.classList.toggle('showing');
+    });
+
+    $('.filtroButton').on('click', (evt) => {
+        evt.target.classList.toggle('seleccionado');
+    });
+
+    $('#resetearFiltros').on('click', (evt) => {
+        $('.filtroButton').forEach(element => {
+            element.classList.remove('seleccionado');
+        });
     });
     // Cargamos los anuncios iniciales
     let cookies = document.cookie.split('; ');

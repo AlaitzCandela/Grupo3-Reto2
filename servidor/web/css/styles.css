@@ -236,20 +236,34 @@ main .profile-pic img {
     font-size: 1.5em;
 }
 
+.search .filtros-container * {
+    pointer-events: none;
+}
+
+.search .filtros-container.showing * {
+    pointer-events: all;
+}
+
 .search .filtros-container {
-    display: none;
-    transition: .2s;
-    box-shadow: 0 0 20px rgb(5, 5, 5);
-    border-radius: 15px;
+    top: -50px;
+    opacity: 0;
+    display: grid;
     padding: 10px;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(5, 5, 5, 0.8);
+    border-radius: 15px;
     color: white;
     gap: 10px;
-    background-color: rgb(5, 5, 5);
+    background-color: rgba(5, 5, 5, 0.8);
     grid-template-columns: repeat(3,1fr);
     position: absolute;
-    top: 0;
     left: 50%;
     transform: translate(-50%, 50px);
+}
+
+.search .filtros-container.showing {
+    top: 0;
+    opacity: 1;
 }
 
 .search .filtros-container .filtroButton {
@@ -261,11 +275,11 @@ main .profile-pic img {
 }
 
 .search .filtros-container .filtroButton:hover {
-    background-color: #19683a;
+    background-color: var(--blue);
 }
 
 .search .filtros-container .filtroButton.seleccionado {
-    background-color: #34be6e;
+    background-color: var(--blue2);
 }
 
 .accionFiltros {
@@ -1257,5 +1271,13 @@ div#historial {
 
     .modal {
         position: fixed;
+    }
+
+    .search .filtros-container {
+        grid-template-columns: 1fr;
+    }
+
+    .accionFiltros {
+        grid-column: span 1;
     }
 }

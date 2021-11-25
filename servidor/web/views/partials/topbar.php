@@ -27,7 +27,7 @@
                 <ion-icon name="options-outline"></ion-icon>
             </div>
             <div class="filtros-container">
-                <div class="filtroButton seleccionado">Filtro</div>
+                <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
