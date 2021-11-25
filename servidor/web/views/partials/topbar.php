@@ -19,13 +19,15 @@
         <?php elseif($pagina == "panel-admin"): ?> <!-- Panel admin -->
             
         <?php else: ?> <!-- Por defecto -->
-            <label>
-                <input type="text" name="busqueda" id="search" placeholder="Buscar">
-                <ion-icon name="search-outline"></ion-icon>
-            </label>
-            <div class="filtro">
-                <ion-icon name="options-outline"></ion-icon>
-            </div>
+            <?php if ($filtro_categorias): ?>
+                <label>
+                    <input type="text" name="busqueda" id="search" placeholder="Buscar">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+                <div class="filtro">
+                    <ion-icon name="options-outline"></ion-icon>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
         
     </div>

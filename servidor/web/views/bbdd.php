@@ -64,7 +64,8 @@
     function cogerAnuncios($dbh,$data){
         $inicio = $data["inicio"];
         $fin = $data["fin"];
-        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() ORDER BY fecha_publicacion DESC LIMIT $inicio, $fin");
+        $filtro = $data["filtro"];
+        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() $filtro ORDER BY fecha_publicacion, id DESC LIMIT $inicio, $fin");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
@@ -213,6 +214,13 @@
             if ($foto_usuario != null && $foto_usuario != "default_user.png") unlink("../img/usuarios/". $foto_usuario);
         }
         return $exito;
+    }
+
+    // Suma una visita al anuncio
+    function sumarVisita($dbh,$id_anuncio) {
+        $stmt = $dbh->prepare("UPDATE anuncios SET num_visitas = num_visitas + 1 id = :id");
+        $stmt->bindParam(':id', $id_anuncio, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     // Cerrar conexión

@@ -11,7 +11,8 @@
     <div class="contenedor">
         <?php require "./partials/menu.php";?>
         <main>
-            <?php 
+            <?php
+                $filtro_categorias = true;
                 $profile_pic="../img/default_user.png";
                 require "./partials/topbar.php";
             ?>

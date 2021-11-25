@@ -10,13 +10,24 @@ $(document).ready(() => {
         let ids_favoritos = favoritos.split("=")[1];
         anuncios_favoritos = ids_favoritos.split(",");
     }
-    console.log(anuncios_favoritos)
+
+    // Sumamos visita
     if ($("#id-anuncio")) {
         let id_anuncio = $("#id-anuncio").val();
-        console.log(id_anuncio);
+        let data = {
+            id_anuncio : id_anuncio
+        }
+        $.ajax({
+            url: "./webservices/ws-mostrar-anuncios.php",
+            type: "post",
+            data : data,
+            error : function (error){
+                alert(error);
+            }
+        })
     }
     cogerAnuncios();
-    $("#mas").click(mostrarMasAnuncios);
+    $("#mas").on('click', mostrarMasAnuncios);
 
     // Marcamos anuncios en el menú lateral
     document.querySelectorAll('nav ul li').forEach((evt) => {
@@ -34,13 +45,15 @@ function cogerAnuncios(){
     if (paginaActual < 1) {
         paginaActual = 1;
     }
-    let inicio = (paginaActual - 1) * numeroElementos;
+    let inicio = (numeroElementos * (numVecesCargado - 1));
     let fin = numeroElementos;
-
+    // TODO filtro
+    let filtro = "";
 
     let data = {
         inicio : inicio,
-        fin : fin
+        fin : fin,
+        filtro: filtro
     }
     $.ajax({
         url: "./webservices/ws-mostrar-anuncios.php",
@@ -58,17 +71,10 @@ function cogerAnuncios(){
         if (respuesta.length > 0) volcarAnuncios(respuesta);
         else mostrarMensajeSinAnuncios();
     });
-    // Volcar esos anuncios en el HTML
-
-    // Añadimos hasta 5 veces, y después mostramos botón de pasar página
-    
 }
 
 
-
-
 function mostrarMensajeSinAnuncios() {
-    // TODO: personalizar mensaje con clase
     $("#boton").append('<p style="color:white;">No hay más anuncios disponibles</p>');
     $("#mas").css("display","none");
 }
@@ -98,7 +104,7 @@ function volcarAnuncios(anuncios) {
 }
 
 function mostrarMasAnuncios(){
-    paginaActual++;
+    numVecesCargado++;
     cogerAnuncios();
 }
 
@@ -132,4 +138,4 @@ $('#anadirCarrito').on('click',() => {
       $('#anadirCarrito').prop('name','bag-add-outline');
       document.querySelector('#anadirCarrito').classList.toggle('rojo');
     }
-  });
+});
