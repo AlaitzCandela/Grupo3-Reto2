@@ -2,15 +2,8 @@ var paginaActual = 1;
 var numeroElementos = 10; // Elementos a cargar cada vez
 var numVecesCargado = 1; // Cargamos 5 veces y después mostramos pasar página
 var anuncios_favoritos = []; //Array con todos los id de los anuncios favoritos
+var anuncios_carrito = [];
 $(document).ready(() => {
-    // Cargamos los anuncios iniciales
-    let cookies = document.cookie.split('; ');
-    let favoritos = cookies.find((elm) => elm.includes('favoritos'));
-    if (favoritos) { // Si ya existían los favoritos, los recogemos
-        let ids_favoritos = favoritos.split("=")[1];
-        anuncios_favoritos = ids_favoritos.split(",");
-    }
-
     // Sumamos visita
     if ($("#id-anuncio")) {
         let id_anuncio = $("#id-anuncio").val();
@@ -26,6 +19,26 @@ $(document).ready(() => {
             }
         })
     }
+
+    // Cargamos cookies favoritos
+    let cookies = document.cookie.split('; ');
+    let favoritos = cookies.find((elm) => elm.includes('favoritos'));
+    if (favoritos) { // Si ya existían los favoritos, los recogemos
+        let ids_favoritos = favoritos.split("=")[1];
+        anuncios_favoritos = ids_favoritos.split(",");
+    }
+
+    // Cargamos cookies carrito
+    let carrito = cookies.find((elm) => elm.includes('carrito'));
+    if (carrito) { // Si ya existían los carrito, los recogemos
+        let ids_carrito = carrito.split("=")[1];
+        anuncios_carrito = ids_carrito.split(",");
+    }
+    if ($("#id-anuncio")) {
+        let id_anuncio = $("#id-anuncio").val();
+    }
+
+    // Cargamos anuncios
     cogerAnuncios();
     $("#mas").on('click', mostrarMasAnuncios);
 
@@ -115,11 +128,10 @@ function irDetalle(id){
 function favoritos(id) {
     // Obtenemos la posición del id en la cookie, si no existe, devuelve -1
     let posicion = anuncios_favoritos.indexOf(anuncios_favoritos.find(elm => elm == id));
-    console.log(posicion)
     if (posicion < 0) { // Si no existía, lo está añadiendo como favoritos
         anuncios_favoritos.push(id);
     } else { // Si existe, lo está eliminando de favoritos
-        anuncios_favoritos.splice(posicion);
+        anuncios_favoritos.splice(posicion, 1);
     }
 
     if (anuncios_favoritos.length <= 0) { // Si ha eliminado el último de favoritos, eliminamos la cookie en sí
@@ -138,4 +150,19 @@ $('#anadirCarrito').on('click',() => {
       $('#anadirCarrito').prop('name','bag-add-outline');
       document.querySelector('#anadirCarrito').classList.toggle('rojo');
     }
-});
+  });
+
+  function anadirCarrito(id){
+    let posicion = anuncios_carrito.indexOf(anuncios_carrito.find(elm => elm == id));
+    if (posicion < 0) { // Si no existía, lo está añadiendo como carrito
+        anuncios_carrito.push(id);
+    } else { // Si existe, lo está eliminando de carrito
+        anuncios_carrito.splice(posicion, 1);
+    }
+
+    if (anuncios_carrito.length <= 0) { // Si ha eliminado el último de carrito, eliminamos la cookie en sí
+        document.cookie = "carrito=;max-age=0";
+    } else { // Si existen valores en carrito, simplemente guardamos o reemplazamos la cookie carrito
+        document.cookie = "carrito=" + anuncios_carrito;
+    }
+  }

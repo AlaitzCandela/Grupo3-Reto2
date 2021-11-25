@@ -674,6 +674,22 @@ section {
     padding: 10px;
 }
 
+.pedidos #verTodo {
+    transition: .2s;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--blue);
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+    text-align: center;
+}
+
+.pedidos #verTodo:hover {
+    background-color: var(--blue2);
+}
+
 .pedidos {
     height: fit-content;
     overflow: hidden;
@@ -1003,6 +1019,10 @@ section {
 
 .pedidos div span:last-child span:hover {
     background-color: var(--blue2);
+}
+
+div#historial {
+    width: 100% !important;
 }
 
 

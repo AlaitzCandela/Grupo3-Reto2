@@ -31,6 +31,16 @@
         $fav_icon_name  = "star";
         $fav_icon_class = 'class="seleccionado"';
     }
+    
+    // Propiedades del icono estrella (carrito)
+    $carrito_icon_name  = "bag-add-outline";
+    $carrito_icon_class = '';
+    // Comprobamos si ya está en carrito
+    $ids_carrito = explode(",", $_COOKIE["carrito"]);
+    if (in_array($id_anuncio, $ids_carrito)) { // Si ya existe, 'coloreamos' la estrella (sin salirnos de los bordes)
+        $carrito_icon_name  = "bag-remove-outline";
+        $carrito_icon_class = 'class="rojo"';
+    }
 
     // Recogemos datos del anuncio
     $data = array("id"=>$id_anuncio);

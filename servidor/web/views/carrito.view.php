@@ -15,60 +15,10 @@
                 require "./partials/topbar.php";
             ?>
             <div class="carrito">
-            <div class="producto favorito">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto ">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
-                    <div class="acciones">
-                        <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
-                        <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
-                    </div>
-                </div>
-
-                <div class="producto favorito">
-                    <div class="imagenCarrito"><img src="../img/gatitoDurmiendo.jpeg" alt="foto"></div>
-                    <div class="nombreProducto"><a href="#">Gatito</a></div>
-                    <div class="precios">14.99&euro;</div>
+            <div class="producto">
+                    <div class="imagenCarrito"><img src="" alt="foto"></div>
+                    <div class="nombreProducto"><a href="#"></a></div>
+                    <div class="precios"></div>
                     <div class="acciones">
                         <div class="toggleFavorito"><ion-icon name="star-outline"></ion-icon></div>
                         <div class="eliminarProducto"><ion-icon name="close-outline"></ion-icon></div>
