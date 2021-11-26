@@ -13,9 +13,8 @@
 }
 
 .anuncio:hover {
-    position: relative;
-    transform: scale(1.1,1.1);
-    border-color: var(--blue2);
+    transform: scale(1.05,1.05);
+    border: 3px solid var(--blue2);
 }
 
 .anuncio h2 , p{
