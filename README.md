@@ -7,7 +7,7 @@
 - Alaitz Candela
 - Raúl Melgosa
 
-## Proyecto: Servidor Web Siemens
+## Proyecto: Agencia de Publicidad ¡Tom Nook Store!
 
 - [Enlace a la documentación](./documentacion/documentacion.pdf)
 - [Enlace a la guía de estilos](./documentacion/guia-de-estilos.pdf)
