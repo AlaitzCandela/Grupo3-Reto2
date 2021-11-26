@@ -33,10 +33,16 @@
                         <?php foreach($ultimosAnuncios as $anuncio): ?>
                             <div class="anuncioLista">
                                 <span><?= $anuncio["nombre"] ?></span>
-                                <span><a href="./detalle-anuncio.php?id=<?= $anuncio['id'] ?>">Ver mi anuncio</a></span>
-                                <span onclick="eliminarAnuncio(event, <?= $anuncio['id'] ?>)">
-                                    <span id="span-nieto">Borrar</span>
-                                </span>
+                                <span><a href="./detalle-anuncio.php?id=<?= $anuncio['id'] ?>"><?= $privilegios_borrar ? "Ver mi anuncio" : "Ver el anuncio" ?></a></span>
+                                <?php if ($privilegios_borrar): ?>
+                                    <span onclick="eliminarAnuncio(event, <?= $anuncio['id'] ?>)">
+                                        <span id="span-nieto">Borrar</span>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="spdisabled" disabled>
+                                        <span disabled id="span-nieto">Borrar</span>
+                                    </span>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                         <?php if ($num_anuncios > 5): ?>

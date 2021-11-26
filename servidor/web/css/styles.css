@@ -853,6 +853,10 @@ section {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
+.pedidos .anuncioLista span.spdisabled:last-child span {
+    background-color: gray !important;
+}
+
 #serVendedor h3 {
     margin-bottom: 10px;
 }

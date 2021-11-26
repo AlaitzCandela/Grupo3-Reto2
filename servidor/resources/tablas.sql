@@ -675,10 +675,11 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 
 
 -- TODO:
----- ion icons se ven por encima de la topbar
----- filtros anuncios
----- botón registrarse y login hover cursor pointer
----- tabla historial compras / ventas
+---- * ion icons se ven por encima de la topbar
+---- filtros anuncios funcionalidad
+---- * botón registrarse y login hover cursor pointer
+---- * tabla historial compras / ventas
+---- actualizar MER
 ---- documentación
 
 ---- * obtener datos y volcar en perfil

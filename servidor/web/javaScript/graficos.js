@@ -136,7 +136,7 @@ $(document).ready(() => {
 		labels: labels,
 		datasets: [
 			{
-				label: "Mis ventas",
+				label: "Num. Ventas",
 				borderColor: function(context) {
 						const chart = context.chart;
 						const {ctx, chartArea} = chart;

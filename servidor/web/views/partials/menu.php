@@ -40,7 +40,7 @@
             
 
             <li id="menuHistorial" class="">
-                <a href="./carrito.php">
+                <a href="./historial.php">
                     <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
                     <span class="title"><?= ($tipo == 'C') ? 'Mis compras' : 'Mis ventas' ;?></span>
                 </a>

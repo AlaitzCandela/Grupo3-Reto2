@@ -234,6 +234,17 @@
         return $habilitado;
     }
 
+    // Función obtener anuncios
+    function obtenerHistorial($dbh,$id_usuario,$tipo) {
+        $sql = "SELECT a.id, a.nombre, b.id_vendedor FROM anuncios a, historialCompras b WHERE a.id = b.id_anuncio AND b.id_vendedor = $id_usuario";
+        if ($tipo == 'C') {
+            $sql = "SELECT a.id, a.nombre FROM anuncios a, historialCompras b WHERE a.id = b.id_anuncio AND b.id_comprador = $id_usuario";
+        }
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Comprueba si el usuario loggeado existe y sigue habilitado, y devuelve el tipo
     function obtenerTipoUsuario() {
         // Comprobamos si hay usuario loggeado y si aún está habilitado

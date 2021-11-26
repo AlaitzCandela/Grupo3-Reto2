@@ -11,9 +11,11 @@
         require "./usuarios.view.php";
     } else if ($tipo == "C") {
         // Si es cliente: cargar página de anuncios
-        require './anuncios.php';
+        header ("location: ./anuncios.php");
+        die();
     } else {
         // Si es vendedor: cargar página de perfil y estadísticas
-        require './home-vendedor.php';
+        header ("location: ./home-vendedor.php?id=". $_COOKIE["id_usuario"]);
+        die();
     }
 
