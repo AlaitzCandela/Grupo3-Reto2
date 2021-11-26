@@ -45,7 +45,7 @@
                         placeholder="<?= !$disabled ? "Sin descripción... ¡Añade algo!" : "Sin descripción" ?>"><?= $datos_usuario["descripcion"] ?></textarea>
                         
                         <?php if (!$disabled): ?>
-                        <input required <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="password" placeholder="Nueva contrase&ntilde;a">
+                        <input required <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="password" placeholder="Contrase&ntilde;a">
                         <input required <?= $disabled ? "disabled" : "" ?> value="" type="password" name="password" id="reppassword" placeholder="Repetir contrase&ntilde;a">
 
                         <input type="submit" name="actualizarPerfil" id="enviarDatos" value="Actualizar perfil">

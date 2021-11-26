@@ -245,6 +245,17 @@
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Devuelve true si el usuario ya existe, false si no existe
+    function usuarioExiste($dbh,$username) {
+        $stmt = $dbh->prepare("SELECT username FROM usuarios WHERE username = '$username'");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result["username"] == null) return false;
+        
+        return true;
+    }
+
     // Comprueba si el usuario loggeado existe y sigue habilitado, y devuelve el tipo
     function obtenerTipoUsuario() {
         // Comprobamos si hay usuario loggeado y si aún está habilitado

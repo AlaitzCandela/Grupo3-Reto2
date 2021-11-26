@@ -170,22 +170,86 @@ $('#register').submit((e) => {
                 // Usamos el sistema de rutas tope genial
                 window.location.href = './home.php';
             } else { // Error al registrar (ya existía)
-                Swal.fire({ // TODO dani: comprobar si ya existe el email?
-                    title: 'Error',
-                    text: 'El usuario ya existe :(',
-                    icon: 'error',
-                    confirmButtonText: 'Oh, vaya',
-                });
-                
-                $('#register input[name="username"]').focusin();
-                $('#register input[name="password"]').val('');
-                $('#register input[name="repetir-password"]').val('');
+                // Error al registrar, ya existía (por si acaso llega aquí, no debería, pero aún así contemplamos)
+                    // Petición
+                    let data = {
+                        accion: "comprobar-usuario",
+                        username: $('#register input[name="username"]').val().trim()
+                    }
+
+                    $.ajax({
+                        url: "./webservices/ws-comprobar-usuario.php",
+                        type: "post",
+                        data : data
+                    })
+                    .then((respuesta)=> {
+                        console.log(respuesta)
+                        if (respuesta.existe) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ouch! El usuario ya existe :(',
+                                icon: 'error',
+                                confirmButtonText: 'Oh, vaya',
+                            }).then(() => {
+                                // TODO focus en username
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Ouch! El email ya está en uso :(',
+                                icon: 'error',
+                                confirmButtonText: 'Oh, vaya',
+                            }).then(() => {
+                                // TODO focus en email
+                            });
+                        }
+                    });
             }
             
         } else {
-            // Error en la BBDD
-            $('#register input[name="password"]').val('');
-            $('#register input[name="repetir-password"]').val('');
+            if (respuesta.codError >= 5) {
+                // Error al registrar, ya existía
+                // Petición
+                let data = {
+                    accion: "comprobar-usuario",
+                    username: $('#register input[name="username"]').val().trim()
+                }
+
+                $.ajax({
+                    url: "./webservices/ws-comprobar-usuario.php",
+                    type: "post",
+                    data : data
+                })
+                .then((respuesta)=> {
+                    console.log(respuesta)
+                    if (respuesta.existe) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'El usuario ya existe :(',
+                            icon: 'error',
+                            confirmButtonText: 'Oh, vaya',
+                        }).then(() => {
+                            // TODO focus en username
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'El email ya está en uso :(',
+                            icon: 'error',
+                            confirmButtonText: 'Oh, vaya',
+                        }).then(() => {
+                            // TODO focus en email
+                        });
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'La imagen no se válida :(',
+                    icon: 'error',
+                    confirmButtonText: 'Oh, vaya',
+                });
+            }
         }
     })
     .catch((err) => {
