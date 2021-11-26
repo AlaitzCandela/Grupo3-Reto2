@@ -10,6 +10,7 @@ toggle.onclick = function() {
     topbar.classList.toggle('active');
 }
 
+// Cambio de color y forma del icono de favoritos
 $('#favoritos').on('click',() => {
   if($('#favoritos').prop('name') == 'star-outline') {
     $('#favoritos').prop('name','star');
@@ -20,7 +21,9 @@ $('#favoritos').on('click',() => {
   document.querySelector('#favoritos').classList.toggle('seleccionado');
 });
 
-
+/* Este método cambia el tamaño de los textareas para
+   que se comporten de forma responsiva.
+*/
 $("textarea").each(function () {
     this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
   }).on("input", function () {
