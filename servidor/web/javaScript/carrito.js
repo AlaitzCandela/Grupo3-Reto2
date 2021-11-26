@@ -128,14 +128,9 @@ function comprarCarrito() {
                     timer: 2500,
                     confirmButtonText: 'Okay!',
                 }).then(() => {
-                    if (evt.target.id == "span-nieto") {
-                        evt.target.parentElement.parentElement.remove();
-                    } else {
-                        evt.target.parentElement.remove();
-                    }
+                    vaciarCarrito();
                 });
-                vaciarCarrito();
-                window.location.href = "./home.php";
+                
             } else {
                 Swal.fire({
                     title: 'Error',
