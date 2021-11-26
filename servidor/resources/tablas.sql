@@ -678,17 +678,19 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 ---- ion icons se ven por encima de la topbar
 ---- filtros anuncios
 ---- botón registrarse y login hover cursor pointer
+---- tabla historial compras / ventas
+---- documentación
 
 ---- * obtener datos y volcar en perfil
---------  y perfil vendedor (estadísticas)
----- tabla historial compras / ventas
+--------  * y perfil vendedor (estadísticas)
+
 ---- * convertir cliente en vendedor (cuando salta el modal)
 ---- * [WebClient + WebService] actualizar perfil (mucha pereza)
 
----- exportar bbdd nueva y reemplazar
----- cambiar todos los alerts
----- eliminar todos los console logs
----- documentación
+---- * exportar bbdd nueva y reemplazar
+---- * cambiar todos los alerts
+---- * eliminar todos los console logs
+
 
 -- PUEDE:
 ---- [Web-Client] añadir comprobación e-mail usuario ajax ?
