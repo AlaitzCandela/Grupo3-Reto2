@@ -30,7 +30,7 @@
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
                 <div class="filtroButton">Filtro</div>
-                <div class="filtroButton" id="filtroFavoritos"></div>
+                <div class="filtroButton" id="filtroFavoritos">Favoritos</div>
                 <button class="accionFiltros" id="aplicarFiltros">Aplicar</button>
                 <button class="accionFiltros" id="resetearFiltros">Resetear</button>
             </div>
