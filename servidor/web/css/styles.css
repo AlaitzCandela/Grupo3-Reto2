@@ -166,6 +166,7 @@ main section {
 }
 
 .topbar {
+    z-index: 100000;
     transition: .5s;
     position: fixed;
     background-color: var(--black1);
@@ -279,6 +280,19 @@ main .profile-pic img {
 
 .search .filtros-container .filtroButton.seleccionado {
     background-color: var(--blue2);
+}
+
+.search .filtros-container .filtroButton#filtroFavoritos {
+    grid-column: span 3;
+    text-align: center;
+}
+
+.search .filtros-container .filtroButton#filtroFavoritos:hover {
+    background-color: rgb(153, 125, 0);
+}
+
+.search .filtros-container .filtroButton#filtroFavoritos.seleccionado {
+    background-color: rgb(211, 172, 0);
 }
 
 .accionFiltros {
@@ -1282,7 +1296,7 @@ div#historial {
         grid-template-columns: 1fr 1fr;
     }
 
-    .accionFiltros {
-        grid-column: span 2;
+    .accionFiltros, #filtroFavoritos {
+        grid-column: span 2 !important;
     }
 }

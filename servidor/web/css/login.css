@@ -85,6 +85,8 @@ form *:nth-child(n){
 }
 
 .registro form input[type="submit"] {
+    transition: .2s;
+    cursor: pointer;
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
     border-radius: 15px;
@@ -92,8 +94,19 @@ form *:nth-child(n){
     margin-top: 20px;
 }
 
+.registro form input[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.inicio-sesion form input[type="submit"]:hover {
+    background-color: var(--blue2);
+}
+
 .inicio-sesion form input[type="submit"] {
-    background-color: lightblue;
+    color: white;
+    transition: .2s;
+    cursor: pointer;
+    background-color: var(--blue);
     border-radius: 15px;
     border: none;
     margin-top: 20px;
