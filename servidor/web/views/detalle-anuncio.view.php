@@ -22,10 +22,12 @@
                     <h1 id="nombre"><?=$datos["nombre"]?></h1>
                     <hr id="separador1">
                     <h5 id="descripcion"><?=$datos["descripcion"]?></h5>
+                    <?php if ($datos["vendido"] == 0): ?>
                     <div class="accionesAnuncio">
                         <ion-icon id="favoritos" name="<?= $fav_icon_name ?>" <?= $fav_icon_class ?> onclick='favoritos(<?=$datos["id"]?>)'></ion-icon>
                         <ion-icon id="anadirCarrito" name="<?= $carrito_icon_name?>" <?= $carrito_icon_class?> onclick='anadirCarrito(<?=$datos["id"]?>)'></ion-icon>
                     </div>
+                    <?php endif; ?>
                     <hr id="separador2">
                     <p id="precio"> <?=$datos["precio"]?> &euro;</p>
                     <hr id="separador3">

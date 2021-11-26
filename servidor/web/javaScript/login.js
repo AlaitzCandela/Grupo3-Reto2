@@ -8,7 +8,7 @@ $(document).ready(() => {
     if (deshabilitado) {
         Swal.fire({
             title: 'Usuario deshabilitado :(',
-            text: 'Si consideras que se trata de un problema, contacta con soporte para solventarlo.',
+            text: 'Si consideras que se trata de un problema, contacta con soporte para solventarlo:\n\ncontacto@tomnook.com',
             confirmButtonText: 'Ok',
         });
         document.cookie = "usuario-deshabilitado=;max-age=0;";
@@ -154,10 +154,10 @@ $('#register').submit((e) => {
     .then((respuesta) => {
         if (respuesta.codError == 503) {
             window.location.href = "./error-503.php";
-            $('#login input[name="username"]').val('');
-            $('#login input[name="password"]').val('');
-            $('#login input[name="email"]').val('');
-            $('#login input[name="repetir-password"]').val('');
+            $('#register input[name="username"]').val('');
+            $('#register input[name="password"]').val('');
+            $('#register input[name="email"]').val('');
+            $('#register input[name="repetir-password"]').val('');
             return;
         }
 
@@ -183,7 +183,6 @@ $('#register').submit((e) => {
                         data : data
                     })
                     .then((respuesta)=> {
-                        console.log(respuesta)
                         if (respuesta.existe) {
                             Swal.fire({
                                 title: 'Error',
@@ -191,7 +190,7 @@ $('#register').submit((e) => {
                                 icon: 'error',
                                 confirmButtonText: 'Oh, vaya',
                             }).then(() => {
-                                // TODO focus en username
+                                //document.querySelector('#register input[name="username"]').focus() // se pone y se quita :S
                             });
                         } else {
                             Swal.fire({
@@ -200,7 +199,7 @@ $('#register').submit((e) => {
                                 icon: 'error',
                                 confirmButtonText: 'Oh, vaya',
                             }).then(() => {
-                                // TODO focus en email
+                                //document.querySelector('#register input[name="email"]').focus() // se pone y se quita :S
                             });
                         }
                     });
@@ -221,7 +220,7 @@ $('#register').submit((e) => {
                     data : data
                 })
                 .then((respuesta)=> {
-                    console.log(respuesta)
+                    (respuesta)
                     if (respuesta.existe) {
                         Swal.fire({
                             title: 'Error',
@@ -229,7 +228,7 @@ $('#register').submit((e) => {
                             icon: 'error',
                             confirmButtonText: 'Oh, vaya',
                         }).then(() => {
-                            // TODO focus en username
+                            //document.querySelector('#register input[name="username"]').focus() // se pone y se quita :S
                         });
                     } else {
                         Swal.fire({
@@ -238,7 +237,7 @@ $('#register').submit((e) => {
                             icon: 'error',
                             confirmButtonText: 'Oh, vaya',
                         }).then(() => {
-                            // TODO focus en email
+                            //document.querySelector('#register input[name="email"]').focus() // se pone y se quita :S
                         });
                     }
                 });

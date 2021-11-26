@@ -9,6 +9,7 @@ var botonMasOculto = false;
 
 // Filtros
 var filtro = "";
+var filtro_nombre = "";
 var boolean_favoritos = false;
 
 $(document).ready(() => {
@@ -46,6 +47,8 @@ $(document).ready(() => {
         evt.target.parentElement.classList.toggle('showing');
     });
 
+    $("#search").keydown(keydownFiltrarAnuncios);
+
     // Cargamos cookies favoritos
     let cookies = document.cookie.split('; ');
     let favoritos = cookies.find((elm) => elm.includes('favoritos'));
@@ -53,6 +56,7 @@ $(document).ready(() => {
         let ids_favoritos = favoritos.split("=")[1];
         anuncios_favoritos = ids_favoritos.split(",");
     }
+    if (anuncios_favoritos[0] == '') anuncios_favoritos = [];
 
     // Cargamos cookies carrito
     let carrito = cookies.find((elm) => elm.includes('carrito'));
@@ -86,9 +90,8 @@ function cogerAnuncios(){
     let data = {
         inicio : inicio,
         fin : fin,
-        filtro: filtro
+        filtro: filtro_nombre + filtro
     }
-    console.log(data)
     $.ajax({
         url: "./webservices/ws-mostrar-anuncios.php",
         type: "post",
@@ -106,7 +109,15 @@ function cogerAnuncios(){
 
 
 function mostrarMensajeSinAnuncios() {
-    $("#boton").append('<p style="color:white;">No hay más anuncios disponibles</p>');
+    if (numVecesCargado == 0) {
+        if (boolean_favoritos) {
+            if (anuncios_favoritos.length > 0 && anuncios_favoritos != ['']) $("#boton").append('<p style="color:white;">No hay favoritos que cumplan los filtros</p>');
+            else $("#boton").append('<p style="color:white;">No tienes ningún producto en favoritos</p>');
+        }
+        else $("#boton").append('<p style="color:white;">No hay nada que mostrar</p>');
+    }
+    else $("#boton").append('<p style="color:white;">No hay más anuncios disponibles</p>');
+    
     $("#mas").css("display","none");
 }
 
@@ -189,6 +200,7 @@ function anadirCarrito(id){
 function parsearFiltros() {
     let filtros_seleccionados = document.querySelectorAll(".filtros-container .filtroButton.seleccionado");
     filtro = "";
+    boolean_favoritos = false;
 
     let numCategoriasSeleccionadas = filtros_seleccionados.length;
     let array_ids_categorias = [];
@@ -215,9 +227,10 @@ function parsearFiltros() {
 
 // Resetear filtros
 function resetearFiltro() {
+    $('#search').val("");
     filtro = "";
     boolean_favoritos = false;
-    aplicarFiltro();
+    filtrarAnuncios();
 }
 
 function aplicarFiltro() {
@@ -226,4 +239,16 @@ function aplicarFiltro() {
     cogerAnuncios();
     $("#boton").html('<button onclick="mostrarMasAnuncios()" id="mas">M&aacute;s</button>');
     $("#mas").css("display","inline-block");
+}
+
+// Si aprieta una tecla, comenzamos cuenta atrás de 700ms, si lleva 700ms sin escribir, procede a filtrar, así evitamos petar el WS a consultas
+var keydownTimeOut;
+function keydownFiltrarAnuncios() {
+    clearTimeout(keydownTimeOut);
+    keydownTimeOut = setTimeout(filtrarAnuncios, 700);
+}
+
+function filtrarAnuncios() {
+    filtro_nombre = " AND nombre LIKE '%" + $('#search').val().trim() + "%'";
+    aplicarFiltro();
 }

@@ -15,6 +15,7 @@
                 require "./partials/topbar.php";
             ?>
             <input type="hidden" id="id-vendedor" value="<?= $_GET["id"] ?>">
+            <input type="hidden" id="pb" value="<?= var_export($privilegios_borrar) ?>">
             <input type="hidden" id="valores-ganancias-mes" value="<?= implode(',', $num_ganancias_por_mes) ?>">
             <input type="hidden" id="valores-ventas-mes" value="<?= implode(',', $num_ventas_por_mes) ?>">
             <input type="hidden" id="valores-ventas-media" value="<?= implode(',', $mediaPlataforma) ?>">
@@ -25,7 +26,7 @@
                     <div class="tarjeta"><p>Ventas: <?= $num_ventas_totales ?></p><ion-icon name="bag-handle-outline"></ion-icon></div>
                 </div>
 
-                <div id="misAnuncios" titulo="MIS ANUNCIOS" class="pedidos">
+                <div id="misAnuncios" titulo="ANUNCIOS" class="pedidos">
                     <?php if (count($ultimosAnuncios) <= 0): ?>
                         <div><span>Sin anuncios publicados</span></div>
                     <?php else: ?>

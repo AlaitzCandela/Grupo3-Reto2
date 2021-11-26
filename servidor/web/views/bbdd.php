@@ -92,7 +92,7 @@
 
     // Obtener los datos de un anuncio en concreto
     function detalleAnuncio($dbh,$data){
-        $stmt = $dbh->prepare(" SELECT a.id,a.nombre,a.descripcion,a.precio,a.foto,u.email,v.telefono,v.direccion FROM usuarios u,anuncios a,vendedores v  WHERE u.id = a.id_vendedor AND v.id = a.id_vendedor AND a.id = :id;");
+        $stmt = $dbh->prepare(" SELECT a.id,a.nombre,a.descripcion,a.precio,a.foto,a.vendido,u.email,v.telefono,v.direccion FROM usuarios u,anuncios a,vendedores v  WHERE u.id = a.id_vendedor AND v.id = a.id_vendedor AND a.id = :id;");
         $stmt->bindParam(':id', $data["id"], PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -238,7 +238,7 @@
     function obtenerHistorial($dbh,$id_usuario,$tipo) {
         $sql = "SELECT a.id, a.nombre, b.id_vendedor FROM anuncios a, historialCompras b WHERE a.id = b.id_anuncio AND b.id_vendedor = $id_usuario";
         if ($tipo == 'C') {
-            $sql = "SELECT a.id, a.nombre FROM anuncios a, historialCompras b WHERE a.id = b.id_anuncio AND b.id_comprador = $id_usuario";
+            $sql = "SELECT a.id, a.nombre, b.id_vendedor FROM anuncios a, historialCompras b WHERE a.id = b.id_anuncio AND b.id_comprador = $id_usuario";
         }
         $stmt = $dbh->prepare($sql);
         $stmt->execute();

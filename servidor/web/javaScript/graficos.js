@@ -5,8 +5,8 @@ var num_ganancias_por_mes = [];
 
 function eliminarAnuncio(evt, id) {
 	Swal.fire({
-		title: 'Bye bye!',
-		text: '¡Eh cuidado! Vas a eliminar un anuncio y no habrá vuelta atrás',
+		title: '¡Ojo cuidao!',
+		text: 'Vas a eliminar un anuncio y no habrá vuelta atrás, ¿quieres unirte al lado oscuro y eliminar el anuncio?',
 		icon: 'question',
 		showCancelButton: true,
 		confirmButtonText: 'Dale calor',
@@ -56,6 +56,16 @@ function ejecutarEliminarAnuncio(evt, id) {
         });
     });
 }
+/*
+<?php if ($privilegios_borrar): ?>
+                                    <span onclick="eliminarAnuncio(event, <?= $anuncio['id'] ?>)">
+                                        <span id="span-nieto">Borrar</span>
+                                    </span>
+                                <?php else: ?>
+                                    <span class="spdisabled" disabled>
+                                        <span disabled id="span-nieto">Borrar</span>
+                                    </span>
+                                <?php endif; ?> */
 
 function cargarTodosLosAnuncios() {
 	let data = {
@@ -71,12 +81,16 @@ function cargarTodosLosAnuncios() {
 		if (respuesta.exito) {
 			let contenido = "<div><span>Nombre del producto</span><span>Enlace</span><span>Acci&oacute;n</span></div>";
 			for (const anuncio of respuesta.anuncios) {
+				let elemento_borrar = ($('#pb').val() == 'true') ? `<span onclick="eliminarAnuncio(event, ${anuncio.id}>)">
+						<span id="span-nieto">Borrar</span>
+					</span>` : `<span class="spdisabled" disabled>
+					<span disabled id="span-nieto">Borrar</span>
+				</span>`;
+
 				contenido += `<div class="anuncioLista">
 					<span>${anuncio.nombre}</span>
-					<span><a href="./detalle-anuncio.php?id=${anuncio.id}">Ver mi anuncio</a></span>
-					<span onclick="eliminarAnuncio(event, ${anuncio.id})">
-						<span id="span-nieto">Borrar</span>
-					</span>
+					<span><a href="./detalle-anuncio.php?id=${anuncio.id}">Ver ${($('#pb').val() == 'true') ? "mi" : "el"} anuncio</a></span>
+					${elemento_borrar}
 				</div>`;
 			}
 			document.getElementById('misAnuncios').innerHTML = contenido;

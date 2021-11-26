@@ -24,25 +24,6 @@ $(document).ready(() => {
         evt.classList.remove('selected');
         document.querySelector('#menuHome').classList.add('selected');
     });
-
-    /*Swal.fire({
-        title: 'Do you want to save the changes?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        denyButtonText: `No!`,
-        cancelButtonText: 'Cancelar',
-        //timer: 2500 //<- auto cerrado
-    }).then((result) => {
-        console.log(result)
-        if (result.isConfirmed) { // Confirmar
-            Swal.fire('¡Guardado!', '', 'success');
-        } else if (result.isDenied) { // Rechazar
-            Swal.fire('¡Rechazado!', '', 'info');
-        } else if (result.isDismissed) { // Cancelar
-            Swal.fire('¡Cancelado!', '', 'info');
-        }
-    })*/
 });
 
 function cargarNumeroMaximoUsuarios() {
