@@ -1,0 +1,8 @@
+<?php
+
+    // Si el método POST no indica la acción register, devolvemos json error
+    if ($_POST["accion"] != "register") { 
+        header('Content-type: application/json');
+        echo json_encode(["codError" => 400, "error" => "Bad request"]);
+        die();
+    }

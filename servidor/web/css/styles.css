@@ -236,6 +236,87 @@ main .profile-pic img {
     font-size: 1.5em;
 }
 
+.search .filtros-container * {
+    pointer-events: none;
+}
+
+.search .filtros-container.showing * {
+    pointer-events: all;
+}
+
+.search .filtros-container {
+    opacity: 0;
+    display: grid;
+    padding: 10px;
+    transition: .5s;
+    box-shadow: 0 0 20px rgba(5, 5, 5, 0.8);
+    border-radius: 15px;
+    color: white;
+    gap: 10px;
+    background-color: rgba(5, 5, 5, 0.8);
+    grid-template-columns: repeat(3,1fr);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50px);
+}
+
+.search .filtros-container.showing {
+    top: 0 !important;
+    opacity: 1;
+}
+
+.search .filtros-container .filtroButton {
+    cursor: pointer;
+    transition: .2s;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: gray;
+}
+
+.search .filtros-container .filtroButton:hover {
+    background-color: var(--blue);
+}
+
+.search .filtros-container .filtroButton.seleccionado {
+    background-color: var(--blue2);
+}
+
+.accionFiltros {
+    transition: .2s;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    grid-column: span 3;
+}
+
+#aplicarFiltros {
+    background-color: var(--blue);
+    box-shadow: 0 0 20px var(--blue);
+}
+
+#aplicarFiltros:hover {
+    animation-name: btnSubmit;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    box-shadow: 0 0 20px var(--blue2);
+}
+
+#resetearFiltros {
+    background-color: rgb(172, 52, 52);
+    box-shadow: 0 0 20px rgb(172, 52, 52);
+}
+
+#resetearFiltros:hover {
+    background-color: var(--blue);
+    animation-name: btnCancel;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 .search label input {
     color: var(--white);
     background-color: #303135;
@@ -1191,5 +1272,13 @@ div#historial {
 
     .modal {
         position: fixed;
+    }
+
+    .search .filtros-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .accionFiltros {
+        grid-column: span 2;
     }
 }

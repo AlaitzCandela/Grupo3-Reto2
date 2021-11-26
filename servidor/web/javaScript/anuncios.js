@@ -16,6 +16,28 @@ $(document).ready(() => {
         });
     }
 
+    // Animación filtros
+    $('.filtros-container').css('top', '-'+($('.filtros-container').prop('clientHeight')+100)+'px');
+
+    $('.filtro').on('click', (evt)=> {
+        document.querySelector('.filtros-container').classList.toggle('showing');
+    });
+
+    $('#aplicarFiltros').on('click', (evt) => {
+
+        evt.target.parentElement.classList.toggle('showing');
+    });
+
+    $('.filtroButton').on('click', (evt) => {
+        evt.target.classList.toggle('seleccionado');
+    });
+
+    $('#resetearFiltros').on('click', (evt) => {
+        $('.filtroButton').forEach(element => {
+            element.classList.remove('seleccionado');
+        });
+    });
+
     // Cargamos cookies favoritos
     let cookies = document.cookie.split('; ');
     let favoritos = cookies.find((elm) => elm.includes('favoritos'));
