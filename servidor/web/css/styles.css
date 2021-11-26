@@ -166,6 +166,7 @@ main section {
 }
 
 .topbar {
+    z-index: 100000;
     transition: .5s;
     position: fixed;
     background-color: var(--black1);
@@ -280,6 +281,14 @@ main .profile-pic img {
 
 .search .filtros-container .filtroButton.seleccionado {
     background-color: var(--blue2);
+}
+
+.search .filtros-container .filtroButton#filtroFavoritos:hover {
+    background-color: yellowgreen;
+}
+
+.search .filtros-container .filtroButton#filtroFavoritos.seleccionado {
+    background-color:yellow;
 }
 
 .accionFiltros {
