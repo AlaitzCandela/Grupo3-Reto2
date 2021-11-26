@@ -679,6 +679,7 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 ---- filtros anuncios funcionalidad
 ---- * botón registrarse y login hover cursor pointer
 ---- * tabla historial compras / ventas
+---- insertar muchos más clientes para paginación en usuarios
 ---- actualizar MER
 ---- documentación
 

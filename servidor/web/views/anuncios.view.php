@@ -22,7 +22,7 @@
                 </div>
             </section>
             <div id="boton">
-                <button id="mas">M&aacute;s</button>
+                <button onclick="mostrarMasAnuncios()" id="mas">M&aacute;s</button>
             </div>
            
         </main>
@@ -31,4 +31,3 @@
     <script src="../javaScript/anuncios.js"></script>
 </body>
 </html>
-

@@ -1,8 +1,16 @@
+// Variables globales
 var paginaActual = 1;
 var numeroElementos = 10; // Elementos a cargar cada vez
-var numVecesCargado = 1; // Cargamos 5 veces y después mostramos pasar página
+var numVecesCargado = 0; // Cargamos 5 veces y después mostramos pasar página
 var anuncios_favoritos = []; //Array con todos los id de los anuncios favoritos
 var anuncios_carrito = [];
+
+var botonMasOculto = false;
+
+// Filtros
+var filtro = "";
+var boolean_favoritos = false;
+
 $(document).ready(() => {
     // Sumamos visita
     if ($("#id-anuncio")) {
@@ -24,7 +32,6 @@ $(document).ready(() => {
     });
 
     $('#aplicarFiltros').on('click', (evt) => {
-
         evt.target.parentElement.classList.toggle('showing');
     });
 
@@ -33,9 +40,10 @@ $(document).ready(() => {
     });
 
     $('#resetearFiltros').on('click', (evt) => {
-        $('.filtroButton').forEach(element => {
+        $('.filtroButton').each((index, element) => {
             element.classList.remove('seleccionado');
         });
+        evt.target.parentElement.classList.toggle('showing');
     });
 
     // Cargamos cookies favoritos
@@ -55,7 +63,6 @@ $(document).ready(() => {
 
     // Cargamos anuncios
     cogerAnuncios();
-    $("#mas").on('click', mostrarMasAnuncios);
 
     // Marcamos anuncios en el menú lateral
     document.querySelectorAll('nav ul li').forEach((evt) => {
@@ -73,16 +80,15 @@ function cogerAnuncios(){
     if (paginaActual < 1) {
         paginaActual = 1;
     }
-    let inicio = (numeroElementos * (numVecesCargado - 1));
+    let inicio = (numeroElementos * numVecesCargado);
     let fin = numeroElementos;
-    // TODO filtro
-    let filtro = "";
 
     let data = {
         inicio : inicio,
         fin : fin,
         filtro: filtro
     }
+    console.log(data)
     $.ajax({
         url: "./webservices/ws-mostrar-anuncios.php",
         type: "post",
@@ -112,7 +118,6 @@ function volcarAnuncios(anuncios) {
         if (url_foto == null || url_foto == undefined || url_foto == "") {
             url_foto = "default_anuncio.svg";
         }
-
         // Añadimos el contenido de cada anuncio
         contenido += `<div class="anuncio" id="${anuncio.id}" onclick="irDetalle(${anuncio.id})">
             <h2>${anuncio.nombre}</h2>
@@ -122,7 +127,7 @@ function volcarAnuncios(anuncios) {
             <p>${anuncio.precio}&euro;</p>
             <p>${anuncio.fecha_publicacion}</p>
         </div>
-        `;
+        `;  
     }
 
     $("#cuadricula-anuncios").append(contenido);
@@ -162,9 +167,9 @@ $('#anadirCarrito').on('click',() => {
       $('#anadirCarrito').prop('name','bag-add-outline');
       document.querySelector('#anadirCarrito').classList.toggle('rojo');
     }
-  });
+});
 
-  function anadirCarrito(id){
+function anadirCarrito(id){
     let posicion = anuncios_carrito.indexOf(anuncios_carrito.find(elm => elm == id));
     if (posicion < 0) { // Si no existía, lo está añadiendo como carrito
         anuncios_carrito.push(id);
@@ -177,4 +182,48 @@ $('#anadirCarrito').on('click',() => {
     } else { // Si existen valores en carrito, simplemente guardamos o reemplazamos la cookie carrito
         document.cookie = "carrito=" + anuncios_carrito;
     }
-  }
+}
+
+
+// Aplicar filtros
+function parsearFiltros() {
+    let filtros_seleccionados = document.querySelectorAll(".filtros-container .filtroButton.seleccionado");
+    filtro = "";
+
+    let numCategoriasSeleccionadas = filtros_seleccionados.length;
+    let array_ids_categorias = [];
+    if (filtros_seleccionados.length > 0) {
+        for (const filtro_seleccionado of filtros_seleccionados) {
+            if (filtro_seleccionado.innerHTML == "Favoritos") {
+                boolean_favoritos = true;
+                numCategoriasSeleccionadas--;
+            } else {
+                array_ids_categorias.push(filtro_seleccionado.id.split("-")[1])
+            }
+        }
+    }
+
+    if (boolean_favoritos) {
+        filtro += ` AND id in (${anuncios_favoritos.join(",")}) `;
+    }
+    if (numCategoriasSeleccionadas > 0) {
+        filtro += ` AND id in (SELECT id_anuncio FROM categoriasAnuncios WHERE id_categoria IN (${array_ids_categorias.join(",")})) `;
+    }
+
+    aplicarFiltro();
+}
+
+// Resetear filtros
+function resetearFiltro() {
+    filtro = "";
+    boolean_favoritos = false;
+    aplicarFiltro();
+}
+
+function aplicarFiltro() {
+    numVecesCargado = 0;
+    $("#cuadricula-anuncios").html('');
+    cogerAnuncios();
+    $("#boton").html('<button onclick="mostrarMasAnuncios()" id="mas">M&aacute;s</button>');
+    $("#mas").css("display","inline-block");
+}

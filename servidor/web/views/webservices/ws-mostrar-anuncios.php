@@ -5,7 +5,7 @@
     $fin = $_POST["fin"];
     $filtro = $_POST["filtro"];
     
-    $data = array('inicio'=>$inicio,'fin'=>$fin);
+    $data = array('inicio'=>$inicio,'fin'=>$fin,'filtro'=>$filtro);
 
     $dbh=connect(true);
     $anuncios = cogerAnuncios($dbh,$data);

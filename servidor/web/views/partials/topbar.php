@@ -28,12 +28,12 @@
                     <ion-icon name="options-outline"></ion-icon>
                 </div>
                 <div class="filtros-container">
-                    <div class="filtroButton">Filtro</div>
-                    <div class="filtroButton">Filtro</div>
-                    <div class="filtroButton">Filtro</div>
+                    <?php foreach($categorias as $categoria): ?>
+                        <div class="filtroButton" id="categoria-<?= $categoria["id"] ?>"><?= $categoria["nombre"] ?></div>
+                    <?php endforeach; ?>
                     <div class="filtroButton" id="filtroFavoritos">Favoritos</div>
-                    <button class="accionFiltros" id="aplicarFiltros">Aplicar</button>
-                    <button class="accionFiltros" id="resetearFiltros">Resetear</button>
+                    <button onclick="parsearFiltros()" class="accionFiltros" id="aplicarFiltros">Aplicar</button>
+                    <button onclick="resetearFiltro()" class="accionFiltros" id="resetearFiltros">Resetear</button>
                 </div>
             <?php endif; ?>
         <?php endif; ?>
