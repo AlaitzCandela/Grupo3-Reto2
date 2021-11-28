@@ -81,7 +81,7 @@ function cargarTodosLosAnuncios() {
 		if (respuesta.exito) {
 			let contenido = "<div><span>Nombre del producto</span><span>Enlace</span><span>Acci&oacute;n</span></div>";
 			for (const anuncio of respuesta.anuncios) {
-				let elemento_borrar = ($('#pb').val() == 'true') ? `<span onclick="eliminarAnuncio(event, ${anuncio.id}>)">
+				let elemento_borrar = ($('#pb').val() == 'true') ? `<span onclick="eliminarAnuncio(event, ${anuncio.id})">
 						<span id="span-nieto">Borrar</span>
 					</span>` : `<span class="spdisabled" disabled>
 					<span disabled id="span-nieto">Borrar</span>

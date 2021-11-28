@@ -4,11 +4,13 @@ let main = document.querySelector('main');
 let topbar = document.querySelector('.topbar');
 let imgInp = document.querySelector('#img-input');
 
-toggle.onclick = function() {
-    nav.classList.toggle('active');
-    main.classList.toggle('active');
-    topbar.classList.toggle('active');
-}
+try {
+  toggle.onclick = function() {
+      nav.classList.toggle('active');
+      main.classList.toggle('active');
+      topbar.classList.toggle('active');
+  } 
+} catch (err) { /* en el login esta parte no se podrá ejecutar y mostraría un error en consola, así lo evitamos */ }
 
 // Cambio de color y forma del icono de favoritos
 $('#favoritos').on('click',() => {
@@ -66,9 +68,9 @@ function registrarVendedor(evt, id) {
   })
 }
 
-function cerrarSesion(){
+function cerrarSesion() {
   document.cookie = "id_usuario=;max-age=0";
-  document.cookie = "cesta=;max-age=0";
+  document.cookie = "carrito=;max-age=0";
   document.cookie = "favoritos=;max-age=0";
-  window.location.href = "./login.view.php";
+  window.location.href = "./login.php";
 }

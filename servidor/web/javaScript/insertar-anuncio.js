@@ -93,7 +93,7 @@ function insertarAnuncio(e){
     // variables -> $_POST
     form_data.append('nombre_carpeta', "anuncios");
     form_data.append('nombre', $("#nombre-anuncio").val().trim());
-    form_data.append('descripcion', $("#descripcion").val().trim());
+    form_data.append('descripcion', $("#descripcion-anuncio").val().trim());
     form_data.append('caducidad', $("#caducidad").val());
     form_data.append('precio', $("#precio").val());
     form_data.append('categorias', categorias_ids.join(","));
@@ -146,6 +146,15 @@ function insertarAnuncio(e){
                 text: msg,
                 icon: 'error',
                 confirmButtonText: 'Okay!',
+            });
+        } else {
+            Swal.fire({
+                title: '¡Hurra!',
+                text: '¡Anuncio creado con éxito!',
+                icon: 'success',
+                confirmButtonText: 'Okay!',
+            }).then(() => {
+                window.location.href = "./detalle-anuncio.php?id=" + response.id_anuncio;
             });
         }
     });

@@ -72,13 +72,14 @@
 
     // Insertar un anuncio
     function insertarAnuncios($dbh,$data){
-        $stmt = $dbh->prepare("INSERT INTO anuncios (fecha_caducidad,nombre,descripcion,precio,foto) VALUES (DATE_ADD(NOW(), INTERVAL :caducidad DAY), :nombre, :descripcion, :precio, :foto)");
+        $stmt = $dbh->prepare("INSERT INTO anuncios (fecha_caducidad,nombre,descripcion,precio,foto,id_vendedor) VALUES (DATE_ADD(NOW(), INTERVAL :caducidad DAY), :nombre, :descripcion, :precio, :foto, :id_vendedor)");
 
         $stmt->bindParam(':caducidad', $data["tiempo_caducidad"], PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $data["nombre"], PDO::PARAM_STR);
         $stmt->bindParam(':descripcion', $data["descripcion"], PDO::PARAM_STR);
         $stmt->bindParam(':precio', $data["precio"], PDO::PARAM_STR);
         $stmt->bindParam(':foto', $data["foto"], PDO::PARAM_STR);
+        $stmt->bindParam(':id_vendedor', $data["id_vendedor"], PDO::PARAM_INT);
         $stmt->execute();
 
         return $dbh->lastInsertId();
@@ -361,15 +362,15 @@
     /* ------------------------------------------------------------------------------ */
     // OTRAS FUNCIONES
 
-    // Al cerrar sesión, limpiar las cookies relacionadas con usuario (se pierden cesta, favoritos, foto, id_usuario)
+    // Al cerrar sesión, limpiar las cookies relacionadas con usuario (se pierden carrito, favoritos, foto, id_usuario)
     function limpiarCookiesUsuario() {
         unset($_COOKIE["id_usuario"]);
         unset($_COOKIE["foto"]);
-        unset($_COOKIE["cesta"]);
+        unset($_COOKIE["carrito"]);
         unset($_COOKIE["favoritos"]);
         setcookie('id_usuario', '', 1);
         setcookie('foto', '', 1);
-        setcookie('cesta', '', 1);
+        setcookie('carrito', '', 1);
         setcookie('favoritos', '', 1);
     }
 

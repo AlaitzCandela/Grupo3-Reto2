@@ -1,14 +1,13 @@
 <?php
-    
-    if (!isset($_GET["id"])) {
-        require './error-404.php';
-        die();
-    }
-    
     require "./bbdd.php";
     
     // Obtenemos el tipo a la par que comprobamos que el usuario sigue loggeado
     $tipo = obtenerTipoUsuario();
+
+    if (!isset($_GET["id"])) {
+        require './error-404.php';
+        die();
+    }
 
     // Recibir GET con id de usuario a visualizar
     $dbh=connect();

@@ -1,18 +1,18 @@
 <?php
 
-    if (!isset($_GET["id"])) {
-        require './error-404.php';
-        die();
-    }
-
-    require "./bbdd.php";
-    
     // Nota:
     // Por falta de tiempo, no se ha podido refactorizar estos métodos de queries a la BBDD y llevarlos al fichero BBDD
     // 😥😥😔😔😢😢😭😭😡😡🤬🤬 (╯°□°）╯︵ ┻━┻
 
+    require "./bbdd.php";
+
     // Obtenemos el tipo a la par que comprobamos que el usuario sigue loggeado
     $tipo = obtenerTipoUsuario();
+
+    if (!isset($_GET["id"])) {
+        require './error-404.php';
+        die();
+    }
     
     $id_vendedor = $_GET["id"];
 

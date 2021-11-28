@@ -34,7 +34,7 @@
                         <span id="valorCaducidad">7 D&iacute;as</span>
                     </div>
 
-                    <input class="input" autocomplete="off" type="number" value="1" step="0.01" name="precio" id="precio-anuncio" placeholder="Precio" required>
+                    <input class="input" autocomplete="off" type="number" step="0.01" name="precio" id="precio-anuncio" placeholder="Precio" required>
                     
                     <div class="categorias">
                     </div>

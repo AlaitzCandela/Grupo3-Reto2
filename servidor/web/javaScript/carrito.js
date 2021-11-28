@@ -75,6 +75,7 @@ function vaciarCarrito(){
     document.getElementById('carrito-productos').prepend(div);
         
     document.cookie = "carrito=;max-age=0";
+    anuncios_carrito = []; // al no refrescar, no recarga la cesta de las cookies, así que lo vaciamos a mano
 }
 
 
@@ -125,7 +126,7 @@ function comprarCarrito() {
                     title: '¡¡Woow!!',
                     text: '¡Compra realizada con éxito! Gracias por utiliza nuestra página (＾Ｕ＾)ノ',
                     icon: 'success',
-                    timer: 2500,
+                    //timer: 2500,
                     confirmButtonText: 'Okay!',
                 }).then(() => {
                     vaciarCarrito();

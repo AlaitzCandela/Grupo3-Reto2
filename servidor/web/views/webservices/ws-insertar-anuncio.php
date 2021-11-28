@@ -63,10 +63,12 @@
             'descripcion' => $descripcion, 
             'foto' => $foto, 
             'precio' => $precio, 
-            'tiempo_caducidad' => $tiempo_caducidad
+            'tiempo_caducidad' => $tiempo_caducidad,
+            'id_vendedor' => $_COOKIE["id_usuario"]
         );
     
         $id_anuncio = insertarAnuncios($dbh,$data);
+        $respuesta_json["id_anuncio"] = $id_anuncio;
 
         if ($id_anuncio > 0) {
             // Recogemos las categorias, e insertamos en categoriasAnuncios
@@ -93,7 +95,6 @@
     if (!$respuesta_json["exito"] && $imagen_guardada) {
         // Si la imagen se guardó pero no hemos podido guardar el anuncio, borramos la imagen
         unlink($ruta_img . $nombre_guardar_img);
-        // TODO añadir al delete vendedor: array_map('unlink', glob($ruta_img . $id_vendedor . "*"));
     }
 
     // Cerramos conexión
