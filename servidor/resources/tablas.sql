@@ -669,56 +669,485 @@ INSERT INTO historialCompras(id_anuncio, id_vendedor, id_comprador) VALUES
 (144, 4, 14), (145, 4, 14), (146, 4, 14);
 
 
---select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios group by MONTH(fecha_publicacion);
---select MONTH(fecha_publicacion) as mes, count(*) as total from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
---select MONTH(fecha_publicacion) as mes, SUM(precio) as total_ganancias from anuncios where id_vendedor = 4 group by MONTH(fecha_publicacion);
+/* USUARIOS CLIENTES EXTRA PARA PAGINACIÓN (no tendrán compras) */
+/* Contraseñas: 1234 */
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('xbraun', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'xbraun@wiegand.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('sabryna', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'sabryna.block@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
--- TODO:
----- * ion icons se ven por encima de la topbar
----- filtros anuncios funcionalidad
----- * botón registrarse y login hover cursor pointer
----- * tabla historial compras / ventas
----- insertar muchos más clientes para paginación en usuarios
----- actualizar MER
----- documentación
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('alyce29', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'alyce29@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
----- * obtener datos y volcar en perfil
---------  * y perfil vendedor (estadísticas)
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('amir', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'amir.upton@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
----- * convertir cliente en vendedor (cuando salta el modal)
----- * [WebClient + WebService] actualizar perfil (mucha pereza)
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('okon', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'okon.hattie@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
----- * exportar bbdd nueva y reemplazar
----- * cambiar todos los alerts
----- * eliminar todos los console logs
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('bergstrom', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'bergstrom.zelma@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ibernier', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ibernier@parker.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
--- PUEDE:
----- [Web-Client] añadir comprobación e-mail usuario ajax ?
----- [Server] añadir alguna clave para conectarse con PuTTY ?
----- [Server] algún usuario que pueda ir por contraseña ?
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('domingo08', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'domingo08@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
--- NO:
----- ventana editar datos anuncio
----- repasar servidor .htaccess y demás
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('dashawn', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'dashawn.christiansen@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
--- HECHO
----- * cerrar sesión (al darle en el menú)
----- * en contacto ir a página wordpress? cuál es el enlace?
----- * añadir a la cesta, quitar de la cesta, vaciar cesta (cesta en cookies)
----- * al comprar la cesta, vaciar la cesta y todos los anuncios de la cesta marcarlos como vendido y añadirlos a historialCompras
----- * refactorizar parte común de obtener tipo a una función que se llame desde cualquier lado?
----- * crear algunos clientes
----- * vincular ventas a los clientes
----- * añadir visitas a tabla anuncios
----- * añadir que al visitar un anuncio, sume una visita
----- * administrar permisos, comprobar enrutamiento
----- * si deshabilitamos usuario saca alerta y le expulsa de sesión
----- * modificar menú (revisar!)
----- * hash password
----- * cambiar passwords usuarios
----- * borrar imagenes al borrar anuncio / usuario
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('orn', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'orn.sid@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('smueller', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'smueller@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('goldner', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'goldner.meagan@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('myrtie', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'myrtie.ledner@cremin.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('carleton', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'carleton.lubowitz@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('vonrueden', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'vonrueden.granville@oconner.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('dleuschke', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'dleuschke@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('leslie97', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'leslie97@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('vdamore', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'vdamore@conroy.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('hermann63', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'hermann63@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('zwiegand', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'zwiegand@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('jconnelly', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'jconnelly@kihn.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('olangworth', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'olangworth@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('josue22', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'josue22@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('santa', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'santa.marvin@bergnaum.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('qpadberg', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'qpadberg@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('rjohnson', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'rjohnson@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('janessa86', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'janessa86@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ettie18', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ettie18@kemmer.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ebogisich', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ebogisich@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ahauck', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ahauck@bernier.info', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('javon', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'javon.collier@beer.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('nikita', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'nikita.ritchie@bosco.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('wilfredo72', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'wilfredo72@fay.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ykihn', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ykihn@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('fgerhold', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'fgerhold@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('hegmann', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'hegmann.trevion@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('bridie28', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'bridie28@cummerata.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('eschmidt', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'eschmidt@jakubowski.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('yblick', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'yblick@kuphal.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('lesly', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'lesly.fritsch@schaefer.org', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('karina', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'karina.gislason@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('pkub', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'pkub@pagac.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('elfrieda', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'elfrieda.ullrich@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('darius24', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'darius24@harber.info', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('kankunding', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'kankunding@weissnat.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('rfunk', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'rfunk@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('stone', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'stone.schmitt@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('providenci64', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'providenci64@hane.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('myra05', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'myra05@lindgren.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('rutherford', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'rutherford.alexa@beier.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('morgan88', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'morgan88@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('gerald53', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'gerald53@okeefe.org', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('fritz94', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'fritz94@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('bessie', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'bessie.kuhlman@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('rogahn', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'rogahn.kiel@waelchi.net', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('tbechtelar', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'tbechtelar@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('jones', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'jones.dayana@dach.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('kcrooks', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'kcrooks@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('danial', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'danial.mcdermott@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('prosacco', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'prosacco.jennings@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('jadon60', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'jadon60@douglas.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('joanne', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'joanne.crist@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('windler', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'windler.athena@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('monique', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'monique.lind@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('padberg', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'padberg.colin@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('daphney81', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'daphney81@brekke.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('sofia', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'sofia.hessel@bartell.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('edmund80', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'edmund80@padberg.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('xcollins', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'xcollins@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('runolfsson', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'runolfsson.elroy@sawayn.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('denesik', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'denesik.saul@herman.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('fsawayn', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'fsawayn@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('eduardo', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'eduardo.hills@king.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ressie', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ressie.kling@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('nolan', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'nolan.collier@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('misty', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'misty.mayert@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('kenya', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'kenya.cummings@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('alf', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'alf.christiansen@mitchell.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('prudence51', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'prudence51@jaskolski.info', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('nadia', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'nadia.purdy@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('annalise70', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'annalise70@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('white', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'white.estrella@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('macejkovic', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'macejkovic.jasmin@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('larkin', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'larkin.patrick@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('hollis70', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'hollis70@labadie.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('aliyah46', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'aliyah46@fay.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('osatterfield', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'osatterfield@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('grant', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'grant.kutch@kuhic.org', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('icie12', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'icie12@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('cecile73', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'cecile73@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('juwan56', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'juwan56@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('ebuckridge', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'ebuckridge@mclaughlin.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('swaniawski', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'swaniawski.miracle@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('terry', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'terry.jensen@kassulke.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('krippin', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'krippin@beatty.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('agoodwin', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'agoodwin@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('jairo', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'jairo.huels@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('delpha', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'delpha.olson@marvin.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('keeling', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'keeling.jeanne@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('pouros', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'pouros.keven@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('effertz', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'effertz.martine@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('loren', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'loren.medhurst@koelpin.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('tillman', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'tillman.emmalee@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('marietta05', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'marietta05@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('edwina', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'edwina.lebsack@toy.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('hlemke', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'hlemke@gleichner.org', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('weber', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'weber.evie@bernhard.net', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('wilber19', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'wilber19@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('qmurphy', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'qmurphy@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('myrtice56', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'myrtice56@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('haley', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'haley.joan@hotmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('yundt', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'yundt.winona@runte.org', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('jerry', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'jerry.blanda@gusikowski.biz', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('cschiller', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'cschiller@yahoo.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('lon20', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'lon20@considine.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('una80', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'una80@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('edmond', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'edmond.parker@tromp.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('farrell', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'farrell.mozell@gulgowski.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('bart', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'bart.torphy@gmail.com', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
+
+INSERT INTO usuarios(username, password, email, tipo, descripcion) 
+VALUES('sparisian', '$2y$08$0lzt6WoAemujRpyGxWJJ7.pFesin2bqQIOm9X3kdDd5xpPSxPLh3m', 'sparisian@hirthe.net', 'C', 
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis vehicula ante. Donec dignissim sem non feugiat imperdiet. Mauris eget.');
 
