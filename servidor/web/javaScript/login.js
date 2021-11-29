@@ -131,6 +131,17 @@ $('#register').submit((e) => {
     // Utilizaremos FormData para mandar los datos
     var form_data = new FormData();    
 
+    // Comprobar que coinciden las contraseñas
+    if ($('#register input[name="password"]').val().trim() != $('#register input[name="repetir-password"]').val().trim()) {
+        Swal.fire({
+            title: '¡Ey!',
+            text: '¡Las contraseñas no coiciden!',
+            icon: 'error',
+            confirmButtonText: 'Ups!',
+        });
+        return false;
+    }
+
     // Añadimos los datos al FormData para enviarlo en la petición
     // ficheros -> $_FILES
     let img = $('#profile-pic')[0].files[0];
