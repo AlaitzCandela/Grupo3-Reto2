@@ -64,7 +64,7 @@
         $inicio = $data["inicio"];
         $fin = $data["fin"];
         $filtro = $data["filtro"];
-        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() $filtro ORDER BY fecha_publicacion, id DESC LIMIT $inicio, $fin");
+        $stmt = $dbh->prepare("SELECT id,nombre,fecha_publicacion,foto,precio FROM anuncios WHERE vendido = 0 AND fecha_caducidad > NOW() $filtro ORDER BY fecha_publicacion DESC, id DESC LIMIT $inicio, $fin");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
