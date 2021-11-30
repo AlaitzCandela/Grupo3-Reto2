@@ -95,7 +95,7 @@ function insertarAnuncio(e){
     form_data.append('nombre', $("#nombre-anuncio").val().trim());
     form_data.append('descripcion', $("#descripcion-anuncio").val().trim());
     form_data.append('caducidad', $("#caducidad").val());
-    form_data.append('precio', $("#precio").val());
+    form_data.append('precio', $("#precio-anuncio").val());
     form_data.append('categorias', categorias_ids.join(","));
 
     // Realizamos la petición
